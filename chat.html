@@ -729,6 +729,9 @@ function useProd(data){
 let me = localStorage.getItem('rye');
 let mine = data.filter(item => item['userid'] == me)   
 let allhtml = ""; 
+if(mine.length < 1) {
+document.getElementById('selsend').innerHTML = ""; 
+}
 mine.forEach(function(row){
 let id = row.id; 
 let pic = row.pic;
