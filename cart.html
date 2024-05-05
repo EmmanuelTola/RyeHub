@@ -96,7 +96,8 @@ big = "";
 }
 let data = $prod; 
 let row = data.filter(item => item['id'] == rid);
-row = row[0]; 
+if(row && row[0]) {
+ row = row[0]; 
 let name = row.name;
 let pic = xqlfile + row.pic; 
 let price = row.price;
@@ -125,6 +126,11 @@ body.innerHTML = html;
 targ.appendChild(body); rootHex(); 
 total = Number(total) + Number(allprice); 
 poll = poll + Number(value);  
+} else {
+localStorage.removeItem(key);
+localStorage.removeItem(`spec-${rid}`);
+setCart(); 
+}
 } });     
 totf.value = "$"+total;  
 
