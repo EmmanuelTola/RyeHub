@@ -130,7 +130,7 @@ border: 3px solid #0B1919;
 <img ratio="1/1" src="$xqlfile${ pic }" width="100%">
 <div margin="2.5% left" width="95%">
 <p margin="5px bottom" font="Outfit" size="17.5">{ name }</p>
-{ currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[ <in bold size="20px">{ price }</in> ]]!!
+{ currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[<in bold size="20px">{ price }</in> ]]!!
 </div>
 <br>
 </div>
@@ -148,7 +148,7 @@ border: 3px solid #0B1919;
 <p margin="8px bottom" font="Poppins" size="30px">{ name }!!if[[stock > 0]][[ <in size="16px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p>
 
 
-{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[ <in bold size="30px">{ price }</in> ]]!!
+{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[<in bold size="30px">{ price }</in> ]]!!
 
 
 <p font="Outfit" size="16px">{ bio }</p>
