@@ -494,9 +494,9 @@ document.querySelector('#filen').addEventListener('change', function() {
 let img = document.querySelector('#upimg'); // $('img')[0]
 img.src = URL.createObjectURL(this.files[0]);
 let fname = this.files[0].name; 
-fname = fname.replace(/\s/, '-'); 
-fname = fname.replace(/\)/, '');
-fname = fname.replace(/\(/, ''); 
+fname = fname.replace(/\s/g, '-'); 
+fname = fname.replace(/\)/g, '');
+fname = fname.replace(/\(/g, ''); 
 document.getElementById('filenn').value = "rye_" + fname; 
 
     }
@@ -507,9 +507,9 @@ document.getElementById('filenn').value = "rye_" + fname;
 let img = document.querySelector('#upban'); // $('img')[0]
 img.src = URL.createObjectURL(this.files[0]);
 let fname = this.files[0].name; 
-fname = fname.replace(/\s/, '-'); 
-fname = fname.replace(/\)/, '');
-fname = fname.replace(/\(/, ''); 
+fname = fname.replace(/\s/g, '-'); 
+fname = fname.replace(/\)/g, '');
+fname = fname.replace(/\(/g, ''); 
 document.getElementById('bilenn').value = "rye_" + fname; 
 
     }
