@@ -101,6 +101,9 @@ if(row && row[0]) {
 let name = row.name;
 let pic = xqlfile + row.pic; 
 let price = row.price;
+if(checkData(row.discount)) {
+price = row.discount; 
+}
 let allprice = Number(price) * Number(value); 
 if(row.currency == "$"){} else {
 price = Number(price)   / 1372; 
