@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+ <title>RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}   
+
+#editor input, #editor select {
+border: 0.5px solid grey;
+border-radius: 7px; 
+width: 90%; 
+height: 40px; 
+font-size: 17px; 
+font-family: 'Outfit';
+margin-bottom: 10px;
+}
+
+.popedit {
+width: 100%; 
+padding: 0; 
+z-index: 99999;
+height: 100%; 
+}
+#conte option:first-child::after {
+  content: " Country..." !important;
+  color: gray; /* Adjust styling as needed */
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+}
+</style>
+<section id="topnav"></section>
+<div height="70px"></div>
+
+ <center><i id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+<query call="document.getElementById('loader').hide(); checkSett(); imgEdit();" data="ryehub">
+<data id="usen"></data>
+<result>
+<div relative margin="10px left">
+<img frame width="70px" height="70px" round src="$xqlfile${ pic }">
+<p margin="3px,0,5px,0" font="Poppins" size="19px">Welcome <b>{ name }</b></p>
+<input back="lightgrey" theme="smart" style="pointer-events: none;" value="Email: {email}">
+
+<i onclick="show('#popedit')" margin="10px,10px,0,0" absolute push="top right" class="fa fa-cog" size="30px"></i>
+</div>
+</result>
+</query>
+
+<p margin="5px bottom" bold font="Poppins" size="22px">&nbsp; PURCHASES</p>
+<query call="" data="ryehub">
+<data id="purc"></data>
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have made no purchases</in></empty>
+<result></result>
+</query>
+
+
+
+<div display="none" id="popedit" class="s-pop popedit">
+
+<div padding="10px left" id="editor">
+
+    
+    
+<update table="users" query="id = $js-localStorage.getItem('rye')" call="history.go(0)" data="ryehub">
+<form>
+<br>
+<query call="imgEdit();" data="ryehub"> 
+<data id="editusen"></data>
+
+<result>   
+ <div flex style="align-items: center">
+<i margin="10px right" class="fa fa-arrow-left" size="30px" onclick="hide('#popedit')"></i>    
+<img onclick="fileUp(); document.getElementById('filen').click();" id="upimg" round src="$xqlfile${ pic }" width="70px" height="70px"></div>
+<br>
+<input dir="rye" type="file" hidden id="filen">
+<input name="name" value="{ name }">
+<select width="92%" name="country" id="conte">
+<option id="firstc" value="{ country }">{ country }</option> 
+</select>
+<input type="address" name="address" value="{ address }" placeholder="Address...">
+<input type="number" name="phone" value="{ phone }" placeholder="Phone Number...">
+<input hidden name="pic" id="filenn" value="{ pic }">
+<input size="18px" color="white" back="#0B1919" type="submit" value="UPDATE ACCOUNT">
+</result>
+</query>
+</form>
+</update>
+
+<br>
+
+
+</div> 
+
+</div>
+
+<br><br><br>
+
+<button link="store.html" height="60px" onclick="hide('#popedit')" color="white" width="80%" theme="smart" blend="normal" back="rgba(0,0,0,0.8)" size="25px" page-middle-h>MY STORE <i class="fa fa-shop"></i></button>
+
+
+
+
+<script>
+$IMPORT('@UI'); 
+let logg = localStorage.getItem('rye'); 
+if(logg == null) {
+location.href = 'login.html'; 
+} 
+
+
+let currn = localStorage.getItem('rye'); 
+ document.getElementById('purc').innerText = `ALL purchases WHERE user = '${currn}'`;
+document.getElementById('usen').innerText = `ALL users WHERE id = '${currn}'`;
+document.getElementById('editusen').innerText = `ALL users WHERE id = '${currn}'`;
+
+
+  
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub";
+$START('XQL:'+$con); 
+
+
+let curr = localStorage.getItem('rye'); 
+
+function checkSett(){
+if($GET('sett') == "true") {
+show('#popedit')
+}
+}
+
+
+
+function fileUp() {
+document.querySelector('#filen').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upimg'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('filenn').value = "rye_" + fname; 
+
+    }
+  });
+}
+
+
+ function imgEdit() {
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+this.src = "default.jpeg"; 
+ }
+ });
+ populateCountriesDropdown();
+ document.getElementById('topnav').Xporter('nav.hex')
+
+}
+
+
+
+
+  const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+  ];
+
+ function populateCountriesDropdown() {
+   
+    const selectElement = document.getElementById("conte");
+
+    countries.forEach(country => {
+      const optionElement = document.createElement("option");
+      optionElement.value = country;
+      optionElement.innerText = country; 
+      selectElement.appendChild(optionElement);
+    });
+  }
+
+  // Call the function to populate the dropdown on page load
+  
+
+
+
+
+
+
+
+</script>
+</body>

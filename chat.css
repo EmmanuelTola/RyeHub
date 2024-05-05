@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    #wavefile {  background: black; 
+        border-radius: 10px; 
+    width: 35vw !important; 
+    height: 32vw;
+        margin-bottom: 6px;
+        border: black 0.5px solid; 
+       
+        margin-right: 5px !important; 
+       
+    }
+    
+
+.chat-box{
+  position: relative;
+  min-height: 500px;
+  margin-top: 35px;
+  overflow-y: scroll;
+  background: none;
+  box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
+              inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
+}
+.chat-box .text{
+  position: absolute;
+  font-family: 'Outfit';
+  width: 100vw;
+  text-align: center;
+  
+}
+
+.chat-box .chat p{
+  word-wrap: break-word;
+  padding: 8px 16px;
+  box-shadow: 0 0 32px rgb(0 0 0 / 8%),
+              0rem 16px 16px -16px rgb(0 0 0 / 10%);
+}
+.outgoing p{
+  background-color: #1D9BF0;
+   color: white;
+  padding: 6px 3px 3px 10px;
+   min-height: 27px;
+   border: 5px; 
+  user-select: none;
+   float: right;
+   outline: none;
+   border-bottom: #faf9f6 1.2px solid;
+   width: 65vw; 
+   font-family: 'Montserrat', serif; 
+   
+    margin-left: 20%;
+     margin-bottom: 0px;
+   border-radius: 25px 0px;
+   font-size: 16px;
+} 
+
+.outgoing h2{
+  background-color: #e2f0f3;
+   color: black; 
+   font-weight: normal;
+  padding: 6px 3px 10px 10px;
+   min-height: 27px;
+   border: 5px; 
+    user-select: none;
+   float: right;
+   outline: none;
+   border-left: purple 1.2px solid;
+   width: 65vw; 
+   font-family: 'Montserrat', serif; 
+   
+    margin-left: 20%;
+     margin-bottom: -17px;
+   font-size: 14px;
+} 
+ 
+.outgoing #user { float: right; } 
+
+.incoming  p{
+  background-color: #FAF9F6;
+   color: black;
+   padding: 6px 3px 4px 12px;
+   min-height: 27px;
+   border: 5px;
+   outline: none;
+   user-select: none;
+   border: none;
+    width: 65vw;
+   opacity: 1;
+  border-bottom: #1ca3e0 0.5px solid;
+   float: left;
+   z-index: 3;
+   font-family: 'Montserrat', serif;
+   margin-right: 20%;
+   margin-bottom: 0px;
+   border-radius: 0px 25px;
+   font-size: 14px; 
+    
+} 
+.incoming #user { 
+    
+ float: left; 
+ 
+ 
+}
+
+
+
+.incoming h2{
+  background-color: #f0edf4;
+   color: black; 
+   font-weight: normal;
+  padding: 6px 3px 10px 10px;
+   min-height: 27px;
+   border: 5px;
+    user-select: none;
+   float: left;
+   outline: none;
+   border-right: purple 1.2px solid;
+   width: 65vw; 
+   font-family: 'Montserrat', serif; 
+   
+    margin-right: 20%;
+     margin-bottom: -17px;
+   font-size: 16px; 
+  
+} 
+  #user img {
+      width: 23px; 
+      height: 23px; 
+      border-radius: 50%; 
+      margin-bottom: -6px;
+  } 
+  
+  #user { 
+  margin-bottom: -10px; 
+  font-family: 'Poppins';
+  font-size: 13px; 
+  margin-top: 10px;
+  color: purple;
+  font-weight: 400;
+  
+ 
+  } 
+ 
+  
+.typing-are{
+
+  width: 100vw;
+  position: fixed;
+  bottom: 0px;
+ 
+  display: ;
+  justify-content: space-between;
+} 
+.waveimg #links { 
+ align-self: flex-end;  
+}
+.outgoing .waveimg {
+   float: right; 
+   margin-right: -40px; 
+   
+   width: 85vw !important;
+    
+   
+}
+
+
+.incoming .waveimg { 
+  float: left;  
+} 
+
+
+textarea{
+  height: 30px;
+  width: calc(100% - 55px);
+  font-size: 16px;
+  border-radius: 20px;
+  font-family: 'Montserrat', serif; 
+  z-index: 9;
+  margin-bottom: -18px;
+  margin-left: 0px;
+  border: none;
+  outline: none;
+ padding: 7px 10px 5px 7px;
+} 
+
+#boxer {
+height: 30px;
+margin-bottom: 18px;
+padding: 7px 5px 5px 5px;
+border: 1px solid lightgrey;
+border-radius: 20px;
+background: white;
+width: calc(100% - 75px);
+}
+
+
+.typing-are .send{
+  color: white;
+  width: 45px;
+  height: 45px;
+   border-radius: 50%;
+   position: fixed;
+   bottom: 0px;
+   right: 0px;
+   margin-bottom: 18px;
+   margin-right: 5px;  
+  border: none;
+  outline: none;
+  background: rgba(29,155,250);
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 1;
+  
+ 
+  transition: all 0.3s ease;
+} 
+
+
+
+
+.typing-are button.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+  
+  .chat-box{
+    min-height: 400px;
+
+  }
+
+.chat p {
+    font-size: 15px; 
+}
+.url {
+    font-family: 'Outfit' !important;
+}
+.outgoing .url {
+ color: #DDE4F0 !important;   
+}
+.incoming .url {
+ color: #1D9BF0 !important;   
+}

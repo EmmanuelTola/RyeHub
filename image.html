@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/e73524a371.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@v1.2/hex.js'></script>
+</head>  
+<style> body { margin: 0px; } </style>
+<p id="download" style="position: absolute; top: 0px; right: 0px; color: white; font-family: serif; font-size: 22px; font-weight: bold; text-align: right; margin-right: 10px;">Save Image</p> 
+
+<div style="background: black; width: 100%; height: 100vh; display: flex; align-items: center"> 
+<img id="targ" style="width: 100vw;"></img>
+</div>
+
+
+<script>
+    
+const fsrc = $GET('src'); 
+document.getElementById('targ').src = fsrc; 
+
+downloadBtn = document.querySelector("#download");
+
+downloadBtn.addEventListener("click", e => {
+    e.preventDefault();
+    downloadBtn.innerHTML = "Saving..."; 
+    fetchFile(fsrc);
+});
+
+function fetchFile(url) {
+    fetch(url).then(res => res.blob()).then(file => {
+        let tempUrl = URL.createObjectURL(file);
+        const aTag = document.createElement("a");
+        aTag.href = tempUrl;
+        aTag.download = url.replace(/^.*[\\\/]/, '');
+        document.body.appendChild(aTag);
+        aTag.click();
+        downloadBtn.innerHTML = "Saved"; 
+        URL.revokeObjectURL(tempUrl);
+        aTag.remove(); 
+        downloadBtn.innerHTML = "Save Image"; 
+    }).catch(() => {
+        alert("Failed to download file!");
+        
+    });
+}
+</script>

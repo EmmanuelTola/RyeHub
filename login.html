@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+ <title>RyeHub</title>
+<link href="hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+
+<body>
+
+<style>
+html, body {
+    heigh: 100vh; 
+    width: 100vw; 
+    background:  #0B1919;  
+    margin: 0;
+}
+.inp {
+padding: 10px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: 1.5px solid grey; 
+border-radius: 10px; 
+    margin-bottom: 12px;
+    
+}
+
+.btn {
+padding: 10px 15px;
+height: 50px; 
+width: calc(100% - 30px);
+font-family: 'Rubik';
+font-size: 17px;
+border: 1.5px solid grey; 
+border-radius: 10px;
+color: white;
+margin-left: 15px;
+}
+</style>   
+
+
+<div color="white" width="95%" page-middle>
+<center>
+    <img margin="-70px top" width="65%" src="logo.png">
+</center>    
+<section page-middle-h width="90%">
+<div bold><p margin="5px top" center bold font="Rubik" size="30px">Sign In To <in font="Charm">RyeHub</in></p></div>
+
+
+<span>
+<input margin="7px left" type="email" id="email" class="inp" placeholder="Email Address">
+<input margin="7px left" style="display: none" type="name" id="name" class="inp" placeholder="Display Name...">
+
+<input margin="7px left" style="display: none" type="code" id="verify" class="inp" placeholder="Enter Verification Code In Mail...">
+
+</span>
+<p id="error" margin="-2px,auto,7px,auto" color="#708090" size="15px" font="Poppins"></p>
+<button size="30px" onclick="auth()" noborder center id="btn" font="Outfit" class="btn" back="#a3765D">Sign In</button>
+</section>
+    
+</div>
+
+
+    
+    
+<script>
+$IMPORT('@UI'); 
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub";
+$START('XQL:'+$con); 
+let $email = []; 
+let $disp = []; 
+let $eid = []; 
+let $cont = [];
+let $type = [];
+function auth() {
+let conf = document.getElementById('verify').value; 
+if(conf !== "") {
+document.getElementById('error').innerText = 'Verifying...';
+verI(conf); 
+
+} else {
+
+let name = document.getElementById('name').value;
+if(name !== "") {
+document.getElementById('error').innerText = 'Creating Account...'; 
+ 
+let mail = document.getElementById('email').value;
+let disp = document.getElementById('name').value; 
+
+let ver = makeid(6); 
+localStorage.setItem('vcode', ver);
+
+$email = [];
+$email.push(mail); 
+$disp = [];
+$disp.push(disp);   
+sauth(ver); 
+
+} else  {
+    
+document.getElementById('error').innerText = 'Processing...'; 
+let email = document.getElementById('email').value; 
+
+$QUERY($con, $db, `SELECT users WHERE email = '${email}'`).pull(check);
+
+function check(data) {
+ 
+    try {
+if(data == "")  {
+       
+document.getElementById('error').innerText = 'Create Account';
+document.getElementById('name').style.display = 'block'; 
+ 
+ 
+} else {
+let auth = data[0]['email'];
+let uid = data[0].id;
+let ver = makeid(6);
+localStorage.setItem('vcode', ver);
+$email = [];
+$email.push(auth);
+$eid = [];
+$eid.push(uid); 
+$type = [];
+$type.push('log');
+sauth(ver); 
+}
+} catch(error) {
+    alert(error)
+}
+}
+
+}
+
+}    
+}
+
+function verI(code) {
+let conn = localStorage.getItem('vcode'); 
+ if(code !== conn) {
+document.getElementById('error').innerText = "Invalid Code!";
+ } else { 
+ 
+ try {
+
+if($type[0] == "log") {
+let eid = $eid[0];
+logIn(eid);   
+} else {
+let name = $disp[0];
+let uid = makeid(8);
+let join = $dtime(); 
+let email = $email[0];
+document.getElementById('error').innerText = "Creating Account...";
+let cont = $cont[0]; 
+
+$INSERT($db, `INSERT users FIELDS(id, name, email, country, address, phone, pic, joined) VALUES(${uid}, ${name}, ${email}, ${cont}, null, null, null, ${join})`, `sign('${uid}')`); 
+}
+  
+ } catch(error) {
+    alert(error); 
+} 
+  
+    
+}
+
+}
+
+function sauth(ver) {
+    try{
+document.getElementById('error').innerText = 'Sending Verification'; 
+let to = $email[0];
+let from = "RyeHub-Account@ryehub.com";
+let head = "Verify Your Account - RyeHub";
+let body = `<div style="width: calc(97% - 20px); padding: 50px 10px 50px 10px; border-radius: 5px; background: #020202; color: white; font-size: 20px; font-family: serif; font-weight: 200;"><img src="https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/logo.jpg" width="80%"><br><p>Your verification code for your RyeHub account is, "<span style="font-weight: bold">${ver}</span>" Start Buying and Selling now! </p><p style="text-align: left; font-family: Cursive; font-weight: 600; font-size: 35px">RyeHub</p></div>`;
+Mailer(to, from, head, body, 'mailed()', 'alert("error")');  } catch(error) {
+    alert(error)
+}
+    
+}
+
+function mailed() {
+hide('#email'); 
+hide('#name'); 
+show('#verify'); 
+document.getElementById('error').innerHTML = 'Verification Sent <p style="color: green" onclick="reTry()">Resend</p>'; 
+document.getElementById('btn').innerText = 'Verify'; 
+} 
+ 
+
+function reTry() {
+let ver = makeid(6);
+localStorage.setItem('vcode', ver);
+sauth(ver);     
+}
+
+
+
+function sign(id) {
+localStorage.setItem("rye", id); 
+location.href = 'user.html'; 
+}
+
+function logIn(id) {
+localStorage.setItem("rye", id); 
+location.href = 'user.html'; 
+
+}
+
+
+
+function getLo() {
+    
+    fetch('https://ipapi.co/json/')
+  .then(response => response.json())
+  .then(data => {
+    let country = data['country_name'];
+    if(country == undefined || country == "undefined") {
+ country = "Select Country";     
+    }
+    console.log(country);
+    $cont = []; 
+    
+    $cont.push(country); 
+  })
+  .catch(error => console.error("Error fetching location:", error));
+}
+getLo();
+
+
+
+</script>
+    
+    
+</body>

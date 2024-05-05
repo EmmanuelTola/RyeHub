@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+ <title>RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+} 
+
+.item {
+width: 95%;
+margin-left: 2.5%; 
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+}    
+
+
+</style>
+<div id="nav"></div>
+<div height="65px"></div>
+
+<div right>
+<input margin="10px right" width="100px" style="pointer-events: none" theme="smart" value="" back="lightgrey" size="30px" id="total">
+</div>
+<br>
+<center>
+<i margin="10px top" id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+<div id="cart">
+
+  
+    
+    
+</div>
+
+
+
+<script parse="getMen();">
+
+$IMPORT('@UI');    
+document.getElementById('nav').Xporter('nav.hex');
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+$START('XQL:'+$con);
+let $prod = []; 
+
+$QUERY($con, $db, 'SELECT products').pull(allProd); 
+function allProd(data){
+$prod = data; 
+setCart();
+document.getElementById('loader').hide();
+}
+
+function setCart(){
+let totf = document.getElementById('total'); 
+const targ = document.getElementById('cart'); 
+cart.innerHTML = ""; 
+let total = 0; 
+let poll = 0; 
+const keys = Object.keys(localStorage);
+keys.forEach(key => {
+if (key.startsWith("rye-")) {
+let value = localStorage.getItem(key);
+let rid = key.split("rye-").pop(); 
+let big = localStorage.getItem('spec-'+rid); 
+if(checkData(big)){
+big = ` (${big})`;   
+} else {
+big = ""; 
+}
+let data = $prod; 
+let row = data.filter(item => item['id'] == rid);
+row = row[0]; 
+let name = row.name;
+let pic = xqlfile + row.pic; 
+let price = row.price;
+let allprice = Number(price) * Number(value); 
+if(row.currency == "$"){} else {
+price = Number(price)   / 1372; 
+price = price.toFixed(1); 
+allprice = allprice / 1372; 
+allprice = allprice.toFixed(1); 
+}
+let body = document.createElement("div");
+body.classList.add("item"); 
+let html = `<div margin="10px bottom" relative flex style="align-items: center" theme="smart">
+<img frame width="60px" margin="10px right" height="60px" radius="5px" src="${pic}">
+<div >
+<p margin="0" font="Ubuntu" size="18px">${name}${big}</p>
+<hr>
+<in size="16px" font="Rubik">$${price} <i color="green">(×${value})</i></in>
+</div>
+<p absolute push="bottom right" bold font="Ubuntu" size="22px" margin="0,10px,5px,0">$${allprice}</p>
+
+<i onclick="localStorage.removeItem('${key}'); localStorage.removeItem('spec-${rid}');  setCart()" absolute color="red" push="top right" bold class="fa fa-trash" size="22px" margin="5px,10px,0,0"></i>
+
+</div>`; 
+body.innerHTML = html; 
+targ.appendChild(body); rootHex(); 
+total = Number(total) + Number(allprice); 
+poll = poll + Number(value);  
+} });     
+totf.value = "$"+total;  
+
+document.getElementById('cartnum').innerText = poll; 
+}
+
+
+
+
+
+</script>
+ 

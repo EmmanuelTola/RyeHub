@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+<title>Store | RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}   
+
+#editor input, #editor textarea, #editor select {
+border: 0.5px solid grey;
+border-radius: 7px; 
+width: 90%; 
+height: 40px; 
+font-size: 17px; 
+font-family: 'Outfit';
+margin-bottom: 10px;
+}
+
+
+.popedit {
+width: 100%; 
+padding: 0;
+border-radius: 0; 
+z-index: 99999;
+top: 0; 
+transform: none; 
+left: 0; 
+height: 100vh; 
+}
+.poptext {
+height: calc(100vh - 60px); 
+padding-bottom: 20px;
+max-height: 100vh;
+}
+#popcan {
+left: 0; 
+font-size: 45px; 
+}
+#popdel {
+mix-blend-mode: normal; 
+background-blend-mode: normal; 
+background: #0B1919; 
+color: white; 
+}
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+} 
+
+#produp img {
+margin-top: 10px;
+border-radius: 5px; 
+border: 3px solid #0B1919; 
+}
+
+.force-layout {
+  display: none; /* Any style that forces a layout update */
+}
+
+</style>
+
+ <center>
+<i margin="10px top" id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+
+<query call="document.getElementById('loader').hide()" data="ryehub">
+<data id="purc"></data>
+<empty>
+<center>
+<p width="80%" font="Poppins" size="30px">You do not currently have a seller store!</p>
+<button onclick="newStore();" theme="smart" back="#0B1919" size="20px" color="white">CREATE</button>
+</center>       
+</empty>
+<result>
+
+<img frame src="$xqlfile${ banner }" width="100%" ratio="1/0.5">  
+<div margin="-50px,0,0,10px" flex style="align-items: center">
+<img frame border="#0B1919 solid 6px" margin="10px right" round src="$xqlfile${ pic }" width="87px" height="87px"><p margin="50px top" font="Poppins" bold size="30px">{ name }&nbsp;&nbsp;<i onclick="show('#popedit')" class="fa fa-pen"></i></p>
+</div>
+
+    
+</result>
+</query>
+
+
+<p margin="5px,0,5px,0" bold font="Poppins" size="30px">&nbsp; PRODUCTS</p>
+
+
+ <center>
+<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+
+
+
+
+ <div id="allprod" width="95vw" margin="2.5% left">
+
+<query call="document.getElementById('ploader').hide(); wrapProd('allprod'); setPop()" data="ryehub">
+<data id="purco"></data>
+
+
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+
+
+<result>
+<div class="eachprod" display="" onclick="hexPop('{ id }')" border="1px solid #0B1919" width="150px" margin="0,10px,10px,0">
+<img ratio="1/1" src="$xqlfile${ pic }" width="100%">
+<div margin="2.5% left" width="95%">
+<p margin="5px bottom" font="Outfit" size="17.5">{ name }</p>
+{ currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[ <in bold size="20px">{ price }</in> ]]!!
+</div>
+<br>
+</div>
+
+
+<div pope="{ id } CLOSE" pop-class="popedit">
+<div id="produp" flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left> 
+<img frame id="ppm" ratio="1/1" src="$xqlfile${ pic }" width="200px">
+&nbsp;
+<img frame id="ppm" ratio="1/1" src="$xqlfile${ pictwo }" width="200px">
+&nbsp; 
+<img frame id="ppm" ratio="1/1" src="$xqlfile${ picthree }" width="200px">
+</div>
+<div width="95%" margin="2.5% left">
+<p margin="8px bottom" font="Poppins" size="30px">{ name }!!if[[stock > 0]][[ <in size="16px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p>
+
+
+{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[ <in bold size="30px">{ price }</in> ]]!!
+
+
+<p font="Outfit" size="16px">{ bio }</p>
+</div>
+    
+&nbsp;<button theme="smart" size="20px" onclick="window.open('edit.html?id={ id }')">Edit Product&nbsp;<i class="fa fa-pen"></i></button>   
+ 
+    
+</div>
+
+
+</result>
+
+</query>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div display="none" id="popnew" class="s-pop">
+
+<div id="editor">
+<center>
+    
+    
+<insert call="history.go(0)" table="seller" data="ryehub">
+<form id="newform">
+  
+<img onclick="newFile(); document.getElementById('biles').click();" id="upbans" src="logo.jpg" width="100%" ratio="1/0.5">  
+<img margin="-35px top" onclick="newFile(); document.getElementById('files').click();" id="upimgs" round src="logo.jpg" width="70px" height="70px">
+
+<br>
+
+<input name="banner" dir="rye" type="file" hidden id="biles">
+
+<input name="pic" dir="rye" type="file" hidden id="files">
+<input placeholder="Store Name..." name="name" value="">
+<input name="id" hidden value="$js-localStorage.getItem('rye')">
+<textarea name="bio" placeholder="Store Description" height="70px"></textarea>
+<input hidden name="status" value="verified">
+<input hidden name="number">
+<input hidden name="type" value="Bank">
+<input onclick="show('#newspin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="CREATE">
+<i hidden id="newspin" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+</form>
+</insert>
+
+<br>
+<button onclick="hide('#popnew')" color="white" width="80%" theme="smart" blend="normal" back="rgba(0,0,0,0.8)" size="20px" page-middle-h>CANCEL</button>
+
+
+</center> 
+</div> 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div display="none" id="popedit" class="s-pop popedit">
+
+<div id="editor">
+<center>
+    
+    
+<update table="seller" query="id = $js-localStorage.getItem('rye')" call="history.go(0)" data="ryehub">
+<form>
+    
+<query call="imgEdit();" data="ryehub"> 
+<data id="editusen"></data>
+<result> 
+<img onclick="fileUp(); document.getElementById('bilen').click();" id="upban" src="$xqlfile${ banner }" width="100%" ratio="1/0.5">  
+
+<img margin="-35px top" border="3px #0B1919 solid" onclick="fileUp(); document.getElementById('filen').click();" id="upimg" round src="$xqlfile${ pic }" width="70px" height="70px">
+
+<br>
+
+<input dir="rye" type="file" hidden id="bilen">
+<input hidden name="banner" id="bilenn" value="{ banner }">
+
+
+
+<input dir="rye" type="file" hidden id="filen">
+<input name="name" value="{ name }">
+<input hidden name="pic" id="filenn" value="{ pic }">
+<textarea height="70px" name="bio">{ bio }</textarea>
+<select width="91%" name="type">
+<option value="{ type }">Select Payment Method</option>
+<option value="Bank">Bank Transfer</option>
+<option value="PayPal">PayPal</option>
+</select>
+<textarea placeholder="ENTER ACCOUNT DETAILS (PayPal Address or Holding Bank, Bank Name, Account Number)" name="number" height="70px">{ number }</textarea>
+<input onclick="show('#upspin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="UPDATE">
+<i hidden id="upspin" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+
+</result>
+</query>
+</form>
+</update>
+
+<br>
+<button margin="10px,0,0,30px" fixed push="top" onclick="hide('#popedit')" color="white" theme="smart" blend="normal" back="rgba(0,0,0,0.8)" size="20px" page-middle-h><i class="fa fa-times">&nbsp; </i>CANCEL</button>
+
+
+</center> 
+</div> 
+
+</div>
+
+
+<button radius="50%" height="70px" width="70px" onclick="show('#newprod')" noborder absolute push="right bottom" margin="0,20px,60px,0" size="30px" back="#0B1919" color="white"><i class="fa fa-plus"></i></button>
+
+<div absolute push="top left right bottom" back="white" radius="0" display="none" id="newprod" class="popedit">
+
+<div id="editor">
+<center>
+    
+
+<button margin="10px,0,0,20px" back="#fafafa" blend="normal" onclick="addImg();" size="20px" rati="1/1" theme="smart"><i class="fa fa-plus"></i>&nbsp; Image</button>
+    
+<insert table="products" call="history.go(0)" data="ryehub">
+<form>
+    
+<br>
+<div flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left>
+<img onclick="proFile(); document.getElementById('filep').click();" id="upimgp" src="logo.jpg" width="48%" ratio="1/1"> &nbsp;
+<img display="none" style="flex-shrink: 0;" onclick="proFile(); document.getElementById('bilep').click();" id="upbanp" src="logo.jpg" width="42%" ratio="1/1">  
+&nbsp;
+<img display="none" style="flex-shrink: 0;" onclick="proFile(); document.getElementById('tilep').click();" id="uptwop" src="logo.jpg" width="42%" ratio="1/1">  
+
+</div>
+<br>
+
+<input name="pictwo" dir="rye" type="file" hidden id="bilep">
+<input required name="pic" dir="rye" type="file" hidden id="filep">
+<input name="picthree" dir="rye" type="file" hidden id="tilep">
+
+<input required name="name" placeholder="Product Name">
+<textarea required height="70px" placeholder="Product description..." name="bio"></textarea>
+<input name="userid" hidden margin="0" value="$js-localStorage.getItem('rye')">
+<input margin="0" name="id" hidden value="$js-makeid(8)">
+<select width="91%" name="currency">
+<option value="$">Currency: Dollar</option>
+<option value="₦">Currency: Naira</option>
+</select>
+<input height="50px" width="43%" required placeholder="Price (In Naira)" name="price" type="number">
+<input margin="2% left" height="50px" width="43%" placeholder="Discount Price (optional)" name="discount" type="number">
+<input required placeholder="Number Of Products In Stock" name="stock" type="number">
+<input name="tags" placeholder="Add tags separated by commas for visibility">
+<input name="size" placeholder="Sizes/Specifications separated by commas if applicable">
+<select id="delv" width="91%" name="delivery">
+<option value="Physical">Select Delivery Type</option>
+<option value="Physical">Physical</option>
+<option value="Online Service">Online Service</option>
+</select>
+
+<input placeholder="Delivery Fee" id="dfee" name="fee" >
+<input placeholder="Delivery Location(s)" id="dloc" name="location">
+
+
+
+<input onclick="show('#prospin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="UPDATE">
+<i hidden id="prospin" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+
+</form>
+</insert>
+
+<br>
+<button margin="10px,0,0,30px" absolute push="top" onclick="hide('#newprod')" color="white" theme="smart" blend="normal" back="rgba(0,0,0,0.8)" size="20px" page-middle-h><i class="fa fa-times">&nbsp; </i>CANCEL</button>
+
+
+</center> 
+</div> 
+
+</div>
+
+
+
+
+
+
+
+
+<div pop="cinfo UPDATE_INFO user.html?sett=true">
+<i class="fa fa-warning" size="50px" color="red"></i>
+<p size="30px" font="Outfit">You have missing contact info. Update them to create a store and become a verified seller</p>
+</div>
+
+
+<script>
+   
+$IMPORT('@UI'); 
+
+let delv = document.getElementById('delv'); 
+
+function doDev(){
+if(delv) {
+let val = delv.value;
+if(val == "Online Service") {
+hide('#dloc'); 
+hide('#dfee'); 
+
+document.getElementById('dfee').removeAttribute("required"); 
+document.getElementById('dloc').removeAttribute("required"); 
+
+
+
+} else {
+show('#dloc'); 
+show('#dfee'); 
+document.getElementById('dfee').setAttribute("required", "true"); 
+document.getElementById('dloc').setAttribute("required", "true"); 
+    
+}
+}
+}
+
+
+setInterval(doDev, 500); 
+
+
+
+let logg = localStorage.getItem('rye'); 
+if(logg == null) {
+location.href = 'login.html'; 
+}
+
+
+function addImg() {
+let sec = dState('#upbanp'); 
+
+if(sec == "flex") {
+show('#uptwop'); 
+} else {
+ show('#upbanp'); 
+}
+}
+
+
+function setPop(){
+let popes = document.querySelectorAll('[pope]'); 
+if(popes) {
+popes.forEach(function(pope){
+let pop = pope.getAttribute('pope'); 
+pope.setAttribute("pop", pop);   
+    
+}); 
+rootHex();
+
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+
+if(this.id == "ppm") {
+this.hide(); 
+ this.remove();  
+ 
+}
+ }
+ });
+
+
+
+}
+}
+
+
+
+let currn = localStorage.getItem('rye'); 
+
+document.getElementById('purc').innerText = `ALL seller WHERE id = '${currn}'`;
+document.getElementById('purco').innerText = `ALL products WHERE userid = '${currn}'`; 
+document.getElementById('editusen').innerText = `ALL seller WHERE id = '${currn}'`;
+
+
+  
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+
+
+let curr = localStorage.getItem('rye'); 
+
+
+$QUERY($con, $db, `SELECT users WHERE id = '${curr}'`).pull(setStat);
+
+
+$START('XQL:'+$con);
+
+
+
+function setStat(data) {
+if(data && data[0]) {
+let row = data[0]; 
+if(checkData(row.address) && checkData(row.country) && checkData(row.phone)) {
+sessionStorage.setItem("valid", "true"); 
+
+} else {
+ sessionStorage.setItem("valid", "false");    
+}
+ 
+} else {
+location.href = "login.html";    
+}   
+}
+
+
+function newStore() {
+let val = sessionStorage.getItem("valid"); 
+if(val == "true") {
+show('#popnew')    
+} else {
+hexPop('cinfo'); 
+}
+}
+
+
+
+
+
+
+
+
+
+function fileUp() {
+document.querySelector('#filen').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upimg'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('filenn').value = "rye_" + fname; 
+
+    }
+  });
+  
+ document.querySelector('#bilen').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upban'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('bilenn').value = "rye_" + fname; 
+
+    }
+  }); 
+  
+  
+  
+}
+
+
+
+function newFile() {
+document.querySelector('#files').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upimgs'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+
+
+    }
+  });
+  
+ document.querySelector('#biles').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upbans'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+
+
+    }
+  }); 
+  
+  
+  
+}
+
+
+
+
+function proFile() {
+document.querySelector('#filep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upimgp'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+
+
+    }
+  });
+  
+ document.querySelector('#bilep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upbanp'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+
+
+    }
+  }); 
+  
+  
+  document.querySelector('#tilep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#uptwop'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+
+
+    }
+  }); 
+  
+  
+  
+}
+
+
+
+function wrapProd(targ) {
+let home = document.getElementById(targ); 
+let each = home.querySelectorAll('.eachprod'); 
+
+let totwidth = home.offsetWidth; 
+let onewidth = 160; 
+let margin = onewidth / 48; 
+onewidth = margin + onewidth + 1; 
+let many = Math.floor(totwidth / onewidth);
+let total = each.length;
+let round = Math.ceil(total / many); 
+
+each.forEach(function(poll){
+    poll.remove();
+})
+
+for(let i = 1; i < round + 1; i++){
+let flex = document.createElement("div");
+flex.style.display = "flex"; 
+let prev = i - 1; 
+if(prev < 0)  { prev = 0; } 
+prev = prev * many; 
+prev = prev + 1; 
+for(let j = 1; j < many + 1; j++){
+let elem = each[prev-1]; 
+if(elem){
+elem = elem.cloneNode(true); 
+flex.appendChild(elem);  
+}
+prev++;   
+} 
+home.appendChild(flex);
+  
+}
+}   
+
+
+ function imgEdit() {
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+this.src = "logo.jpg"; 
+ }
+ });
+ 
+ 
+
+}
+
+
+</script>
+</body>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+<title>Store | RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}   
+
+#editor input, #editor textarea, #editor select {
+border: 0.5px solid grey;
+border-radius: 7px; 
+width: 90%; 
+height: 40px; 
+font-size: 17px; 
+font-family: 'Outfit';
+margin-bottom: 10px;
+}
+
+
+.popedit {
+width: 100%; 
+padding: 0;
+border-radius: 0; 
+z-index: 99999;
+top: 0; 
+transform: none; 
+left: 0; 
+height: 100vh; 
+}
+.poptext {
+height: calc(100vh - 60px); 
+padding-bottom: 20px;
+max-height: 100vh;
+}
+#popcan {
+left: 0; 
+font-size: 45px; 
+}
+#popdel {
+mix-blend-mode: normal; 
+background-blend-mode: normal; 
+background: #0B1919; 
+color: white; 
+}
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+} 
+
+#produp img {
+margin-top: 10px;
+border-radius: 5px; 
+border: 3px solid #0B1919; 
+}
+
+
+#addup {
+font-family: 'Ubuntu'; 
+}    
+#addup .put {
+background: #ebb09e; 
+border: none; 
+width: 70px; 
+height: 35px; 
+border-radius: 10px; 
+font-size: 25px; 
+}
+
+#addup .dis {
+background: #fafafa; 
+border: grey 1px solid; 
+width: 50px; 
+height: 50px; 
+border-radius: 50%; 
+font-size: 25px; 
+}
+
+.active {
+border: 2px solid green; 
+}
+
+
+</style>
+
+ <center>
+<i margin="10px top" id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+
+<query call="document.getElementById('loader').hide()" data="ryehub">
+<data id="purc"></data>
+<empty>
+<center>
+<p width="80%" font="Poppins" size="30px">Store Not Found</p>
+<button onclick="window.close();" theme="smart" back="#0B1919" size="20px" color="white">GO BACK</button>
+<br><br>
+</center>       
+</empty>
+<result>
+
+<img frame src="$xqlfile${ banner }" width="100%" ratio="1/0.5">  
+<div margin="-50px,0,0,10px" flex style="align-items: center">
+<img frame border="#0B1919 solid 6px" margin="10px right" round src="$xqlfile${ pic }" width="87px" height="87px"><p margin="50px top" font="Poppins" bold size="30px">{ name }&nbsp;&nbsp;<i onclick="shareShop" class="fa fa-share-alt"></i></p>
+</div>
+<button radius="50%" height="70px" width="70px" onclick="location.href='chat.html?id={ id }'" noborder fixed push="right bottom" margin="0,20px,60px,0" size="30px" back="#0B1919" color="white"><i class="fa fa-comment-alt"></i></button>
+
+
+    
+</result>
+</query>
+
+
+<p margin="5px,0,5px,0" bold font="Poppins" size="30px">&nbsp; PRODUCTS</p>
+
+
+ <center>
+<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+
+
+
+ 
+<div id="allprod" width="95vw" margin="2.5% left">
+<query call="document.getElementById('ploader').hide(); wrapProd('allprod'); setPop()" data="ryehub">
+<data id="purco"></data>
+
+
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">No Product Available </in></empty>
+
+
+<result>
+<div class="eachprod" display="" onclick="hexPop('{ id }')" border="1px solid #0B1919" width="45vw" margin="0,10px,10px,0">
+<img style="object-fit: cover" ratio="1/1" src="$xqlfile${ pic }" width="100%">
+<div margin="2.5% left" width="95%">
+<p margin="5px bottom" font="Outfit" size="17.5">{ name }</p>
+{ currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[<in bold size="20px">{ price }</in> ]]!!
+</div>
+<br>
+</div>
+
+
+<div pope="{ id } CLOSE" pop-class="popedit">
+<div id="produp" flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left> 
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pic }" width="200px">
+&nbsp;
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pictwo }" width="200px">
+&nbsp; 
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ picthree }" width="200px">
+</div>
+<div width="95%" margin="2.5% left">
+<p margin="8px bottom" font="Poppins" size="30px">{ name }!!if[[stock > 0]][[ <in size="16px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p>
+
+
+{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[ <in bold size="30px">{ price }</in> ]]!!
+
+
+<p font="Outfit" size="16px">{ bio }</p>
+</div>
+
+<center> 
+<input id="specval" hidden>  
+<array elem="button"><button onclick="specTo(this)" margin="0,5px,0,5px" class="spec" blend="normal" theme="smart" back="#ebb09e" size="20px">{ size }</button></array>
+</center>
+<br>
+    
+
+
+
+ 
+<div center id="addup">
+<button class="put" onclick="addUp('{ id }', '-', '{ stock }')">-</button>
+&nbsp; 
+<button class="dis" id="add{ id }">1</button>
+&nbsp;
+<button class="put" onclick="addUp('{ id }', '+', '{ stock }')">+</button>
+
+</div> 
+
+<br>    
+       
+
+
+!!if[[stock > 0]][[
+<button color="white" onclick="addCart('{ id }')" page-middle-h back="#e05555" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
+]]!!
+    
+</div>
+</result>
+
+</query>
+</div>
+
+
+
+<button display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="added" theme="smart" size="18px">Added To Cart</button>
+
+<button width="200px" display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="removed" theme="smart" size="18px">Removed From Cart</button>
+
+<script>
+   
+$IMPORT('@UI'); 
+
+let delv = document.getElementById('delv'); 
+
+
+
+let logg = localStorage.getItem('rye'); 
+if(logg == null) {
+location.href = 'login.html'; 
+}
+
+
+
+
+function specTo(elem){
+
+
+let spet = document.querySelectorAll('.active'); 
+if(spet){
+spet.forEach(function(row){
+row.classList.remove('active');   
+}); 
+}
+
+elem.classList.add("active"); 
+document.getElementById('specval').value = elem.innerText;
+}
+
+
+
+
+
+
+
+function addUp(targ, typeh, max){
+let target = "add"+targ; 
+target = document.getElementById(target); 
+let curr = Number(target.innerText); 
+if(typeh == "+") {
+curr = curr + 1; 
+if(curr > max) {
+curr = max;    
+}  
+} 
+
+if(typeh == "-") {
+curr = curr - 1; 
+if(curr < 0) {
+curr = 0;    
+}  
+} 
+
+target.innerText = curr; 
+
+
+   
+}
+
+
+
+function addCart(rid){
+let qty = document.getElementById('add'+rid); 
+if(qty){
+qty = qty.innerText;     
+} else {
+qty = 1; 
+} 
+let code = "rye-"+rid; 
+let spec = "spec-"+rid;
+if(qty > 0){
+let siz = document.getElementById('specval').value; 
+ 
+localStorage.setItem(code, qty); 
+localStorage.setItem(spec, siz); 
+setCart(); 
+} else {
+localStorage.removeItem(code); 
+localStorage.removeItem(spec);  
+setCart('none');    
+}
+
+
+
+}
+
+
+
+function setCart(typeh) {
+let tot = 0; 
+const keys = Object.keys(localStorage);
+keys.forEach(key => {
+if (key.startsWith("rye-")) {
+let value = localStorage.getItem(key);
+value = Number(value); 
+tot = tot + value; 
+} }); 
+if(typeh == "none") {
+PopTell('#removed');      
+} else {
+PopTell('#added');  
+} 
+}
+
+
+
+
+function doArray(){
+let arr = document.querySelectorAll('array'); 
+if(arr){
+arr.forEach(function(row){
+let elem = row.getAttribute("elem"); 
+let targ = row.querySelector(elem); 
+let body = document.createElement("div"); 
+let val = targ.innerHTML; 
+if(checkData(val)) {
+val = val.split(","); 
+val.forEach(function(dot){
+let ins = targ.cloneNode(true); 
+ins.innerHTML = dot; 
+body.appendChild(ins); 
+}); 
+
+row.parentElement.replaceChild(body, row);
+} else {
+row.remove();
+}
+});     
+}
+}
+
+
+
+
+
+
+
+function setPop(){
+let popes = document.querySelectorAll('[pope]'); 
+if(popes) {
+popes.forEach(function(pope){
+let pop = pope.getAttribute('pope'); 
+pope.setAttribute("pop", pop);   
+    
+}); 
+rootHex();
+doArray();
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+
+if(this.id == "ppm") {
+this.hide(); 
+ this.remove();  
+ 
+}
+ }
+ });
+
+
+
+}
+}
+
+
+
+let currn = $GET('id'); 
+
+document.getElementById('purc').innerText = `ALL seller WHERE id = '${currn}'`;
+document.getElementById('purco').innerText = `ALL products WHERE userid = '${currn}'`; 
+
+
+
+  
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+
+
+let curr = localStorage.getItem('rye'); 
+
+
+
+$START('XQL:'+$con);
+
+
+
+
+
+
+function wrapProd(targ) {
+let home = document.getElementById(targ); 
+let each = home.querySelectorAll('.eachprod'); 
+
+let totwidth = home.offsetWidth; 
+let onewidth = 160; 
+let margin = onewidth / 48; 
+onewidth = margin + onewidth + 1; 
+let many = Math.floor(totwidth / onewidth);
+let total = each.length;
+let round = Math.ceil(total / many); 
+
+each.forEach(function(poll){
+    poll.remove();
+})
+
+for(let i = 1; i < round + 1; i++){
+let flex = document.createElement("div");
+flex.style.display = "flex"; 
+let prev = i - 1; 
+if(prev < 0)  { prev = 0; } 
+prev = prev * many; 
+prev = prev + 1; 
+for(let j = 1; j < many + 1; j++){
+let elem = each[prev-1]; 
+if(elem){
+elem = elem.cloneNode(true); 
+flex.appendChild(elem);  
+}
+prev++;   
+} 
+home.appendChild(flex);
+  
+}
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+ function imgEdit() {
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+this.src = "logo.jpg"; 
+ }
+ });
+ 
+ 
+
+}
+
+
+</script>
+</body>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+<title>Store | RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}   
+
+#editor input, #editor textarea, #editor select {
+border: 0.5px solid grey;
+border-radius: 7px; 
+width: 90%; 
+height: 40px; 
+font-size: 17px; 
+font-family: 'Outfit';
+margin-bottom: 10px;
+}
+
+
+.popedit {
+width: 100%; 
+padding: 0;
+border-radius: 0; 
+z-index: 99999;
+top: 0; 
+transform: none; 
+left: 0; 
+height: 100vh; 
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+} 
+
+#produp img {
+margin-top: 10px;
+border-radius: 5px; 
+border: 3px solid #0B1919; 
+}
+
+
+
+</style>
+
+
+<div relative radius="0" display="noe" id="newprod" class="popedit">
+
+<div id="editor">
+<center>
+    
+<button margin="10px,0,0,30px" absolute push="top" onclick="window.close()" color="white" theme="smart" blend="normal" back="rgba(0,0,0,0.8)" size="20px" page-middle-h><i class="fa fa-times">&nbsp; </i>CANCEL</button>
+<button margin="10px,0,0,20px" back="#fafafa" blend="normal" onclick="addImg();" size="22px" rati="1/1" theme="smart"><i class="fa fa-plus"></i>&nbsp; Image</button>
+    
+<update query="id = $js-$GET('id')" table="products" call="history.go(0)" data="ryehub">
+<form>
+<query data="ryehub" call="imgEdit()"> 
+<data id="purco"></data>
+<result>
+<br>
+<div flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left>
+<img onclick="proFile(); document.getElementById('filep').click();" id="upimgp" src="$xqlfile${ pic }" width="48%" ratio="1/1"> &nbsp;
+<img display="none" style="flex-shrink: 0;" onclick="proFile(); document.getElementById('bilep').click();" id="upbanp" src="$xqlfile${ pictwo }" width="42%" ratio="1/1">  
+&nbsp;
+<img display="none" style="flex-shrink: 0;" onclick="proFile(); document.getElementById('tilep').click();" id="uptwop" src="$xqlfile${ picthree }" width="42%" ratio="1/1">  
+
+</div>
+<br>
+
+<input dir="rye" type="file" hidden id="bilep">
+<input hidden value="{pictwo}" name="pictwo" id="bilepp">
+<input dir="rye" type="file" hidden id="filep">
+<input required hidden value="{pic}" name="pic" id="filepp">
+<input dir="rye" type="file" hidden id="tilep">
+<input hidden value="{picthree}" name="picthree" id="tilepp">
+
+<input value="{ name }" required name="name" placeholder="Product Name">
+
+<textarea required height="70px" placeholder="Product description..." name="bio">{ bio }</textarea>
+
+<select width="91%" name="currency">
+<option value="{ currency }">Currency: !!if[[currency == $]][[Dollar]]else[[Naira]]!!</option>  
+<option value="$">Currency: Dollar</option>
+<option value="₦">Currency: Naira</option>
+</select>
+
+<input value="{ price }" height="50px" width="43%" required placeholder="Price (In Naira)" name="price" type="number">
+<input value="{ discount }" margin="2% left" height="50px" width="43%" placeholder="Discount Price (optional)" name="discount" type="number">
+<input value="{ stock }" required placeholder="Number Of Products In Stock" name="stock" type="number">
+<input value="{ tags }" name="tags" placeholder="Add tags separated by commas for visibility">
+
+<select id="delv" width="91%" name="delivery">
+<option value="{ delivery }">{ delivery }</option>
+<option value="Physical">Physical</option>
+<option value="Online Service">Online Service</option>
+</select>
+
+<input id="dfee" name="fee" value="{ fee }">
+<input id="dloc" name="location" value="{ location }">
+
+<input onclick="show('#prospin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="UPDATE">
+<i hidden id="prospin" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+</result>
+</result>
+</form>
+</insert>
+
+<br>
+
+
+
+</center> 
+</div> 
+
+</div>
+
+
+<script>
+   
+$IMPORT('@UI'); 
+let logg = localStorage.getItem('rye'); 
+if(logg == null) {
+location.href = 'login.html'; 
+}
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+
+
+function doDev(){
+let delv = document.getElementById('delv'); 
+if(delv) {
+let val = delv.value; 
+if(val == "Online Service") {
+hide('#dloc'); 
+hide('#dfee'); 
+
+document.getElementById('dfee').removeAttribute("required"); 
+document.getElementById('dloc').removeAttribute("required"); 
+
+
+
+} else {
+show('#dloc'); 
+show('#dfee'); 
+document.getElementById('dfee').setAttribute("required", "true"); 
+document.getElementById('dloc').setAttribute("required", "true"); 
+    
+}
+}
+}
+
+
+setInterval(doDev, 500); 
+
+
+function addImg() {
+let sec = dState('#upbanp'); 
+
+if(sec == "flex") {
+show('#uptwop'); 
+} else {
+ show('#upbanp'); 
+}
+}
+
+
+
+let currn = localStorage.getItem('rye'); 
+let prod = $GET('id'); 
+let pro = "vUSionn2"; 
+
+$QUERY($con, $db, `SELECT products WHERE id = '${prod}'`).pull(givePass); 
+function givePass(data){
+if(data && data[0]) {
+let row = data[0]; 
+if(row.userid == currn) {
+document.getElementById('purco').innerText = `ALL products WHERE id = '${prod}'`; 
+console.log("Access Granted")
+$START('XQL:'+$con);
+} else {
+document.getElementById('newprod').remove();
+}
+} else { 
+document.getElementById('newprod').remove(); 
+}
+
+}
+
+
+
+
+
+function proFile() {
+document.querySelector('#filep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upimgp'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('filepp').value = "rye_" + fname; 
+
+    }
+  });
+  
+ document.querySelector('#bilep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#upbanp'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('bilepp').value = "rye_" + fname; 
+
+    }
+  }); 
+  
+  
+  document.querySelector('#tilep').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('#uptwop'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('tilepp').value = "rye_" + fname; 
+
+    }
+  }); 
+  
+  
+  
+}
+
+
+
+
+
+function imgEdit() {
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+this.src = "logo.jpg"; 
+ }
+ });
+ 
+ 
+
+}
+
+
+
+
+</script>
+</body>

@@ -1,0 +1,70 @@
+<style local>
+    
+.navhead {
+margin-left: 0 !important;
+height: 50px !important;
+padding-top: 10px !important;
+
+}
+
+.opennav {
+margin-top: 19px !important;
+}
+
+.closenav {
+margin-top: 12px !important;
+}
+
+#header-nav {
+  padding-top: 15px !important;
+}
+
+.navlogo img{
+margin-left: 5px !important;
+border-radius: 50% !important;
+}
+
+#navcart {
+float: right !important; 
+margin-right: 65px !important;
+}
+
+#navuser {
+float: right !important; 
+margin-right: 25px !important;
+}
+
+</style>
+
+<hexxe>
+<nav type="header" name="<in size='25px' font='Charm' link='index.html'>RyeHub</in><div size='25px' style='width: 100%'>
+<in id='navcart'><i onclick='location.href=`cart.html`;' class='fas fa-shopping-cart'></i> <b color='red' size='11px' id='cartnum'></b></in> 
+<i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div>" logo="logo.jpg">
+</nav>
+
+
+
+<div color="white" absolute push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">
+    
+    
+    
+    
+<p center font="Ubuntu" size="18px">© 2024 PixelUnlimited</p>
+</div>  
+
+
+</hexxe>
+<script local>
+ $IMPORT('@UI'); 
+ let tot = 0; 
+const keys = Object.keys(localStorage);
+keys.forEach(key => {
+if (key.startsWith("rye-")) {
+let value = localStorage.getItem(key);
+value = Number(value); 
+tot = tot + value; 
+} });
+document.getElementById('cartnum').innerText = tot; 
+
+   
+</script>

@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+<link rel="stylesheet" href="chat.css">
+
+<title>Chat | RyeHub</title>
+
+
+<link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>  
+
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@v1.2/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/query.js"></script>
+
+</head>
+<body> 
+
+<style> 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap'); 
+html, body { 
+   max-width: 100vw;
+   font-size: 15px;
+overflow-x: hidden !important;  
+}  
+
+.bookwall, #writer {  
+width: 100vw; 
+background: white;
+height: 100vh;  
+overflow-y: scroll;
+position: fixed;
+top: 0px; 
+margin-left: -8px;
+overflow-x: hidden;
+background-size: cover;
+z-index: 1000000000000; 
+} 
+
+#head { 
+position: fixed;
+top: 0px; 
+width: 100vw; 
+margin-left: -8px;
+height: 30px; 
+padding-bottom: 7px;
+padding-top: 7px;
+background: #1D9BF0;
+z-index: 20000;  
+color: white;
+align-items: center; 
+text-align: cente;
+display: none;
+}
+
+#cropbtn{
+padding: 10px 10px;  
+margin-left: 10px;
+border-radius: 5px;
+background: #708090;
+color: white;
+font-family: 'Outfit';
+font-size: 17px;
+border: 1px solid grey;
+}
+ img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{ display: none; }
+ #react button {
+   border: none;
+   font-size: 20px;
+   background: none;
+   margin: 0 5px;
+ }
+ 
+ .add .inp {
+padding: 10px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: none;
+border-bottom: 1.5px solid grey; 
+border-radius: 0px; 
+    margin-bottom: 12px;
+    
+}
+.add .btn {
+padding: 10px 15px;
+height: 50px; 
+width: calc(100% - 30px);
+font-family: 'Rubik';
+font-size: 17px;
+background: #008080;
+border: none; 
+border-radius: 10px;
+color: white;
+}
+
+ </style>
+ 
+ 
+ 
+ 
+ <article style="display: none;" id="article">
+<update id="update" data="ryehub" table="chat">
+<form style="margin-top: 35px; display: none;" method="POST"> 
+<input name="file" hidden>
+<input id="oldmsg" name="old">
+<input name="msg" value="message has been deleted ×">
+<input type="submit" id="senddel"> 
+ 
+ </form>
+ </update>
+ 
+ 
+
+
+
+ 
+ <div id="head"> 
+ 
+    
+<i onclick="document.getElementById('head').style.display='none'; hide('#react');" style="font-size: 22px; margin-top: px; float: left; margin-left: 10px;" class="fa fa-arrow-left"></i> 
+ 
+<i id="remove" del="" onclick="delM();" style="font-size: 22px; margin-top: px; float: right; margin-right: 10px;" class="fa fa-trash"></i> 
+<input style="display: none;" type="text" id="copyclip" value="">
+<i onclick="copyClip(); hide('#head'); hide('#react')" style="font-size: 22px; margin-top: px; float: right; margin-right: 13px;" class="fa fa-copy"></i> 
+ 
+ 
+ 
+   
+
+<in hidden id="title" style="font-family: 'Poppins', serif; font-size: 100%; font-weight: 500; float: right; margin-right: 13px; display: non;">Wave</in>  
+    
+</div> 
+ 
+<div id="writer" class="bookwall" style="display: none; background: black;">
+<i onclick="closeWind()" style="position: absolute; top: 0px; z-index: 99; font-size: 22px; margin-top: 3px; float: left; left: 0px; margin-left: 10px; color: white; mix-blend-mode: difference;" class="fa fa-arrow-left"></i> 
+<iframe id="authframe" style="position: fixed; top: 0px; width: 100%; height: 100vh; border: none;">    
+</iframe> 
+
+</div> 
+
+<div display="none" index="1000" back="#fafafa" color="white" radius="25px" border="0.3px solid #708090" padding="12px" flex fixed width="auto" style="top: 50%; transform: translateY(-50%)" id="react">
+<button onclick="React('😂')">😂</button>   
+<button onclick="React('😭')">😭</button>   
+<button onclick="React('❤️')">❤️</button>   
+<button onclick="React('👍')">👍</button>   
+<button onclick="React('😡')">😡</button> 
+<button onclick="document.getElementById('addreact').focus();">+</button> 
+
+</div>
+<textarea width="10px" height="5px" id="addreact"></textarea>
+<script>
+
+document.getElementById('addreact').addEventListener('input', function(){
+let emo = document.getElementById('addreact').value; 
+React(emo);
+document.getElementById('addreact').value = ""; 
+document.getElementById('addreact').blur(); 
+});
+
+
+function toggleScroll() {
+  if(document.body.style.overflowY == "hidden") {
+          document.body.style.overflowY = "scroll"; } else {
+document.body.style.overflowY = "hidden"; }
+    } 
+
+window.addEventListener('popstate', function(event) {
+  if (event.state && event.state.page === 'media') {
+     
+     
+      
+    console.log('User navigated back; close media div.');
+
+  }
+  document.getElementById('writer').style.display='none'; 
+  hide('#info'); 
+ authFrame('/blank.php'); toggleScroll(); 
+});
+
+
+function closeWind() {
+    
+if (history.state && history.state.page === 'media') {
+history.go(-1);
+console.log('User navigated back; close new contact div.');
+
+  }
+
+ if (history.state && history.state.page === 'info') {
+history.go(-1);
+console.log('User navigated back; close new contact div.');
+
+  }
+  
+    
+}
+
+
+
+
+
+function authFrame(url) { 
+    
+const mediaState = { page: 'media' };
+  history.pushState(mediaState, null, '#media');
+
+    
+    
+const frame = document.getElementById('authframe');
+const page = url; 
+frame.src = page;
+frame.contentWindow.location.replace(page);
+}
+</script>
+
+  <div class="wrapper">
+<section class="chat-area">
+    
+    
+    
+<query data="ryehub">  
+ <data id="gethead"></data>
+ <result>
+<div margin="-5px left" back="#708090" color="white" index="99" flex style="align-items: center" height="35px" padding="5px top" fixed push="top" width="100vw">
+        
+<a style="margin-right: 10px;" onclick="history.back();" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+<img frame width="30px" height="30px" round src="$xqlfile${ pic }" id="uimg" alt="">
+<div class="details" flex>
+<p font="Poppins" size="17px" margin="7px left" bold><in id="uname">{ name }</in>&nbsp;&nbsp; <in color="purple" id="ticker"></in></p> 
+</div>
+<i onclick="toggle('#codrop')"  size="20px" push="right" margin="25px right" absolute class="fa fa-ellipsis-v"></i>
+</div>
+
+<div theme="shadow" id="codrop" display="none" radius="0 0 0 15px" margin="40px top" index="104" back="white" fixed push="top right" width="200px" padding="10px">
+
+
+<p font="Poppins" size="17px" bold noselect>Report &nbsp;<i class="fa fa-flag"></i></p>
+<p id="coblock" onclick="cBlock();" font="Poppins" size="17px" bold noselect>Block &nbsp;<i class="fa fa-cancel"></i></p>    
+</div>
+ </result>
+ </query>   
+
+
+<style> 
+.outgoing .link {
+   float: right; 
+   
+   width: 85% !important;
+    
+   
+}
+
+
+.incoming .link { 
+  float: left; 
+}
+
+.incoming .vn {
+ float: left;
+ width: 100%;
+}
+
+.outgoing .vn {
+float: right;
+width: 100%;
+position: relative;
+min-height: 55px;
+}
+
+.outgoing .bvn {
+position: absolute; 
+right: 0;
+
+}
+
+.incoming .bvn {
+    position: relative;
+} 
+
+.vn .bvn {
+background: #708090;   
+color: white; 
+border: none; 
+height: 55px; 
+width: calc(85% - 20px); 
+border-radius: 12px;
+text-align: left;
+padding: 0 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 12px !important;
+  width: 12px !important;
+  
+}
+
+.outgoing, .incoming {
+ position: relative !important;  
+}
+
+.incoming .react {
+ float: left;
+ width: 100%;
+}
+
+.outgoing .react {
+float: right;
+width: 100%;
+position: relative;
+min-height: 45px;
+}
+
+.outgoing .inquote {
+float: right;
+width: 70%;
+position: relative;
+margin-right: 5px;
+}
+
+
+.incoming .inquote {
+width: 70%;
+float: left; 
+position: static;
+
+}
+
+
+.outgoing .react button {
+position: absolute; 
+right: 0;
+
+}
+
+
+
+.incoming .react button {
+    position: relative;
+} 
+
+
+.inp {
+padding: 10px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: 1.5px solid grey; 
+border-radius: 10px; 
+    margin-bottom: 12px;
+    
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+} 
+
+
+
+.activer {
+border: 2px solid green; 
+}
+.is-hidden { display: none !important; }
+</style>
+
+<div id="nomess" class="text" style="text-align: center; font-family: 'Rubik';"><br><br>No conversation available. Send them a message to start a chat</div>
+
+
+<div style="pointer-events: none" width="100vw" height="100vh" index="1" fixed push="top left">
+<img style="object-fit: cover" absolute push="top" width="100%" height="100vh" id="wallpaper">
+    
+    
+    
+</div>
+
+<script>
+let wall = localStorage.getItem('wallp'); 
+document.getElementById('wallpaper').src = wall; 
+
+</script>
+
+
+
+<div index="9" relative onclick="closeTabs();" id="chatbox" style="display: none; padding-bottom: 70px; overflow-y: scroll !important; overflow-x: hidden !important;" class="chat-box">
+
+   
+    
+<div chat="$msgid" relative class="chat $type">
+
+<div ratio="3/2" class="link" exist="false" id="linkss$id" style="display: none; background: rgba(0,0,0,0.1); max-width: 400px; width: 85%; overflow: hidden; border-radius: 10px; border: 0.1px black solid;"> 
+<img width="100%" ratio="16/8" radius="10px 0 0 10px" src="images/web.jpg" $link margin="10px right">
+<h4 $link id="linker$id"
+style="border-top: solid #c0c0c0 0.5px; margin: 0px; align-items: center; word-wrap: wrap; max-height: 42px; overflow: hidden; padding: 10px 0 0 0; color: black !important; width: 100vw; background: rgba(0,0,0,0.01) !important; font-family: 'Montserrat', serif; font-weight: normal; font-size: 16px;">$tlink</h4>
+
+</div>
+
+
+
+
+ <div class="details"> 
+
+<a exist="$hasreply" style="color: inherit; text-decoration: none;" href="#$replyid"><h2>$reply</h2></a>  
+<p onswipe="addReply(this)" exist="$hastext" press="addSettings(this)" press-interval="700" class="message" onclick="addReply(this);" 
+ondblclick="!!if[[$out == $curr]][[document.getElementById('remove').style.display='block';]]else[[document.getElementById('remove').style.display='none';]]!! addSettings(this);" id="$msgid">$msg</p>  
+                     
+       </div>      
+
+
+<div noselect press="addSettings(this)" press-interval="700" exist="$hasquote" id="$msgid" class="inquote" width="70vw" radius="6px" theme="shadow" padding="10px">
+<div margin="5px bottom" relative flex style="align-items: center">
+<img margin="7px right" width="50px" height="50px" src="$qpic" radius="5px" frame>
+<item margin="0" style="width: calc(100% - 122px); padding: none; background: none !important; border-radius: 0; border: none" size="14px" font="Ubuntu">$qname</item>
+<item bold absolute push="right" margin="0px right" size="22px" color="green" font="Ubuntu">$qprice</item>    
+</div> 
+<div radius="5px" onclick="payQuote('$qprice', '$qid')" padding="10px" center style="width: calc(100% - 20px)" back="rgba(0,0,0,0.1)">
+<item bold size="20px" font="Outfit">PAY &#8599;</item>
+</div>
+</div> 
+
+
+
+
+<div margin="0 bottom" exist="$hasvn" class="vn">
+<button style="align-items: center" flex id="$msgid" onswipe="addReply(this)" ondblclick="addSettings(this)" press="addSettings(this)" press-interval="700"  margin="5px,0,0,0" class="bvn"><img src="$simg" width="35px" height="35px" round>&nbsp; 
+<span style="display: flex; align-items: center;">&nbsp;<i onclick="voiceNote('$vnlink', '$msgid');" style="font-size: 25px" id="vn$msgid" class="fa fa-play vncon"></i>
+<input targ="$vnlink" style="width: calc(110%) !important; flex-shrink: 0" type="range" id="sl$msgid" max="1" min="0" step="0.001" value="0">
+</span>
+<div font="Outfit" absolute push="bottom" margin="0,0,4px,87px" size="12px"><i targ="$vnlink" id="tl$msgid">$tlong</i></div>
+</button>
+</div>
+
+
+
+ <div id="$msgid" class="waveimg" style="width: 85vw; margin-top: 5px; padding-right: px; color: black; display: flex; flex-wrap: wrap; align-items: ;"> 
+    
+<div press-interval="700" id="$msgid" press="addSettings(this); addReply(this)" exist="$hasfile">
+
+  
+    
+
+ 
+    
+
+$allfile
+ </div>
+ </div>  
+
+ <div data-rec="$msgid" exist="$hasreact" class="react" push="">
+<button onclick="seeRec('$rerec', '$msgid')" noborder back="white" width="40px" height="40px" radius="50%" size="20px" >$react</button>  
+</div> 
+
+    
+    
+</div>
+      </div> 
+      
+<br><br>     
+ 
+ 
+
+<div display="none" id="squote" fixed push="top left" width="100vw" height="100vh" back="white" index="99">
+<div margin="10px" font="Ubuntu" size="25px" flex style="align-items: center">
+<i size="30px" class="fa fa-times" onclick="hide('#squote')"></i>
+&nbsp;&nbsp;Send Quote</div>   
+<hr>
+<input placeholder="Search Product...." style="outline: 1px solid #0B1919;" margin="10px left" type="search" id="searchbox" theme="smart" blend="normal" onkeyup="liveSearch()">
+<br>
+<div height="75px" flow="scroll" width="95%" margin="10px,0,0,2.5%" id="allselprod"></div>
+<br>
+<input id="qprod" hidden>
+<input id="qprice" placeholder="Price with currency (e.g $120)...." margin="10px left" class="inp"> 
+<br>
+<div page-middle-h center>
+<button theme="smart" back="#0B1919" blend="normal" size="20px" color="white" onclick="sendQuote()">SEND &nbsp;<i class="fa fa-send"></i></button>&nbsp;<i display="none" id="qloadm" margin="10px top" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+</div>
+    
+</div>
+
+
+
+<div id="scroller" hidden>chatter</div>
+<iframe name="votar" style="display: none;"></iframe> 
+
+<insert class="typing-are" parsejs="fale" index="9" call="sendMess()" data="ryehub" table="chat">
+
+<i display="none" id="loadm" margin="10px top" id="ploader" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+<div padding="5px" id="selsend">
+<button onclick="show('#squote')" back="none" border="1px green solid" radius="20px" padding="6px,15px,6px,15px" font="Outfit" size="16px">Send Quote</button>
+</div>
+
+<form index="9" id="marean" method="POST" enctype="multipart/form-data">
+
+
+<div style="white-space: nowrap; overflow: scroll;" id="preview"></div>
+<input id="mesfile" name="file" type="file" style="display: none;" multiple> 
+<input type="text" name="out" val="$js-localStorage.getItem('rye')" hidden>  
+<input type="text" id="msgid" name="msgid" hidden>  
+
+<input type="text" name="in" val="$js-$GET('id')" hidden>  
+
+<div style="display: none;" id="replies"> 
+
+<input name="reply" id="reply" style="border: none; background: lightgrey; width: auto; padding: 10px; border-radius: 6px; width: 80vw !important; font-family : 'Poppins'; font-weight: normal; font-size: 14.5px; pointer-events: none;" value="">  
+<i style="font-size: 22px;" class="fa fa-times" onclick="document.getElementById('reply').value=''; document.getElementById('replyid').value=''; document.getElementById('replies').style.display='none';"></i>
+<input name="replyid" id="replyid" val="0" hidden>
+ </div>
+<input hidden name="time" val="$dtime">
+<section id="boxer">
+ <div display="inline" margin="-5px,0,0,0">
+<button font="Outfit" margin="10px right" timer="false" style="display: none;"  id="atimer" width="36px" height="36px" noborder back="none" size="19px" color="black" radius="50px">0</button>
+</div>
+<input name="status" val="no" hidden>
+<input hidden name="react" val="NaN">
+
+<textarea ask="mesfile" flag="hide('#loadm')" handle="required" id="autoresizing" type="text" name="msg" class="input-field" placeholder="Type a message here..." autocomplete="off"></textarea> &nbsp;
+<i onclick="document.getElementById('mesfile').click();" class="fa fa-camera" style="color: #9d80ba; font-size: 25px; margin-bottom: 36px;"></i> 
+</section>  
+<button onclick="show('#loadm'); document.getElementById('autoresizing').focus();" type="submit" class="send" id="send">
+<i class="fa fa-send"></i></button>
+<button press="startRecording()" class="send" id="recordButton"><i class="fa fa-microphone"></i></button>
+
+</form>
+</insert>
+       
+</section>
+  </div> 
+
+<audio style="width: calc(100% - 55px); display: none;"  id="audioPreview" controls></audio>
+
+<audio id="imess"><source src="./img/IMESSAGESend.m4a"></audio> 
+  
+<center>
+<button id="copied" style="display: none; background: rgba(0,0,0,0.7); width: 70vw; padding: 10px 20px 10px 10px; font-size: 17px; position: fixed; bottom: 0px; margin-bottom: 47vh; z-index: 999; height: 35px; left: 0px; margin-left: calc(15vw - 10px);  border: none; color: white; border-radius: 10px;">Copied To Clipboard</button>
+</center> 
+
+
+<div display="none" back="white" radius="30px 30px 0 0" fixed push="bottom left" index="1000" width="100%" height="50vh" flow="scroll" id="allrex">
+<br>
+<i margin="10px left" size="25px" onclick="hide('#allrex')" class="fa fa-times"></i>
+</div>
+<div display="none" padding="10px top" id="wind" fixed push="top left" back="white" index = "99" width="100%" height="100vh">
+<div id="windview" width="100%">
+</div>
+<insert call="sendMess()" data="ryehub" table="chat">
+<form>
+<input name="file" id="windfile">
+<input name="status" val="no" hidden>
+
+<input hidden name="time" val="$dtime">
+<input type="text" name="out" val="$js-localStorage.getItem('rye')" hidden>  
+<input type="text" id="msgid" name="msgid" hidden>  
+
+<input type="text" name="in" val="$js-$GET('id')" hidden>  
+<input hidden name="react" val="NaN">
+
+<input hidden name="reply" id="windrep">
+<textarea hidden name="msg" id="windbio"></textarea>
+
+
+
+
+
+
+
+<button radius="50%" back="#708090" color="white" height="55px" width="55px" size="25px" noborder fixed push="bottom right" margin="0,15px,30px,0" type="submit" class="send" id="windsend">
+<i class="fa fa-send"></i></button>
+
+</form>
+</insert>
+    
+    
+</div>
+
+<p display="none" id="settid"></p>
+
+
+
+</article>
+<p hidden id="fetching"></p>
+<script src="https://hexdb.vercel.app/que.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+ <script src="https://unpkg.com/cropperjs"></script>
+<script> 
+$IMPORT('@UI');
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = 'ryehub';
+const $siteurl = "";
+let $load = "false";
+show('#article');
+let $getchat = [];
+let $users = [];
+let $prods = [];
+
+let ghe = $GET('id'); 
+if(!checkData(ghe)){ ghe = "xsDalPXz" }
+let qqu = `SELECT users WHERE id = '${ghe}'`;
+document.getElementById('gethead').innerText = qqu; 
+
+
+$START('XQL:'+$con);
+const $curr = localStorage.getItem('rye');
+let $cont = []; 
+
+
+function cRead() {
+let blocked = $GET('id'); 
+if(blocked == null || blocked == undefined){
+blocked = "xsDalPXz"; 
+}
+let blocker = localStorage.getItem('rye'); 
+// $UPDATE($db, `UPDATE chat SET status = 'read' WHERE out = '${blocked}' AND in = '${blocker}'`, `fCheck()`); 
+fCheck(); 
+}
+
+
+function sendQuote(){
+let price = document.getElementById('qprice').value; 
+let prod = document.getElementById('qprod').value; 
+let quote = `##quote##${prod} - ${price}`; 
+document.getElementById('autoresizing').value = quote; 
+document.getElementById('send').click(); 
+document.getElementById('qloadm').show(); 
+setTimeout(function(){
+hide('#squote'); 
+hide('#qloadm'); 
+}, 2000)
+
+}
+
+
+function fCheck() {
+document.getElementById('fetching').innerText = 'fetched';
+}
+
+
+function setQuote(elem, iden){
+
+let spet = document.querySelectorAll('.activer'); 
+if(spet){
+spet.forEach(function(row){
+row.classList.remove('activer');   
+}); 
+}
+
+elem.classList.add("activer"); 
+document.getElementById('qprod').value = iden; 
+}
+
+
+
+function liveSearch() {
+  let cards = document.querySelectorAll('.cards');
+    let search_query = document.getElementById("searchbox").value;
+     
+  for (var i = 0; i < cards.length; i++) {
+  
+    if(cards[i].innerHTML.toLowerCase()
+      .includes(search_query.toLowerCase())) {
+      
+        cards[i].classList.remove("is-hidden");
+    } else {
+      cards[i].classList.add("is-hidden");
+    }
+  }
+}
+
+
+
+function coBtn(){
+let bio = document.getElementById('autoresizing'); 
+let media = document.getElementById('mesfile'); 
+let send = document.getElementById('send'); 
+let aud = document.getElementById('recordButton'); 
+
+
+
+if(bio.value !== "" || media.files[0]) {
+send.style.display = 'block';
+aud.style.display = 'none';   
+
+} else {
+send.style.display = 'none';   
+aud.style.display = 'block';  
+} 
+
+}
+
+
+coBtn(); 
+setInterval(function() {
+    coBtn() }, 100);
+
+
+$QUERY($con, $db, `SELECT users`).pull(headEr);
+function headEr(data){
+$users = data; 
+$QUERY($con, $db, `SELECT products`).pull(prodEr);
+}
+
+function prodEr(data){
+$prods = data; 
+getFeed();
+useProd(data); 
+}
+
+function useProd(data){
+let me = localStorage.getItem('rye');
+let mine = data.filter(item => item['userid'] == me)   
+let allhtml = ""; 
+mine.forEach(function(row){
+let id = row.id; 
+let pic = row.pic;
+let name = row.name; 
+let price = row.price; 
+let currency = row.currency; 
+ 
+let html = `<div width="90%" onclick="setQuote(this, '${ id }')" class="cards" blend="normal" margin="10px bottom" relative flex style="align-items: center" theme="smart">
+<img fram width="40px" margin="10px right" height="40px" radius="5px" src="${xqlfile}${pic}">
+<div >
+<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 75px)" margin="0" font="Ubuntu" size="16px">${ name }</p>
+<hr>
+<in size="14px" font="Rubik">ID: ${ id }</in>
+</div>
+<p absolute push="bottom right" bold font="Ubuntu" size="20px" margin="0,10px,5px,0">${ currency }${ price }</p>
+
+
+</div>    `; 
+allhtml = allhtml + html; 
+    
+}); 
+document.getElementById('allselprod').innerHTML = allhtml;
+rootHex();
+}
+
+
+
+$QUERY($con, $db, `SELECT chat WHERE Key = 'last'`).pull(idEr);
+
+function idEr(data) {
+setInterval(function() {
+let code = "A" + makeid(5) + data[0]['Key']; 
+
+let elemer = document.querySelectorAll('#msgid');
+elemer.forEach(function(row) {
+  row.value = code;
+  
+}); 
+
+
+
+
+
+}, 100);     
+    
+}
+
+ 
+
+let test = $condition(`!!if[[3 == 5]][[4]]else[[no]]!!`);
+
+
+const targ = document.getElementById('chatbox');
+if(targ) {
+const form = targ.innerHTML;
+localStorage.setItem('form', form);
+document.getElementById('chatbox').innerHTML = "";
+
+
+}
+
+async function getFeed(syntac){
+try {
+document.getElementById('fetching').innerText = 'fetching'; 
+
+let poker = document.getElementById('chatbox');
+if(poker) {
+const syntax = syntac; 
+const curr = localStorage.getItem('rye'); 
+let mid = $GET('id'); 
+if(mid == null || mid == undefined){
+mid = "xsDalPXz"; 
+}
+$QUERY($con, $db, `SELECT chat`).pull(allChat);
+function allChat(all) {
+try{
+    
+    
+    if(curr == mid) {
+  $WHERE(all, `SELECT chat WHERE out = '${curr}' AND in = '${curr}'`).pull(sTwo);
+  
+    } else {
+$WHERE(all, `SELECT chat WHERE out = '${mid}' OR in = '${mid}'`).pull(sOne);
+}
+$getchat = all;
+} catch(error) {
+    alert(error)
+}
+}
+
+
+function sOne(alls){
+ $WHERE(alls, `SELECT chat WHERE out = '${curr}' OR in = '${curr}'`).pull(sTwo)
+}
+
+
+
+async function sTwo(data) {
+let nomess = document.getElementById('nomess');   
+    
+if(data == "") {
+
+    } else  {
+try {
+if(nomess)  {
+    nomess.remove();
+} 
+     
+let $count = 0; 
+let chatbody = ""; 
+for(const row of data) {
+$count++;
+
+try {
+let sender = row['out'];
+
+let sendee = $users.filter(item => item['id'] == sender); 
+if(sendee && sendee[0]) {
+
+if(!checkData(sendee[0].pic)) {
+row['simg'] = "default.jpeg"; 
+} else {
+row['simg'] = xqlfile + sendee[0].pic; 
+}
+
+
+
+
+} else {
+continue;
+}
+} catch(error) {
+    alert(error)
+}
+
+
+
+
+let obj = row['file']; 
+let $files = ""; 
+
+let msgg = row['msg']; 
+if(msgg == "" || msgg == null || msgg == undefined) {
+row['hastext'] = "false"; 
+}
+if(obj == "" || obj == undefined || obj == null) {
+row['hasfile'] = "false"; 
+} else {
+
+let $efile = obj.split(' '); 
+$efile.forEach(function(ext) {
+let fsrc = xqlfile + ext;
+let file = ext.split('.').pop();
+let $fid = makeid(4);
+if(file.includes("mp4") || file.includes("mkv")) {
+
+$files = $files + `<button class="wavefile" onclick="document.getElementById('writer').style.display='block'; toggleScroll(); authFrame('./video.html?src=${fsrc}&sess=${$fid}');" id="wavefile" style="background-image: url('asset/vid.jpg'); background-size: cover;"></button>`;
+
+    
+    
+} 
+
+else if(file.includes("png") || file.includes("gif") || file.includes("jpg") || file.includes("jpeg") || file.includes("gif") || file.includes("avi") || file.includes("webp")) {
+ 
+ $files = $files + `<button class="wavefile" onclick="document.getElementById('writer').style.display='block'; toggleScroll(); authFrame('./image.html?src=${fsrc}&sess=${$fid}');" id="wavefile" style="background-image: url('${fsrc}'); background-size: cover;"></button>`; 
+
+} else {
+
+$files = $files + `<div class="wavefile" onclick="dFile('${fsrc}');" id="links" style="display: flex; background: rgba(0,0,0,0.1); width: calc(65vw + 30px); margin-left: 0px; margin-right: 0px; border-radius: 10px; max-height: 50px; border: 0.1px black solid; white-space: wrap !important; overflow: hidden !important; margin-bottom: 6px; "><img src="asset/doc.jpg" style="background-size: cover; width: 50px; height: 50px; object-fit: contain; border-radius: 10px 0px 0px 10px; margin-right: 5px;"> <h3
+style="border-to: solid #c0c0c0 0.5px; height: 50px; margin-top: 2px; display: block; white-space: wrap !important; overflow: hidden !important; word-wrap: wrap; color: black !important; background: rgba(0,0,0,0.01) !important; padding-right: 6px; font-family: 'Montserrat', serif; font-weight: normal; font-size: 14px;">${ext}</h3></div>`;
+
+
+}   
+
+
+
+
+
+
+
+
+
+}); 
+}
+row['allfile'] = $files;
+
+
+
+
+
+let reply = row['reply']; 
+if(reply == "" || reply == null) {
+row['hasreply'] = "false"; 
+ 
+}
+
+let $cq = row['msg']; 
+if($cq.includes("##quote##")) {
+row['hastext'] = "false";
+let dem = $cq.split("##quote##").pop(); 
+let pid = dem.split("-")[0].trim(); 
+row['qid'] = pid; 
+let price = dem.split("-").pop().trim(); 
+row['qprice'] = price; 
+let prod = $prods.filter(item => item['id'] == pid); 
+prod = prod[0]; 
+row['qname'] = prod.name; 
+row['qpic'] = xqlfile + prod.pic; 
+   
+} else {
+row['hasquote'] = "false"; 
+}
+
+
+let $bio = row['msg']; 
+
+
+
+
+
+
+let urlRegex = /(?:https?|ftp)?:\/\/([^\s/$.?#]*)\.([^\s]*)/ig;
+let foundUrls = $bio.match(urlRegex);
+let turl = ""; 
+if (foundUrls) {
+foundUrls.forEach(function(url){
+const nurl = `<a class="url" href="${url}" target="_blank" style="color: teal; font-weight: 600; margin: 0px; text-decoration: non">${url}</a>`;
+row['msg'] = $bio.replace(url, nurl);
+row['link'] = `link="${url} _blank"`
+});    
+    
+} else {
+row['haslink'] = "false";    
+    
+}
+
+if($bio.includes("$vn--")) {
+let vnlink = xqlfile + $bio.split('$vn--').pop();
+try{
+row['tlong'] = "0.00";
+} catch(error){
+row['tlong'] = "0.00"; 
+}
+row['vnlink'] = vnlink; 
+row['hastext'] = "false"; 
+    
+} else {
+row['hasvn'] = "false";
+}
+
+try {
+let reac = row['react'];
+if(reac == undefined || reac == "" || reac == "null" || reac == null) {
+row['hasreact'] = "false";
+} else {
+ row['rerec'] = reac; 
+let regex = /([\w@.]+)\s*-\s*([^\s]+)/g;
+let matches = [];
+let seenNames = new Set();
+
+let match;
+while ((match = regex.exec(reac)) !== null) {
+  let name = match[1];
+  let emoji = match[2];
+
+  if (!seenNames.has(name)) {
+    seenNames.add(name);
+    matches.push({ name, emoji });
+  }
+}
+let reacts = matches;
+for(const tab of reacts) {
+if(tab['name'] == $curr) {
+tab['user'] = "yes";    
+} else {
+ tab['user'] = "no";
+}
+}
+console.log(matches);
+let le = 0; 
+if(reacts){
+le = reacts.length - 1;  
+}
+if(reacts && reacts[le] && reacts[0].emoji) {
+row['allrec'] = JSON.stringify(matches); 
+let ever = reacts[le].emoji; 
+let tot = reacts.length; 
+let every = ever + `&nbsp;<in style="font-size: 12px; font-family: 'Outfit';">${tot}</in>`;
+row['react'] = ever;
+} else {
+row['hasreact'] = "false";
+
+}   
+}
+
+} catch(error) {
+    alert(`Line: ${error.stack} - ${error}`)
+}
+
+
+
+
+
+
+let out = row['out']; 
+row['curr'] = curr;
+if(out == curr) {
+row['type'] = "outgoing"
+} else {
+row['type'] = "incoming";
+} 
+let frape = localStorage.getItem('form'); 
+let newd = document.createElement("div");
+let finder = row['msgid'];
+newd.setAttribute("pos", finder);
+
+let adder = $return(row, frape); 
+adder = $condition(adder);
+newd.innerHTML = adder; 
+
+if(row['msg'] == "" && row['file'] == "") {
+} else {
+    
+ if(syntax !== undefined) {
+let findm = document.querySelector(`[pos="${finder}"]`); 
+if(findm) {
+} else {
+targ.appendChild(newd); 
+
+}    
+ } else {
+ 
+ let findm = document.querySelector(`[pos="${finder}"]`); 
+if(findm) {
+
+document.getElementById('chatbox').innerHTML = ""; 
+}
+ 
+ 
+targ.appendChild(newd);
+
+}
+
+
+let chatbox = document.getElementById('chatbox');
+seeExist();
+
+cRead(); 
+
+chatbox.style.display = 'block'; 
+if($count == data.length) {
+if($load == "false") {
+chatbox.scrollTop = chatbox.scrollHeight;
+ chatbox.scrollTo(0, chatbox.scrollHeight);
+}
+ $load = "true"; 
+ }
+ 
+}
+}
+
+              
+
+
+
+ 
+ } catch(error) {
+    console.log(error); 
+}
+}
+
+
+}
+
+} } catch(error) {
+alert(`Line: ${error.stack} - ${error}`);
+}}
+
+
+
+async function checkVN(link) {
+  return new Promise((resolve, reject) => {
+    const audio = new Audio();
+    audio.src = link;
+
+    audio.addEventListener('loadedmetadata', function() {
+      if (isFinite(audio.duration)) {
+        resolve(audio.duration.toFixed(2)); // Format to two decimal places
+      } else {
+        reject(new Error('Audio duration is not finite.'));
+      }
+    });
+
+    audio.addEventListener('error', function() {
+      reject(new Error('Error loading audio.'));
+    });
+
+    audio.load();
+  });
+}
+
+
+
+let isPlaying = false; 
+
+function voiceNote(link, elem) {
+    try{
+let aud = document.getElementById('audioPreview'); 
+let aog = aud.src; 
+let play = document.getElementById('vn'+elem);
+let slide = document.getElementById('sl'+elem);
+let tline = document.getElementById('tl'+elem);
+if(link == aog) {
+} else {
+aud.src = link;
+tline.innerText = "0.00";
+}
+
+if(isPlaying) {
+if(link == aog) {
+    
+    
+aud.pause(); 
+play.setAttribute('class', "fa fa-play vncon");
+isPlaying = false; 
+} else { 
+    
+let aller = document.querySelectorAll('.vncon'); 
+if(aller) {
+aller.forEach(function(row){
+row.setAttribute('class', "fa fa-play vncon");
+}); 
+}
+
+    
+    
+
+aud.play(); 
+aud.addEventListener('ended', function() {
+isPlaying = false;
+play.setAttribute('class', "fa fa-play vncon");
+slide.value = 0; 
+
+}); 
+play.setAttribute('class', "fa fa-pause vncon");
+isPlaying = true;
+
+
+
+
+}
+} else{
+    
+    
+aud.play(); 
+aud.addEventListener('ended', function() {
+ aud.pause();
+ aud.currentTime = 0;
+isPlaying = false;
+play.setAttribute('class', "fa fa-play vncon");
+slide.value = 0; 
+
+}); 
+play.setAttribute('class', "fa fa-pause vncon");
+isPlaying = true;
+
+}
+
+let alltime = 0;
+alltime = aud.currentTime;
+let currtime = 0;
+currtime = aud.duration; 
+
+
+
+
+
+setInterval(function() {
+let larg = document.getElementById('audioPreview').src; 
+ if(isPlaying) {
+let time = tline.innerText;
+let min = time.split(':')[0];
+let sec = time.split(':').pop();
+min = parseInt(min) * 60;
+time = min + parseInt(sec);
+time = time + 1;
+
+
+
+let rprogmin = Math.floor(time / 60); 
+let rprogsec = Math.floor(time % 60);
+
+if (tline.getAttribute("targ") == larg) {
+      tline.innerText = rprogmin + ":" + rprogsec;
+     
+ } else {
+
+    
+}
+time = time / 60;
+time = time.toFixed(2);
+
+if(slide.getAttribute("targ") == larg) {
+   
+slide.value = time; 
+} else {
+slide.value = 0; 
+}
+}
+}, 1000); 
+
+
+slide.addEventListener("input",function(e){
+aud.currentTime = this.value * aud.duration;
+});
+
+
+
+
+
+} catch(error) {
+    alert(error)
+}
+}
+
+
+
+
+
+
+setInterval(function() {
+    if(document.getElementById('fetching').innerText == 'fetched') {
+        
+getFeed('add');   
+}
+}, 1000); 
+
+
+
+
+setInterval(function() {
+ let audioElement = document.getElementById('audioPreview');
+if(document.getElementById('fetching').innerText == 'fetched') {
+
+if (audioElement && !audioElement.paused) {
+ getFeed('add');
+ } else if(audioElement.currentTime > 0){
+     
+     
+     getFeed('add');
+     
+     
+ } else {
+     
+     getFeed();
+     
+ }
+ 
+} 
+}, 3000); 
+
+
+function dFile(link) {
+let ext = link.split('.').pop();
+if(ext == "html") {
+ 
+  // Extract the filename from the link
+  var fileName = link.substring(link.lastIndexOf('/') + 1);
+
+  // Create a new XMLHttpRequest
+  var xhr = new XMLHttpRequest();
+  
+  // Open the request for the provided link
+  xhr.open('GET', link, true);
+  
+  // Set the responseType to 'blob' (binary data)
+  xhr.responseType = 'blob';
+
+  // When the request is complete
+  xhr.onload = function() {
+    // Create a Blob from the response
+    var blob = new Blob([xhr.response], { type: 'text/html' });
+    
+    // Create a download link
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    
+    // Set the download attribute to the extracted filename
+    a.download = fileName;
+    
+    // Append the link to the document
+    document.body.appendChild(a);
+    
+    // Trigger a click on the link to start the download
+    a.click();
+    
+    // Remove the link from the document
+    document.body.removeChild(a);
+  };
+
+  // Send the request
+xhr.send();
+ 
+ 
+    
+} else {
+let a = document.createElement("a"); 
+a.href = link; 
+a.download = true; 
+a.click();
+}
+}
+
+let textarea = document.querySelector("#autoresizing"); 
+textarea.addEventListener('input', autoResize, false); 
+
+          
+
+ function autoResize() {  
+this.style.height = 'auto'; 
+let them = document.getElementById('boxer'); 
+them.style.height = 'auto'; 
+let ratio = screen.height / this.scrollHeight;
+
+if(this.scrollHeight < 55) { 
+    
+ this.style.height = '30px';   
+ them.style.height = '30px';    
+} else {
+ if(ratio < 2.5)   {
+  this.style.height = screen.height * 0.25 + 30 + 'px';    
+     
+ } else { 
+this.style.height = this.scrollHeight + 'px'; 
+ }   
+    
+}
+
+    } 
+    
+
+
+    var input = document.getElementById("autoresizing"); 
+
+function sendMess() {
+ getFeed('add'); 
+ hide('#loadm');
+    setTimeout(function() {
+
+    document.getElementById('preview').innerHTML = "";  
+    document.getElementById('mesfile').value="";
+    document.getElementById('reply').value=''; document.getElementById('replyid').value='0'; document.getElementById('replies').style.display='none';
+        
+    }, 1000); }
+
+inputField = document.querySelector(".input-field"),
+sendBtn = document.querySelector("button"),
+chatBox = document.querySelector(".chat-box"); 
+
+
+
+inputField.focus();
+inputField.onkeyup = ()=>{
+    if(inputField.value != ""){
+        sendBtn.classList.add("active");
+    }else{
+        sendBtn.classList.remove("active");
+    }
+}
+
+chatBox.onmouseenter = ()=>{
+    chatBox.classList.add("active");
+}
+
+chatBox.onmouseleave = ()=>{
+    chatBox.classList.remove("active");
+} 
+ 
+
+
+
+function scrollToBottom(){
+    chatBox.scrollTop = chatBox.scrollHeight;
+  } 
+  
+  
+  
+  </script> 
+  
+  <script>
+
+
+function previewImages() {
+    try{
+  var preview = document.querySelector('#preview');
+  preview.show(); 
+  let wind = document.getElementById('wind');
+  let windview = document.getElementById('windview'); 
+  let windfile = document.getElementById('windfile');
+  let windsend = document.getElementById('windsend'); 
+  preview.innerHTML = "";
+  $('.noreel').show();
+  $('.yesreel').hide();
+
+  if (this.files) {
+    [].forEach.call(this.files, readAndPreview);
+  }
+
+function readAndPreview(file) {
+  var reader = new FileReader();
+ reader.onload = (function (file) {
+ return function (e) {
+if (!/\.(jpe?g|png|mp4|jpg|gif)$/i.test(file.name)) {
+var image = document.createElement('div');
+image.innerHTML = `<div class="wavefile" id="links" style="display: flex; background: rgba(0,0,0,0.5); width: calc(65vw + 30px); margin-left: 0px; margin-right: 0px; border-radius: 10px; max-height: 50px; border: 0.1px black solid; white-space: wrap !important; overflow: hidden !important; margin-bottom: 6px; "><img src="asset/doc.jpg" style="background-size: cover; width: 50px; height: 50px; object-fit: contain; border-radius: 10px 0px 0px 10px; margin-right: 5px;"><h3 style="border-to: solid #c0c0c0 0.5px; height: 50px; margin-top: 2px; display: block; white-space: wrap !important; overflow: hidden !important; word-wrap: wrap; color: black !important; background: rgba(0,0,0,0.01) !important; padding-right: 6px; font-family: 'Montserrat', serif; font-weight: normal; font-size: 14px;">` + file.name + `</h3></div>`;
+      } else {
+var image = document.createElement('img');
+        $('.noreel').hide();
+        $('.yesreel').show();
+        image.style.width = "150px";
+        image.style.margin = '10px';
+        image.style.border = '1px black solid';
+        image.style.borderRadius = '10px';
+        image.title = file.name;
+        image.src = e.target.result;
+
+        // Add click event for image cropping
+        image.addEventListener('click', function () {
+const cropperContainer = document.createElement('div');
+windview.appendChild(cropperContainer);
+const cropper = new Cropper(image, {
+aspectRatio: NaN, // Set your desired aspect ratio
+viewMode: 2, // Adjust as needed
+ready: function () {
+              // Handle cropping ready
+            },
+crop: function (event) {
+console.log(event.detail.x);
+console.log(event.detail.y);
+console.log(event.detail.width);
+console.log(event.detail.height);
+            },
+          });
+
+let cropk = document.getElementById('cropk');
+  if (cropk) {
+            crop.remove();
+          }
+let okay = document.createElement("div");
+okay.style.display = "flex";
+okay.id = "cropk";
+          
+
+const doneButton = document.createElement('p');
+doneButton.id = "cropbtn";
+doneButton.innerHTML = 'Send <i  class="fa fa-send"></i>';
+ doneButton.addEventListener('click', function () {
+ try {
+ const croppedCanvas = cropper.getCroppedCanvas();
+// Convert the cropped canvas to a Blob
+croppedCanvas.toBlob(function (blob) {
+show('#loadm');
+let formD = new FormData();
+let filen = "crop" + makeid(10) + "." + blob.type.split('/').pop(); 
+
+formD.append('file', blob, filen);
+
+
+
+$upload(formD, cropsuc, uperr);
+image.src = croppedCanvas.toDataURL();
+cropper.destroy();
+okay.remove();
+                
+}, file.type);
+ } catch (error) {
+alert(error);
+}});
+
+ const cancelButton = document.createElement('p');
+cancelButton.id = "cropbtn";
+cancelButton.innerText = 'Cancel';
+cancelButton.addEventListener('click', function () {
+            cropper.destroy();
+            okay.remove(); 
+         });
+
+okay.appendChild(doneButton);
+okay.appendChild(cancelButton);
+ preview.appendChild(okay);
+                    
+          
+        });
+      }
+ preview.appendChild(image);
+          
+    };
+  })(file);
+
+  reader.readAsDataURL(file);
+}
+        
+        
+        
+    }
+catch(error) {
+    alert(error);
+}
+}
+
+
+
+function cropsuc(data) {
+    
+let fname = data[0].filename;
+document.getElementById('windfile').value = fname;
+document.getElementById('windbio').value = document.getElementById('autoresizing').value; 
+document.getElementById('windrep').value = document.getElementById('reply').value; 
+document.getElementById('windsend').click(); 
+
+}
+
+
+
+
+
+document.querySelector('#mesfile').addEventListener("change", previewImages);  
+
+function addReply(input) { 
+    if(input.innerText == "message has been deleted ×") { } else {
+    document.getElementById("replies").style.display='block'; 
+   
+   var reply = document.getElementById("reply");
+   var replyid = document.getElementById('replyid'); 
+   reply.value = input.innerText; 
+   replyid.value = input.id;
+    } 
+    
+} 
+const drench = document.getElementById('update'); 
+
+function addSettings(sett) { 
+   try {
+       
+       
+       
+     if(sett.innerText == "message has been deleted ×") {} else {
+ if ("vibrate" in navigator) {
+  // Vibrate for 200 milliseconds
+  navigator.vibrate([200]);
+} else {
+  console.log("Vibration not supported in this browser.");
+}       
+       
+       
+ 
+document.getElementById("head").style.display='block'; 
+
+document.getElementById("react").style.display='flex'; 
+        
+let copyclip = document.getElementById("copyclip");
+let delet = document.getElementById('oldmsg'); 
+copyclip.value = sett.innerText; 
+   delet.value = sett.innerText;
+     }
+let did = sett.id;
+document.getElementById('settid').innerText = did;
+let call = `messDel('${did}')`;
+let query = `msgid = ${did}`;
+
+drench.setAttribute("call", call); 
+drench.setAttribute("query", query);
+   } catch(error) {
+   alert(error) 
+}
+    
+}
+ function copyClip() {
+ 
+  var copyText = document.getElementById("copyclip");
+
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+document.execCommand("copy"); 
+var copied = document.getElementById("copied"); 
+copied.style.display='block';
+setTimeout(function() { 
+    copied.style.display='none'; 
+}, 2500);
+ 
+} 
+
+function seeRec(data, iden) {
+    try{
+
+let targ = document.getElementById('allrex');
+targ.innerHTML = `<br><i margin="10px left" size="25px" onclick="hide('#allrex')" class="fa fa-times"></i>`; 
+targ.style.display = 'block';
+            
+let matches = [];
+let seenNames = new Set();
+
+let match;
+let regem = /([\w@.]+)\s*-\s*([^\s]+)/g;
+
+while ((match = regem.exec(data)) !== null) {
+  let name = match[1];
+  let emoji = match[2];
+
+  if (!seenNames.has(name)) {
+    seenNames.add(name);
+    matches.push({ name, emoji });
+  }
+}
+let rec = matches; 
+let $curr = localStorage.getItem('rye');
+if(rec && rec[0]) {
+for(const tab of rec) {
+if(tab['name'] == $curr) {
+tab['user'] = "yes";    
+} else {
+ tab['user'] = "no";
+}
+}
+for(let i = 0; i < rec.length; i++) {
+let user = rec[i].user;
+let namer = rec[i].name;
+if(user == "yes") {
+namer = "You"; 
+} else {
+let acc = $users.filter(item => item['id'] == namer); 
+if(acc == "") {
+namer = rec[i].name; 
+} else {
+ namer = acc[0].name;
+}
+}
+let emo = rec[i].emoji; 
+let div = document.createElement("div"); 
+div.style.width = "95%";
+div.style.marginLeft = "2.5%";
+div.style.position = "relative";
+div.style.borderBottom = "1px solid #708090";
+div.style.paddingBottom = "10px";
+div.style.display = "flex";
+div.style.alignItems = "center";
+
+if(user == "yes") {
+div.setAttribute('onclick', `delRec('${iden}')`);
+    
+}
+div.innerHTML = `<p margin="5px top" font="Outfit" size="17.5px" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 50px)">${namer}</p><p absolute push="right" margin="10px right" size="20px">${emo}</p>`;
+if(user == "yes") {
+ div.innerHTML = div.innerHTML + `<div><br><p size="12px" margin="15px,0,0,-26px" font="Outfit">Tap to remove</p></div>`;
+}
+targ.appendChild(div); 
+rootHex(); 
+}
+
+    
+}
+
+
+
+
+
+    } catch(error) {
+    alert(`Line: ${error.stack} - ${error}`)
+}
+
+}
+
+function delRec(iden){
+     try{
+document.getElementById('fetching').innerText = 'fetching';
+
+let curr = localStorage.getItem('rye');
+let ini = ``;
+let acc = $getchat.filter(item => item['msgid'] == iden); 
+let rec = acc[0]['rerec']; 
+let newrec = rec; 
+if(rec == undefined || rec == "") {} else {
+let regex = new RegExp(`${curr}\\s*-\\s*([^\s]+)`, 'g');
+
+newrec = rec.replace(regex, '');
+}
+let enter = newrec + " " + ini;
+
+
+let kont = document.querySelector(`[data-rec="${iden}"]`);
+if(kont) {
+kont.remove();
+}
+
+hide('#allrex');
+
+
+
+$UPDATE("ryehub", `UPDATE chat SET react = '${enter}' WHERE msgid = '${iden}'`, `document.getElementById('fetching').innerText = 'fetched'`);
+
+
+} catch(error) {
+    alert(error);
+}
+
+    
+}
+
+
+
+
+
+
+function React(emo){
+    try{
+document.getElementById('fetching').innerText = 'fetching';
+
+let iden = document.getElementById('settid').innerText;
+let curr = localStorage.getItem('rye');
+let ini = `${curr} - ${emo}`;
+let acc = $getchat.filter(item => item['msgid'] == iden); 
+let rec = acc[0]['rerec']; 
+let newrec = rec; 
+if(rec == undefined || rec == "") {} else {
+let regex = new RegExp(`${curr}\\s*-\\s*([^\s]+)`, 'g');
+
+newrec = rec.replace(regex, '');
+}
+let enter = newrec + " " + ini;
+closeSett(iden, emo);
+$UPDATE("ryehub", `UPDATE chat SET react = '${enter}' WHERE msgid = '${iden}'`, `document.getElementById('fetching').innerText = 'fetched'`);
+
+
+} catch(error) {
+    alert(error);
+}
+}
+
+
+
+function closeTabs() {
+   hide('#head');
+  hide('#react');
+  hide('#codrop'); 
+if(document.getElementById('allrex').style.display !== "none") {
+}
+    
+}
+
+function closeSett(iden, emo) {
+try{
+  hide('#head');
+  hide('#react');
+
+let elem = document.querySelector(`[chat="${iden}"]`);
+let kont = document.querySelector(`[data-rec="${iden}"]`);
+if(kont) {
+kont.remove();
+}
+
+
+let cox = document.createElement("div");
+cox.setAttribute("class", "react"); 
+cox.setAttribute("data-rec", iden)
+let fur = `<button style="border: none; background: white; width: 40px; height: 40px; font-size: 20px; border-radius: 50%;" >${emo}</button>`;
+cox.innerHTML = fur; 
+elem.appendChild(cox);
+
+
+
+
+} catch(error) {
+    alert(error)
+}
+
+  
+}
+
+
+
+
+
+function delM() {
+    document.getElementById('senddel').click(); 
+}
+
+function messDel(elem) { 
+document.getElementById(elem).innerHTML="message has been deleted ×";
+hide('#head'); 
+hide('#react'); 
+}  
+
+
+
+
+</script> 
+ <script>
+   function startRecording(){
+       try{
+let bio = document.getElementById('autoresizing'); 
+let timer = document.getElementById('atimer'); 
+timer.innerText = "0"; 
+timer.show(); 
+bio.hide();
+setInterval(function() {
+let time = timer.innerText;
+let min = time.split(':')[0];
+let sec = time.split(':').pop();
+min = parseInt(min) * 60;
+time = min + parseInt(sec);
+time = time + 1;
+
+
+
+let rprogmin = Math.floor(time / 60); 
+let rprogsec = Math.floor(time % 60);
+
+timer.innerText = rprogmin + ":" + rprogsec;
+
+}, 1000); 
+    var device = navigator.mediaDevices.getUserMedia({audio:true});
+    var items = [];
+    device.then( stream => {
+      let recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = e => {
+
+        items.push(e.data);
+        if(recorder.state == "inactive")
+        {
+        timer.hide(); 
+        show('#loadm');
+        let namer = makeid(10);
+        var blob = new Blob(items, {type: recorder.mimeType});
+seeRecording(blob, `rec${namer}.${blob.type.split('/')[1].split(';')[0]}`, recorder.mimeType);
+bio.show();
+        }
+      }
+
+      recorder.start();
+const yourElement = document.getElementById('recordButton');
+yourElement.addEventListener('mouseleave', function() {
+    
+
+
+
+// Get all active media streams
+const activeStreams = navigator.mediaDevices.enumerateDevices()
+  .then(devices => devices.filter(device => device.kind === 'audioinput' || device.kind === 'videoinput'))
+  .then(filteredDevices => filteredDevices.map(device => navigator.mediaDevices.getUserMedia({ audio: { deviceId: device.deviceId } })))
+  .then(streamPromises => Promise.all(streamPromises));
+
+// Stop all tracks in each active media stream
+activeStreams.then(streams => {
+  streams.forEach(stream => {
+    stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  });
+});
+
+recorder.stop();
+  console.log('User left the element!');
+  
+});
+
+yourElement.addEventListener('touchend', function() {
+  
+  // Get all active media streams
+const activeStreams = navigator.mediaDevices.enumerateDevices()
+  .then(devices => devices.filter(device => device.kind === 'audioinput' || device.kind === 'videoinput'))
+  .then(filteredDevices => filteredDevices.map(device => navigator.mediaDevices.getUserMedia({ audio: { deviceId: device.deviceId } })))
+  .then(streamPromises => Promise.all(streamPromises));
+
+// Stop all tracks in each active media stream
+activeStreams.then(streams => {
+  streams.forEach(stream => {
+    stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  });
+});
+  
+       
+    recorder.stop();
+  console.log('User left the element!');
+});
+      
+    
+      
+
+    });
+
+   } catch (error){
+       alert(error); 
+   }
+}
+
+
+
+
+function seeRecording(blob, audioFileName, mtype) {
+    
+ try{
+var audioPreview = document.getElementById('audioPreview');
+var audioFileInput = document.getElementById('audioFileInput');
+
+audioPreview.src = URL.createObjectURL(blob);
+
+let formD = new FormData();
+
+formD.append('file', blob, audioFileName);
+
+
+
+$upload(formD, upsuc, uperr); 
+
+
+
+
+} catch(error) {
+alert(error);
+}
+}
+
+
+function upsuc(data) {
+let fname = data[0].filename; 
+document.getElementById('autoresizing').value = "$vn--" + fname; 
+document.getElementById('send').click(); 
+}
+
+function uperr(data) {
+console.error("Error Type: " + data);
+hide('#loadm');
+}
+
+
+
+function saveBlob(blob, fileName) {
+    var a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style = 'display: none';
+    var url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
+
+
+
+
+ </script> 
+ 
+</body>
+</html>
