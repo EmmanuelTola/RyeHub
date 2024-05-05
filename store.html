@@ -310,7 +310,7 @@ border: 3px solid #0B1919;
 <option value="$">Currency: Dollar</option>
 <option value="₦">Currency: Naira</option>
 </select>
-<input height="50px" width="43%" required placeholder="Price (In Naira)" name="price" type="number">
+<input height="50px" width="43%" required placeholder="Price" name="price" type="number">
 <input margin="2% left" height="50px" width="43%" placeholder="Discount Price (optional)" name="discount" type="number">
 <input required placeholder="Number Of Products In Stock" name="stock" type="number">
 <input name="tags" placeholder="Add tags separated by commas for visibility">
@@ -326,7 +326,7 @@ border: 3px solid #0B1919;
 
 
 
-<input onclick="show('#prospin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="UPDATE">
+<input onclick="show('#prospin')" width="80%" size="18px" color="white" back="#0B1919" type="submit" value="PUBLISH">
 <i hidden id="prospin" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
 
 </form>
@@ -436,7 +436,7 @@ this.hide();
 let currn = localStorage.getItem('rye'); 
 
 document.getElementById('purc').innerText = `ALL seller WHERE id = '${currn}'`;
-document.getElementById('purco').innerText = `ALL products WHERE userid = '${currn}'`; 
+document.getElementById('purco').innerText = `ALL products WHERE userid = '${currn}' ORDER DESC`; 
 document.getElementById('editusen').innerText = `ALL seller WHERE id = '${currn}'`;
 
 
