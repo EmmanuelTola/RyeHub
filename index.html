@@ -143,10 +143,11 @@ border: 2px solid green;
 
 { currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[<in bold size="30px">{ price }</in> ]]!!
 <br>
-<button margin="5px top" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="20px">CONTACT SELLER</button>
-<drop name="Product Description">
+<button margin="5px,0,5px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="20px">CONTACT SELLER</button>
+<br>
+<div class="prodesc">
 <p font="Outfit" size="14px">{ bio }</p>
-</drop>
+</div>
 </div>
 
 <center> 
@@ -313,7 +314,19 @@ row.remove();
 }
 
 
-
+function doProdesc() {
+let arr = document.querySelectorAll('.prodesc'); 
+if(arr){
+arr.forEach(function(row){ 
+let html = row.innerHTML;
+let drop = document.createElement("drop"); 
+drop.setAttribute("name", "Product Description"); 
+drop.innerHTML = html;
+row.parentElement.replaceChild(drop, row); 
+});    
+   rootHex(); 
+   }
+}
 
 let curr = localStorage.getItem('rye'); 
 
@@ -329,6 +342,8 @@ rootHex();
 
 doArray(); 
 
+doProdesc(); 
+ 
 let elem = document.querySelectorAll('img');
  elem.forEach(function(img){
 img.onerror = function() {
