@@ -83,6 +83,13 @@ const targ = document.getElementById('cart');
 cart.innerHTML = ""; 
 let total = 0; 
 let poll = 0; 
+
+const meys = Object.keys(localStorage);
+meys.forEach(mey => {
+if (mey.startsWith("fee-")) {
+localStorage.removeItem(mey);
+}}); 
+ 
 const keys = Object.keys(localStorage);
 keys.forEach(key => {
 if (key.startsWith("rye-")) {
@@ -101,6 +108,12 @@ if(row && row[0]) {
 let name = row.name;
 let pic = xqlfile + row.pic; 
 let price = row.price;
+let fee = row.fee; 
+let seller = row.userid; 
+let ponn = localStorage.getItem("fee-"+seller); 
+if(ponn == null || fee > Number(ponn)){
+localStorage.setItem("fee-"+seller, fee+"-"+row.currency); 
+}
 if(checkData(row.discount)) {
 price = row.discount; 
 }
@@ -134,7 +147,44 @@ localStorage.removeItem(key);
 localStorage.removeItem(`spec-${rid}`);
 setCart(); 
 }
-} });     
+} });
+
+let line = document.createElement("hr"); 
+targ.appendChild(line); 
+
+const leys = Object.keys(localStorage);
+leys.forEach(ley => {
+if(ley.startsWith("fee-")) {
+let sid = ley.split("fee-").pop();
+let whole = localStorage.getItem(ley); 
+let num = whole.split("-")[0]; 
+let coin = whole.split("-").pop(); 
+if(coin == "$") {} else {
+num = Number(num) / 1372; 
+}
+let rody = document.createElement("div"); 
+let tml = `<div margin="10px bottom" relative flex style="align-items: center">
+<p font="Outfit" size="17px">DELIVERY FEE (STORE ID: ${sid})</p>
+<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">${coin}${num}</p>
+<hr>`;  
+rody.innerHTML = tml; 
+targ.appendChild(rody); rootHex(); 
+total = Number(total) + Number(num);  
+}}); 
+let sfee = total * 0.01; 
+if(total > 35) {
+sfee = 4; 
+}
+total = Number(total) + Number(sfee); 
+let lody = document.createElement("div"); 
+let ltml = `<div margin="10px bottom" relative flex style="align-items: center">
+<p font="Outfit" size="17px">SERVICE FEE (STORE ID: ${sid})</p>
+<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">$4</p>
+<hr>`;  
+lody.innerHTML = ltml; 
+targ.appendChild(lody); rootHex(); 
+
+
 totf.value = "$"+total;  
 
 document.getElementById('cartnum').innerText = poll; 
