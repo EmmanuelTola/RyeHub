@@ -129,9 +129,9 @@ border: 2px solid green;
 ]]!!
     
 
-<p margin="5px,0,5px,0" bold font="Poppins" size="30px">&nbsp; SIMILAR PRODUCTS</p>
+<p margin="15px,0,5px,0" bold font="Poppins" size="20px">&nbsp; SIMILAR PRODUCTS</p>
 <div id="similar" flex-wrap width="95%" margin="2.5% left">
-
+<i margin="10px top" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i>
 </div>
 
  
@@ -177,6 +177,8 @@ let one = tags[0];
 let two = tags[1];
 // alert(one + "," + two);
 data = data.filter(item => item['tags'].includes(one) || item['tags'].includes(two)); 
+if(data && data[0]){
+data = $shuffle(data); 
 if (data.length > 4) {
     data = data.slice(0, 4);
 }
@@ -204,6 +206,10 @@ allhtml = allhtml + html;
 });
 document.getElementById('similar').innerHTML = allhtml; 
 rootHex(); 
+} else {
+document.getElementById('similar').innerHTML = `<p font="Outfit" opacity="0.7" size="15px">No Similar Product Found</p>`; 
+rootHex(); 
+}
 }} catch(error) {
 alert(error);
 }}
