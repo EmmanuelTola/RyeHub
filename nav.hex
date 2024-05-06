@@ -44,7 +44,7 @@ margin-right: 25px !important;
 
 
 
-<div color="white" absolute push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">
+<div color="white" absolute display="none" push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">
     
     
     
