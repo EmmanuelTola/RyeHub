@@ -161,12 +161,13 @@ let whole = localStorage.getItem(ley);
 let num = whole.split("-")[0]; 
 let coin = whole.split("-").pop(); 
 if(coin == "$") {} else {
-num = Number(num) / 1372; 
+num = Number(num) / 1372;
+num = num.toFixed(1); 
 }
 let rody = document.createElement("div"); 
 let tml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
 <p margin="3px,0,3px,0" font="Outfit" size="14px">DELIVERY FEE (STORE ID: ${sid})</p>
-<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">${coin}${num}</p>
+<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">$${num}</p>
 </div>
 <hr>`;  
 rody.innerHTML = tml; 
@@ -177,6 +178,7 @@ let sfee = Number(total) * 0.01;
 if(total > 35) {
 sfee = 4; 
 }
+sfee = sfee.toFixed(1); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
 let ltml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
