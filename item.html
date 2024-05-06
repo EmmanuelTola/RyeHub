@@ -66,10 +66,13 @@ border: 2px solid green;
 </style>
 <div id="nav"></div>
 <div height="65px"></div>
+
+ 
+ 
 <center>
 <i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
   
-
+<div id="prod">
 <query call="document.getElementById('ploader').hide(); setPop()" data="ryehub">
 <data id="purco"></data>
 
@@ -124,13 +127,14 @@ border: 2px solid green;
 <button margin="12px top" color="white" onclick="addCart('{ id }')" page-middle-h back="#e05555" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
 ]]!!
     
-</div>
+
 </result>
 </query>
-
-
+</div>
+<button width="200px" display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="added" theme="smart" size="18px">Added To Cart</button>
 <button width="200px" display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="removed" theme="smart" size="18px">Removed From Cart</button>
-<script parse="getMen();">
+
+ <script parse="getMen();">
 
 $IMPORT('@UI');    
 document.getElementById('nav').Xporter('nav.hex');
