@@ -41,7 +41,7 @@ font-family: 'Ubuntu';
 }    
 #addup .put {
 background: white; 
-border: 1px #FEAF0B; 
+border: 1px #FEAF0B solid; 
 width: 70px; 
 height: 35px; 
 border-radius: 5px; 
@@ -129,6 +129,12 @@ border: 2px solid green;
 ]]!!
     
 
+<p margin="5px,0,5px,0" bold font="Poppins" size="30px">&nbsp; SIMILAR PRODUCTS</p>
+<div id="similar" flex-wrap width="95%" margin="2.5% left">
+
+</div>
+
+ 
 </result>
 </query>
 </div>
@@ -142,12 +148,67 @@ document.getElementById('nav').Xporter('nav.hex');
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
 const pid = $GET('id'); 
+let $prod = []; 
 let query = `SELECT products WHERE id = '${pid}'`; 
 document.getElementById('purco').innerText = query; 
 $START('XQL:'+$con);
 
+$QUERY($con, $db, 'SELECT products').pull(allProd); 
+function allProd(data) {
+$prod = data; 
+}
+
+function doSimilar() {
+try{
+let data = $prod; 
+let curr = $GET('id'); 
+curr = data.filter(item => item['id'] == curr); 
+if(curr && curr[0]) {
+curr = curr[0];
+data = data.filter(item => item !== curr); 
+let tags = curr.tags; 
+tags = tags.split(","); 
+for (let i = tags.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tags[i], tags[j]] = [tags[j], tags[i]];
+}
+let one = tags[0];
+let two = tags[1];
+data = data.filter(item => item['tags'].includes(one) || item['tags'].includes(two)); 
+if (data.length > 4) {
+    data = data.slice(0, 4);
+}
+let allhtml = ""; 
+data.forEach(function(row) {
+let id = row.id; 
+let pic = xqlfile + row.pic; 
+let name = row.name; 
+let price = row.price; 
+let ori = price; 
+let currency = row.currency; 
+if(checkData(row.discount)) {
+price = row.discount; 
+}
+html = `<div onclick="location.href = 'item.html?id=${id}'" border="1px solid #0B1919" width="160px" margin="10px right">
+<img style="object-fit: cover" ratio="1/1" src="${pic}" width="100%">
+<div margin="2.5% left" width="95%">
+<p margin="5px bottom" font="Outfit" size="17.5">${name}</p>
+${currency}<in bold size="20px">${price}</in> <s size="16px" color="red">${ori}</s>
+</div>
+<br>
+</div>
+`; 
+allhtml = allhtml + html; 
+});
+document.getElementById('similar').innerHTML = allhtml; 
+rootHex(); 
+}} catch(error) {
+alert(error);
+}}
 
 
+
+  
 function specTo(elem){
 
 
@@ -289,6 +350,7 @@ rootHex();
 
 doArray(); 
 
+doSimilar(); 
 
  
 let elem = document.querySelectorAll('img');
