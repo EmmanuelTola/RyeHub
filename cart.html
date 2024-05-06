@@ -121,7 +121,7 @@ price = row.discount;
 let allprice = Number(price) * Number(value); 
 if(row.currency == "$"){} else {
 price = Number(price)   / 1372; 
-price = price.toFixed(1); 
+price = price.toFixed(2); 
 allprice = allprice / 1372; 
 allprice = allprice.toFixed(1); 
 }
@@ -162,7 +162,7 @@ let num = whole.split("-")[0];
 let coin = whole.split("-").pop(); 
 if(coin == "$") {} else {
 num = Number(num) / 1372;
-num = num.toFixed(1); 
+num = num.toFixed(2); 
 }
 let rody = document.createElement("div"); 
 let tml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
@@ -178,7 +178,7 @@ let sfee = Number(total) * 0.01;
 if(total > 35) {
 sfee = 4; 
 }
-sfee = sfee.toFixed(1); 
+sfee = sfee.toFixed(2); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
 let ltml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
