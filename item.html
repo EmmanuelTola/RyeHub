@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="https://ryehub.vercel.app/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="https://ryehub.vercel.app/logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="https://ryehub.vercel.app/logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+ <title>RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+}    
+
+#addup {
+font-family: 'Ubuntu'; 
+}    
+#addup .put {
+background: #ebb09e; 
+border: none; 
+width: 70px; 
+height: 35px; 
+border-radius: 10px; 
+font-size: 25px; 
+}
+
+#addup .dis {
+background: #fafafa; 
+border: grey 1px solid; 
+width: 50px; 
+height: 50px; 
+border-radius: 50%; 
+font-size: 25px; 
+}
+
+.active {
+border: 2px solid green; 
+}
+
+
+  
+</style>
+<div id="nav"></div>
+<div height="65px"></div>
+<center>
+<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+  
+
+<query call="document.getElementById('ploader').hide(); setPop()" data="ryehub">
+<data id="purco"></data>
+
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+
+<result>
+
+<div id="produp" flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left> 
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pic }" width="200px">
+&nbsp;
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pictwo }" width="200px">
+&nbsp; 
+<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ picthree }" width="200px">
+</div>
+<div width="95%" margin="2.5% left">
+<p margin="8px bottom" font="Poppins" size="23px">{ name }!!if[[stock > 0]][[ <in size="12px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p> 
+
+
+{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s>]]else[[<in bold size="30px">{ price }</in>]]!! !!if[[fee > 0]][[<in size="15px">(+ { currency }{ fee } delivery fee)</in>]]!!
+<br>
+<button margin="8px,0,10px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="16px">CONTACT SELLER</button>
+<br>
+<drop name="Product Description">
+<p font="Outfit" size="14px">{ bio }</p>
+</div>
+</drop>
+
+<center> 
+<input id="specval" hidden>
+<div style="white-space: nowrap; overflow: scroll;">
+<array elem="button"><button onclick="specTo(this)" margin="0,5px,10px,5px" class="spec" blend="normal" theme="smart" back="#edf5f2" size="15px">{ size }</button></array>
+</div>
+</center>
+    
+
+
+
+ 
+<div margin="5px top" center id="addup">
+<button class="put" onclick="addUp('{ id }', '-', '{ stock }')">-</button>
+&nbsp; 
+<button class="dis" id="add{ id }">1</button>
+&nbsp;
+<button class="put" onclick="addUp('{ id }', '+', '{ stock }')">+</button>
+
+</div> 
+   
+       
+
+
+!!if[[stock > 0]][[
+<button margin="12px top" color="white" onclick="addCart('{ id }')" page-middle-h back="#e05555" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
+]]!!
+    
+</div>
+</result>
+</query>
+
+
+<button width="200px" display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="removed" theme="smart" size="18px">Removed From Cart</button>
+<script parse="getMen();">
+
+$IMPORT('@UI');    
+document.getElementById('nav').Xporter('nav.hex');
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+const pid = $GET('id'); 
+let query = `SELECT products WHERE id = '${pid}'`; 
+document.getElementById('purco').innerText = query; 
+$START('XQL:'+$con);
+
+
+
+function specTo(elem){
+
+
+let spet = document.querySelectorAll('.active'); 
+if(spet){
+spet.forEach(function(row){
+row.classList.remove('active');   
+}); 
+}
+
+elem.classList.add("active"); 
+document.getElementById('specval').value = elem.innerText;
+}
+
+  
+function addUp(targ, typeh, max){
+let target = "add"+targ; 
+target = document.getElementById(target); 
+let curr = Number(target.innerText); 
+if(typeh == "+") {
+curr = curr + 1; 
+if(curr > max) {
+curr = max;    
+}  
+} 
+
+if(typeh == "-") {
+curr = curr - 1; 
+if(curr < 0) {
+curr = 0;    
+}  
+} 
+
+target.innerText = curr; 
+
+
+   
+}
+
+
+
+function addCart(rid){
+let qty = document.getElementById('add'+rid); 
+if(qty){
+qty = qty.innerText;     
+} else {
+qty = 1; 
+} 
+let code = "rye-"+rid; 
+let spec = "spec-"+rid;
+if(qty > 0){
+let siz = document.getElementById('specval').value; 
+ 
+localStorage.setItem(code, qty); 
+localStorage.setItem(spec, siz); 
+setCart(); 
+} else {
+localStorage.removeItem(code); 
+localStorage.removeItem(spec);  
+setCart('none');    
+}
+
+
+
+}
+
+
+
+function setCart(typeh) {
+let tot = 0; 
+const keys = Object.keys(localStorage);
+keys.forEach(key => {
+if (key.startsWith("rye-")) {
+let value = localStorage.getItem(key);
+value = Number(value); 
+tot = tot + value; 
+} }); 
+if(typeh == "none") {
+PopTell('#removed');      
+} else {
+PopTell('#added');  
+} 
+}
+
+
+
+
+function doArray(){
+let arr = document.querySelectorAll('array'); 
+if(arr){
+arr.forEach(function(row){
+let elem = row.getAttribute("elem"); 
+let targ = row.querySelector(elem); 
+let body = document.createElement("div"); 
+let val = targ.innerHTML; 
+if(checkData(val)) {
+val = val.split(","); 
+val.forEach(function(dot){
+let ins = targ.cloneNode(true); 
+ins.innerHTML = dot; 
+body.appendChild(ins); 
+}); 
+
+row.parentElement.replaceChild(body, row);
+} else {
+row.remove();
+}
+});     
+}
+}
+
+
+function doProdesc() {
+let arr = document.querySelectorAll('.prodesc'); 
+if(arr){
+arr.forEach(function(row){ 
+let html = row.innerHTML;
+let drop = document.createElement("drop"); 
+drop.setAttribute("name", "Product Description"); 
+drop.innerHTML = html;
+row.parentElement.replaceChild(drop, row); 
+});    
+   rootHex(); 
+   }
+}
+
+let curr = localStorage.getItem('rye'); 
+
+function setPop(){
+let popes = document.querySelectorAll('[pope]'); 
+if(popes) {
+popes.forEach(function(pope){
+let pop = pope.getAttribute('pope'); 
+pope.setAttribute("pop", pop);   
+    
+}); 
+rootHex();
+
+doArray(); 
+
+
+ 
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+
+if(this.id == "ppm") {
+this.hide(); 
+ this.remove();  
+ 
+}
+ }
+ });
+
+
+
+}
+}
+
+
+
+</script>
+</body>
+
+  
