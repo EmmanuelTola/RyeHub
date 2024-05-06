@@ -99,7 +99,8 @@ border: 3px solid #0B1919;
 
 <img frame src="$xqlfile${ banner }" width="100%" ratio="1/0.5">  
 <div margin="-50px,0,0,10px" flex style="align-items: center">
-<img frame border="#0B1919 solid 6px" margin="10px right" round src="$xqlfile${ pic }" width="87px" height="87px"><p margin="50px top" font="Poppins" bold size="30px">{ name }&nbsp;&nbsp;<i onclick="show('#popedit')" class="fa fa-pen"></i></p>
+<img frame border="#0B1919 solid 6px" margin="10px right" round src="$xqlfile${ pic }" width="87px" height="87px"><p margin="50px top" font="Poppins" bold size="30px">{ name }&nbsp;&nbsp;<i onclick="show('#popedit')" class="fa fa-pen"></i>&nbsp;&nbsp;<i onclick="shareNow('{ name }');" class="fa fa-share-alt"></i></p>
+</p>
 </div>
 
     
@@ -585,7 +586,23 @@ img.src = URL.createObjectURL(this.files[0]);
   
 }
 
-
+function shareNow(sname) {
+let slink = window.location.href + `&name=${sname}`;
+ if (navigator.share) {
+navigator.share({
+ 
+title: sname,
+url: slink
+                }).then(() => {
+console.log('Thanks for sharing!');
+}).catch(err => {
+console.log("Error while using Web share API:");
+console.log(err);
+  });} else {
+const a = document.createElement("a");
+a.href = `https://twitter.com/intent/tweet?text=${slink}`;
+a.click();
+}}
 
 function wrapProd(targ) {
 let home = document.getElementById(targ); 
