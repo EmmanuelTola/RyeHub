@@ -40,11 +40,11 @@ margin: 0;
 font-family: 'Ubuntu'; 
 }    
 #addup .put {
-background: #ebb09e; 
-border: none; 
+background: white; 
+border: 1px #FEAF0B; 
 width: 70px; 
 height: 35px; 
-border-radius: 10px; 
+border-radius: 5px; 
 font-size: 25px; 
 }
 
@@ -94,7 +94,7 @@ border: 2px solid green;
 { currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s><in display="none">]]!!<in bold size="30px">{ price }</in>
 </in>
  <br>
-<button margin="8px,0,10px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="16px">CONTACT SELLER</button>
+<button margin="8px,0,10px,0" onclick="location.href = 'seller.html?id={ userid }';" theme="smart" blend="normal" back="white" border="1px solid #1ec778"  color="black" size="16px">CONTACT SELLER</button>
 <br>
 <drop name="Product Description">
 <p font="Outfit" size="14px">{ bio }</p>
@@ -125,7 +125,7 @@ border: 2px solid green;
 
 
 !!if[[stock > 0]][[
-<button margin="12px top" color="white" onclick="addCart('{ id }')" page-middle-h back="#e05555" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
+<button margin="12px top" color="white" onclick="addCart('{ id }')" page-middle-h back="#072617" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
 ]]!!
     
 
