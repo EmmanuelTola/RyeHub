@@ -138,12 +138,12 @@ border: 2px solid green;
 <img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ picthree }" width="200px">
 </div>
 <div width="95%" margin="2.5% left">
-<p margin="8px bottom" font="Poppins" size="30px">{ name }!!if[[stock > 0]][[ <in size="16px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p>
+<p margin="8px bottom" font="Poppins" size="25px">{ name }!!if[[stock > 0]][[ <in size="12px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p>
 
 
 { currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s> ]]else[[<in bold size="30px">{ price }</in> ]]!!
 <br>
-<button margin="5px,0,5px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="20px">CONTACT SELLER</button>
+<button margin="5px,0,10px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="16px">CONTACT SELLER</button>
 <br>
 <div class="prodesc">
 <p font="Outfit" size="14px">{ bio }</p>
@@ -151,8 +151,10 @@ border: 2px solid green;
 </div>
 
 <center> 
-<input id="specval" hidden>  
-<array elem="button"><button onclick="specTo(this)" margin="0,5px,10px,5px" class="spec" blend="normal" theme="smart" back="#ebb09e" size="20px">{ size }</button></array>
+<input id="specval" hidden>
+<div style="white-space: nowrap; overflow: scroll;">
+<array elem="button"><button onclick="specTo(this)" margin="0,5px,10px,5px" class="spec" blend="normal" theme="smart" back="#edf5f2" size="15px">{ size }</button></array>
+</div>
 </center>
 <br>
     
