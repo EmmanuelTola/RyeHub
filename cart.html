@@ -163,23 +163,25 @@ if(coin == "$") {} else {
 num = Number(num) / 1372; 
 }
 let rody = document.createElement("div"); 
-let tml = `<div margin="10px bottom" relative flex style="align-items: center">
+let tml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
 <p font="Outfit" size="17px">DELIVERY FEE (STORE ID: ${sid})</p>
 <p font="Ubuntu" size="20px" absolute push="right" margin="10px right">${coin}${num}</p>
+</div>
 <hr>`;  
 rody.innerHTML = tml; 
 targ.appendChild(rody); rootHex(); 
 total = Number(total) + Number(num);  
 }}); 
-let sfee = total * 0.01; 
+let sfee = Number(total) * 0.01; 
 if(total > 35) {
 sfee = 4; 
 }
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
-let ltml = `<div margin="10px bottom" relative flex style="align-items: center">
-<p font="Outfit" size="17px">SERVICE FEE (STORE ID: ${sid})</p>
+let ltml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
+<p font="Outfit" size="17px">SERVICE FEE</p>
 <p font="Ubuntu" size="20px" absolute push="right" margin="10px right">$4</p>
+</div>
 <hr>`;  
 lody.innerHTML = ltml; 
 targ.appendChild(lody); rootHex(); 
