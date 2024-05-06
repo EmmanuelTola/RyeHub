@@ -63,34 +63,7 @@ color: white;
 }
 
 
-.custom-spin {
-  animation-duration: 1s; /* Change the duration to adjust the speed */
-}    
 
-#addup {
-font-family: 'Ubuntu'; 
-}    
-#addup .put {
-background: #ebb09e; 
-border: none; 
-width: 70px; 
-height: 35px; 
-border-radius: 10px; 
-font-size: 25px; 
-}
-
-#addup .dis {
-background: #fafafa; 
-border: grey 1px solid; 
-width: 50px; 
-height: 50px; 
-border-radius: 50%; 
-font-size: 25px; 
-}
-
-.active {
-border: 2px solid green; 
-}
 
 
 </style>
@@ -111,15 +84,15 @@ border: 2px solid green;
 
  <center>
 <i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
-
+ 
 <div flex style="overflow: scroll;" width="95%" margin="2.5% left">
-<query call="document.getElementById('ploader').hide(); setPop()" data="ryehub">
+<query call="document.getElementById('ploader').hide();" data="ryehub">
 <data id="purco">ALL products ORDER DESC</data>
 
 <empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
 
 <result>
-<div onclick="hexPop('{ id }')" border="1px solid #0B1919" width="160px" margin="10px right">
+<div onclick="window.open('item.html?id={ id }')" border="1px solid #0B1919" width="160px" margin="10px right">
 <img style="object-fit: cover" ratio="1/1" src="$xqlfile${ pic }" width="100%">
 <div margin="2.5% left" width="95%">
 <p margin="5px bottom" font="Outfit" size="17.5">{ name }</p>
@@ -129,64 +102,13 @@ border: 2px solid green;
 </div>
 
 
-<div pope="{ id } CLOSE" pop-class="popedit">
-<div id="produp" flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left> 
-<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pic }" width="200px">
-&nbsp;
-<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pictwo }" width="200px">
-&nbsp; 
-<img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ picthree }" width="200px">
-</div>
-<div width="95%" margin="2.5% left">
-<p margin="8px bottom" font="Poppins" size="23px">{ name }!!if[[stock > 0]][[ <in size="12px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p> 
-
-
-{ currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s>]]else[[<in bold size="30px">{ price }</in>]]!! !!if[[fee > 0]][[<in size="15px">(+ { currency }{ fee } delivery fee)</in>]]!!
-<br>
-<button margin="8px,0,10px,0" onclick="window.open('seller.html?id={ userid }')" theme="smart" blend="normal" back="#0B1919" color="white" size="16px">CONTACT SELLER</button>
-<br>
-<div class="prodesc">
-<p font="Outfit" size="14px">{ bio }</p>
-</div>
-</div>
-
-<center> 
-<input id="specval" hidden>
-<div style="white-space: nowrap; overflow: scroll;">
-<array elem="button"><button onclick="specTo(this)" margin="0,5px,10px,5px" class="spec" blend="normal" theme="smart" back="#edf5f2" size="15px">{ size }</button></array>
-</div>
-</center>
-    
-
-
-
- 
-<div margin="5px top" center id="addup">
-<button class="put" onclick="addUp('{ id }', '-', '{ stock }')">-</button>
-&nbsp; 
-<button class="dis" id="add{ id }">1</button>
-&nbsp;
-<button class="put" onclick="addUp('{ id }', '+', '{ stock }')">+</button>
-
-</div> 
-   
-       
-
-
-!!if[[stock > 0]][[
-<button margin="12px top" color="white" onclick="addCart('{ id }')" page-middle-h back="#e05555" theme="smart" blend="normal" radius="3px" size="22px">ADD TO CART</button>
-]]!!
-    
-</div>
 </result>
 </query>
+</div>
 
-</div> 
+ 
 
 
-<button display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="added" theme="smart" size="18px">Added To Cart</button>
-
-<button width="200px" display="none" blend="normal" color="white" page-middle index="999999999999999999" back="rgba(0,0,0,0.7)" id="removed" theme="smart" size="18px">Removed From Cart</button>
 <script parse="getMen();">
 
 $IMPORT('@UI');    
@@ -197,172 +119,12 @@ $START('XQL:'+$con);
 
 
 
-function specTo(elem){
-
-
-let spet = document.querySelectorAll('.active'); 
-if(spet){
-spet.forEach(function(row){
-row.classList.remove('active');   
-}); 
-}
-
-elem.classList.add("active"); 
-document.getElementById('specval').value = elem.innerText;
-}
 
 
 
 
-
-
-
-function addUp(targ, typeh, max){
-let target = "add"+targ; 
-target = document.getElementById(target); 
-let curr = Number(target.innerText); 
-if(typeh == "+") {
-curr = curr + 1; 
-if(curr > max) {
-curr = max;    
-}  
-} 
-
-if(typeh == "-") {
-curr = curr - 1; 
-if(curr < 0) {
-curr = 0;    
-}  
-} 
-
-target.innerText = curr; 
-
-
-   
-}
-
-
-
-function addCart(rid){
-let qty = document.getElementById('add'+rid); 
-if(qty){
-qty = qty.innerText;     
-} else {
-qty = 1; 
-} 
-let code = "rye-"+rid; 
-let spec = "spec-"+rid;
-if(qty > 0){
-let siz = document.getElementById('specval').value; 
- 
-localStorage.setItem(code, qty); 
-localStorage.setItem(spec, siz); 
-setCart(); 
-} else {
-localStorage.removeItem(code); 
-localStorage.removeItem(spec);  
-setCart('none');    
-}
-
-
-
-}
-
-
-
-function setCart(typeh) {
-let tot = 0; 
-const keys = Object.keys(localStorage);
-keys.forEach(key => {
-if (key.startsWith("rye-")) {
-let value = localStorage.getItem(key);
-value = Number(value); 
-tot = tot + value; 
-} }); 
-if(typeh == "none") {
-PopTell('#removed');      
-} else {
-PopTell('#added');  
-} 
-}
-
-
-
-
-function doArray(){
-let arr = document.querySelectorAll('array'); 
-if(arr){
-arr.forEach(function(row){
-let elem = row.getAttribute("elem"); 
-let targ = row.querySelector(elem); 
-let body = document.createElement("div"); 
-let val = targ.innerHTML; 
-if(checkData(val)) {
-val = val.split(","); 
-val.forEach(function(dot){
-let ins = targ.cloneNode(true); 
-ins.innerHTML = dot; 
-body.appendChild(ins); 
-}); 
-
-row.parentElement.replaceChild(body, row);
-} else {
-row.remove();
-}
-});     
-}
-}
-
-
-function doProdesc() {
-let arr = document.querySelectorAll('.prodesc'); 
-if(arr){
-arr.forEach(function(row){ 
-let html = row.innerHTML;
-let drop = document.createElement("drop"); 
-drop.setAttribute("name", "Product Description"); 
-drop.innerHTML = html;
-row.parentElement.replaceChild(drop, row); 
-});    
-   rootHex(); 
-   }
-}
-
-let curr = localStorage.getItem('rye'); 
-
-function setPop(){
-let popes = document.querySelectorAll('[pope]'); 
-if(popes) {
-popes.forEach(function(pope){
-let pop = pope.getAttribute('pope'); 
-pope.setAttribute("pop", pop);   
-    
-}); 
-rootHex();
-
-doArray(); 
-
-doProdesc(); 
- 
-let elem = document.querySelectorAll('img');
- elem.forEach(function(img){
-img.onerror = function() {
-
-if(this.id == "ppm") {
-this.hide(); 
- this.remove();  
- 
-}
- }
- });
-
-
-
-}
-}
 
 
 
 </script>
 </body>
-    
