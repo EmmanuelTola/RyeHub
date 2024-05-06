@@ -183,13 +183,13 @@ total = Number(total) + Number(sfee);
 let lody = document.createElement("div"); 
 let ltml = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="align-items: center">
 <p margin="3px,0,3px,0" font="Outfit" size="14px">SERVICE FEE</p>
-<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">$4</p>
+<p font="Ubuntu" size="20px" absolute push="right" margin="10px right">$${sfee}</p>
 </div>
 <hr>`;  
 lody.innerHTML = ltml; 
 targ.appendChild(lody); rootHex(); 
 
-
+total = total.toFixed(2); 
 totf.value = "$"+total;  
 
 document.getElementById('cartnum').innerText = poll; 
