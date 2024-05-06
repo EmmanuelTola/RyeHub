@@ -85,13 +85,13 @@ border: 3px solid #0B1919;
 <br>
 <div flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left>
 <img onclick="proFile(); document.getElementById('filep').click();" id="upimgp" src="$xqlfile${ pic }" width="48%" ratio="1/1"> &nbsp;
-<span display="none" id="cupbanp">
-<img style="flex-shrink: 0;" onclick="proFile(); document.getElementById('bilep').click();" id="upbanp" src="$xqlfile${ pictwo }" width="42%" ratio="1/1">  
+<span width="48%" style="flex-shrink: 0;"  display="none" id="cupbanp">
+<img style="flex-shrink: 0;" onclick="proFile(); document.getElementById('bilep').click();" id="upbanp" src="$xqlfile${ pictwo }" width="100%" ratio="1/1">  
 <i onclick="document.getElementById('upbanp').src = 'logo.jpg'; document.getElementById('bilep').value = ''; document.getElementById('bilepp').value = '';" size="20px" class="fa fa-trash" color="red"></i>
 &nbsp;
 </span>
-<span display="none" id="cuptwop"> 
-<img style="flex-shrink: 0;" onclick="proFile(); document.getElementById('tilep').click();" id="uptwop" src="$xqlfile${ picthree }" width="42%" ratio="1/1">  
+<span width="48%" style="flex-shrink: 0;"  display="none" id="cuptwop"> 
+<img style="flex-shrink: 0;" onclick="proFile(); document.getElementById('tilep').click();" id="uptwop" src="$xqlfile${ picthree }" width="100%" ratio="1/1">  
 <i onclick="document.getElementById('uptwop').src = 'logo.jpg'; document.getElementById('tilep').value = ''; document.getElementById('tilepp').value = '';" size="20px" class="fa fa-trash" color="red"></i>
 &nbsp;
 </span>
@@ -185,7 +185,7 @@ setInterval(doDev, 500);
 
 
 function addImg() {
-let sec = dState('#upbanp'); 
+let sec = dState('#cupbanp'); 
 
 if(sec == "flex") {
 show('#cuptwop'); 
