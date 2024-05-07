@@ -86,9 +86,22 @@ let price = prod.price;
 if(checkData(prod.discount)){ price = prod.discount; }
 if(prod.currency == "$"){} else {
 price = Number(price) / 1372; 
-price = price.toFixed(2); 
+
 }
 let seller = prod.userid; 
+let num = 0; 
+let whole = localStorage.getItem("fee-"+seller); 
+if(checkData(whole)){
+num = whole.split("-")[0]; 
+let coin = whole.split("-").pop(); 
+if(coin == "$") {} else {
+num = Number(num) / 1372;
+num = num.toFixed(2); 
+}
+}
+price = Number(price) + Number(num); 
+price = price.toFixed(2); 
+
 let status = "pending";
 let size = localStorage.getItem("spec-"+item); 
 if(!checkData(size)) {
