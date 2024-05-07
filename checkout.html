@@ -41,7 +41,16 @@ margin-left: 2.5%;
   animation-duration: 1s; /* Change the duration to adjust the speed */
 }    
 
-
+ .inp {
+border: 0.5px solid grey;
+border-radius: 7px; 
+width: 90%; 
+height: 40px; 
+font-size: 17px; 
+font-family: 'Outfit';
+margin-bottom: 10px;
+ }
+ 
 </style>
 <div id="nav"></div>
 <div height="65px"></div>
@@ -53,10 +62,24 @@ margin-left: 2.5%;
         
 </div>
 <br><br>
-<button blend="normal" page-middle-h back="white" theme="smart" size="20px" border="1px green solid">CHECK OUT</button>
-<br>
 
-<script parse="getMen();">
+<input id="email" onkeyup="checkPay()" placeholder="Email Address" class="inp" id="address">
+<br> 
+<input id="epay" onkeyup="checkPay()" placeholder="Delivery Address" class="inp" id="address">
+<br>
+<button id="nopay" blend="normal" page-middle-h back="lightgrey" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
+
+<div display="none" id="payp">
+  <div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+  </div>
+ 
+</div>
+<br>
+  <script src="https://www.paypal.com/sdk/js?client-id=AYZAOSCkm-B0-RaWeC_xfphdt0GZQuHOGyQtUvYVTmFUWnIm0hGEZI4BB-kPYjFPwO2-PGDNHxd9acRU&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+ <script parse="getMen();">
 
 $IMPORT('@UI');    
 document.getElementById('nav').Xporter('nav.hex');
@@ -64,9 +87,21 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 $START('XQL:'+$con);
 let $prod = []; 
+let $users; 
+$QUERY($con, $db, 'SELECT users').pull(getUsers); 
+function getUsers(data) { 
+let curr = localStorage.getItem('rye');
+let user = data.filter(item => item['id'] == curr); 
+if(user && user[0]) {
+$users = user[0].email; 
+document.getElementById('email').remove(); 
+}
+ $QUERY($con, $db, 'SELECT products').pull(allProd); 
 
-$QUERY($con, $db, 'SELECT products').pull(allProd); 
-function allProd(data){
+}
+ 
+ function allProd(data){
+
 $prod = data; 
 setCart();
 document.getElementById('loader').hide();
@@ -155,7 +190,7 @@ let line = document.createElement("hr");
 targ.appendChild(line); 
 let remain = ""; 
 
-let subt = `<div style="text-align: right; font-size: 110%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let subt = `<div style="text-align: right; font-size: 95%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Subtotal</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${total}</in>
 </div>`;
@@ -174,7 +209,7 @@ num = Number(num) / 1372;
 num = num.toFixed(2); 
 }
 let rody = document.createElement("div"); 
-let tml = `<div style="text-align: right; font-size: 110%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let tml = `<div style="text-align: right; font-size: 95%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%">Delivery Fee (${sid})</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${num}</in>
 
@@ -191,7 +226,7 @@ sfee = 4;
 sfee = sfee.toFixed(2); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
-let ltml = `<div style="text-align: right; font-size: 110%; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let ltml = `<div style="text-align: right; font-size: 95%; font-family: fantasy; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Service Fee</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${sfee}</in>
 </div>`;  
@@ -207,11 +242,88 @@ let final = `<br><div style="padding: 0 10px 0 10px; font-size: 20px; font-famil
 localStorage.setItem("ryetotal", total); 
 remain = remain + final; 
 lody.innerHTML = remain; 
-targ.appendChild(lody); rootHex();   
+targ.appendChild(lody);
+rootHex();
+initPayPalButton();
+
 } catch(error) {
 alert(error); 
 }}
 
+function checkPay(){
+let elem = document.getElementById('epay'); 
+let email = "none";
+let mail = document.getElementById('email'); 
+if(mail) {
+email = mail.value; 
+}
+if(checkData(elem.value) && checkData(email)){
+show('#payp'); 
+hide('#nopay'); 
+} else {
+hide('#payp'); 
+show('#nopay'); 
+}
+}
+
+
+function initPayPalButton() {
+let add = document.getElementById('epay').value;
+localStorage.setItem("ryeadd", add); 
+let email = document.getElementById('email'); 
+if(email) {
+localStorage.setItem("ryemail", email.value); 
+} else {
+ 
+localStorage.setItem("ryemail", $users); 
+
+}
+paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'pay',
+      },
+
+      createOrder: function(data, actions) {
+        // Get price from local storage
+        const price = parseFloat(localStorage.getItem('ryetotal'));
+
+        // Create order with dynamic price
+        return actions.order.create({
+          purchase_units: [{
+            description: "CheckOut - RyeHub",
+            amount: {
+              currency_code: "USD",
+              value: price.toFixed(2) // Ensure price is formatted to two decimal places
+            }
+          }]
+        });
+      },
+
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(orderData) {
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '<h3>Payment Successful!</h3>';
+
+          // Redirect after payment success
+          setTimeout(function() {
+            window.location.href = `paid.html`;
+          }, 100); // Redirect after 3 seconds (adjust as needed)
+        });
+      },
+
+      onError: function(err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  
 
 
 
