@@ -79,7 +79,7 @@ color: white;
 
 
 
-<p margin="5px,0,5px,0" bold font="Poppins" size="30px">&nbsp; LATEST PRODUCTS</p>
+<p margin="12px,0,5px,0" bold font="Poppins" size="21px">&nbsp; LATEST PRODUCTS</p>
 
 
  <center>
@@ -106,6 +106,36 @@ color: white;
 </query>
 </div>
 
+
+ <p margin="7px,0,5px,0" bold font="Poppins" size="21px">&nbsp; TRENDING</p>
+
+ 
+ 
+
+<center>
+<i margin="10px top" id="tloader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+ 
+<div flex style="overflow: scroll;" width="95%" margin="2.5% left">
+<query call="document.getElementById('tloader').hide();" data="ryehub">
+<data id="purco">ALL products ORDER DESC-views LIMIT 5</data>
+
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+
+<result>
+<div onclick="window.open('item.html?id={ id }')" border="1px solid #0B1919" width="160px" margin="10px right">
+<img style="object-fit: cover" ratio="1/1" src="$xqlfile${ pic }" width="100%">
+<div margin="2.5% left" width="95%">
+<p margin="5px bottom" font="Outfit" size="17.5">{ name }</p>
+{ currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[<in bold size="20px">{ price }</in> ]]!!
+</div>
+<br>
+</div>
+
+
+</result>
+</query>
+</div>
+ 
  
 
 
