@@ -88,7 +88,7 @@ localStorage.removeItem(mey);
 
 let head = document.createElement("div"); 
 let headm = `
-<img src="https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png" width="50%"><br>
+<img src="https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png" width="40%"><br>
 <div style="font-weight: 700; font-size: 16px; font-family: monaco; margin-bottom: 10px; position: relative; align-items: center; display: flex;">
 <p style="text-align: center; width: 55%;">Product</p>
 <p style="text-align: center; position: absolute; right: 0; width: 20%; margin-right: calc(20%);">Unit</p> 
@@ -137,8 +137,8 @@ let body = document.createElement("div");
 body.classList.add("item"); 
 let html = `<div style="font-size: 14px; font-family: monaco; margin-bottom: 10px; position: relative; align-items: center; display: flex;">
 <p style="font-size: 13px; width: 62%">${name}</p>
-<p style="text-align: right; position: absolute; right: 0; width: 17%; margin-right: calc(17% + 10px);">${qty}</p> 
-<p style="text-align: right; position: absolute; right: 0; width: 17%; margin-right: 10px;">$${price}</p> 
+<p style="text-align: right; position: absolute; right: 0; width: 17%; margin-right: calc(17% + 5px);">${qty}</p> 
+<p style="text-align: right; position: absolute; right: 0; width: 17%; margin-right: 5px;">$${price}</p> 
 </div>`; 
 body.innerHTML = html; 
 targ.appendChild(body); rootHex(); 
@@ -155,7 +155,7 @@ let line = document.createElement("hr");
 targ.appendChild(line); 
 let remain = ""; 
 
-let subt = `<div style="text-align: right; font-size: 15px; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let subt = `<div style="text-align: right; font-size: 110%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Subtotal</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${total}</in>
 </div>`;
@@ -174,7 +174,7 @@ num = Number(num) / 1372;
 num = num.toFixed(2); 
 }
 let rody = document.createElement("div"); 
-let tml = `<div style="text-align: right; font-size: 15px; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let tml = `<div style="text-align: right; font-size: 110%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%">Delivery Fee (${sid})</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${num}</in>
 
@@ -191,7 +191,7 @@ sfee = 4;
 sfee = sfee.toFixed(2); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
-let ltml = `<div style="text-align: right; font-size: 80%; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let ltml = `<div style="text-align: right; font-size: 110%; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Service Fee</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${sfee}</in>
 </div>`;  
