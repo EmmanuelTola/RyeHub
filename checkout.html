@@ -54,13 +54,14 @@ margin-bottom: 10px;
 </style>
 <div id="nav"></div>
 <div height="65px"></div>
-
-<div style="width: calc(100% - 24px); padding-bottom: 10px;  margin-left: 12px; max-width: 400px" back="#F7EFDA"  id="cart">
+<section id="receipt">
+<div style="width: calc(100% - 24px); padding-bottom: 10px;  margin-left: 12px; max-width: 400px; background: #F7EFDA;" id="cart">
 
 <center>
 <i margin="10px top" id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>  
         
 </div>
+</section>
 <br><br>
 <center>
 <input type="email" name="email" id="email" onkeyup="checkPay()" placeholder="Email Address" class="inp" id="address">
@@ -277,7 +278,9 @@ localStorage.setItem("ryemail", email.value);
  
 localStorage.setItem("ryemail", $users); 
 
-}
+} 
+let recc = document.getElementById('receipt').innerHTML; 
+localStorage.setItem("ryerec", recc); 
 paypal.Buttons({
       style: {
         shape: 'rect',
