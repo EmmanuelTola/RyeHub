@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="https://ryehub.vercel.app/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="https://ryehub.vercel.app/logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="https://ryehub.vercel.app/logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+ <title>RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}
+
+.custom-spin {
+  animation-duration: 1s; /* Change the duration to adjust the speed */
+}    
+</style>
+
+<div id="nav"></div>
+<div height="65px"></div>
+
+<p margin="15px,0,5px,10px" id="tagname" bold font="Poppins" size="20px">Recently Viewed</p>
+ 
+ 
+<div id="similar" flex-wrap width="95%" margin="2.5% left">
+<i margin="10px top" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i>
+</div>
+
+<script>
+  
+$IMPORT('@UI');    
+document.getElementById('nav').Xporter('nav.hex');
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+const pid = $GET('id'); 
+let $prod = []; 
+$START('XQL:'+$con);
+$QUERY($con, $db, 'SELECT products').pull(setProd); 
+function setProd(prod) { 
+try {
+  
+let tags = $GET('tag'); 
+tags = tags.split("+"); 
+if(tags && tags[0]) {
+let one = tags[0].toLowerCase(); 
+let two; let three; 
+let tagname = tags[0]; 
+let data = prod.filter(item => item['tags'].toLowerCase().includes(one)); 
+if(tags[1]) {
+two = tags[1].toLowerCase(); 
+tagname = tags[0] + ", " + tags[1]; 
+data = prod.filter(item => item['tags'].toLowerCase().includes(one) || item['tags'].toLowerCase().includes(two)); 
+}
+
+if(tags[2]) {
+two = tags[1].toLowerCase(); 
+three = tags[2].toLowerCase(); 
+tagname = tags[0] + ", " + tags[1] + ", " + tags[2]; 
+data = prod.filter(item => item['tags'].toLowerCase().includes(one) || item['tags'].toLowerCase().includes(two) || item['tags'].toLowerCase().includes(three)); 
+}
+
+  
+if(data && data[0]) {
+let allhtml = ""; 
+data.forEach(function(row) {
+
+row = row[0];
+prod = prod.filter(item => item !== row); 
+let id = row.id; 
+let pic = xqlfile + row.pic; 
+let name = row.name; 
+let price = row.price; 
+let ori = price; 
+let currency = row.currency; 
+if(checkData(row.discount)) {
+price = row.discount; 
+}
+html = `<div onclick="location.href = 'item.html?id=${id}'" border="1px solid #0B1919" style="width: calc(50% - 12px); margin-bottom: 10px; max-width: 200px;" margin="10px right">
+<img style="object-fit: cover" ratio="1/1" src="${pic}" width="100%">
+<div margin="2.5% left" width="95%">
+<p margin="5px bottom" font="Outfit" size="17.5">${name}</p>
+${currency}<in bold size="20px">${price}</in> <s size="16px" color="red">${ori}</s>
+</div>
+<br>
+</div>
+`; 
+allhtml = allhtml + html;
+
+});
+document.getElementById('similar').innerHTML = allhtml; 
+rootHex(); 
+} else {
+document.getElementById('similar').innerHTML = `<p font="Outfit" opacity="0.7" size="15px">No Product In This Category</p>`; 
+rootHex(); 
+}
+document.getElementById('tagname').innerText = tagname; 
+}  
+} catch(error) {
+alert(error); 
+}}
+
+
+
+</script>
