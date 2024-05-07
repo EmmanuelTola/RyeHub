@@ -91,17 +91,18 @@ price = Number(price) / 1372;
 let seller = prod.userid; 
 let num = 0; 
 let whole = localStorage.getItem("fee-"+seller); 
+alert(price); 
 if(checkData(whole)){
 num = whole.split("-")[0]; 
 let coin = whole.split("-").pop(); 
 if(coin == "$") {} else {
 num = Number(num) / 1372;
-num = num.toFixed(2); 
 }
 }
+
 price = Number(price) + Number(num); 
 price = price.toFixed(2); 
-
+alert(price);
 let status = "pending";
 let size = localStorage.getItem("spec-"+item); 
 if(!checkData(size)) {
