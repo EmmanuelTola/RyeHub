@@ -98,6 +98,7 @@ let location = localStorage.getItem("ryeadd");
 location = location.replace(/,/g, " "); 
 localStorage.removeItem(key); 
 localStorage.removeItem("spec-"+rid); 
+let db = $db; 
 let call = `$UPDATE('${db}', "UPDATE seller SET earn = 'earn ++ ${price}' WHERE id = '${seller}'", "doPaid()")`; 
 $INSERT($db, `INSERT purchases FIELDS(buyer, item, qty, price, seller, status, size, location, time) VALUES(${buyer}, ${item}, ${qty}, ${price}, ${seller}, ${status}, ${size}, ${location}, ${time})`, call); 
 break; 
