@@ -170,7 +170,7 @@ allprice = allprice.toFixed(1);
 let qty = value; 
 let big = localStorage.getItem('spec-'+rid); 
 if(checkData(big)){
-qty = `${big} &times; ${value}`;   
+qty = `${big} x ${value}`;   
 } 
 let body = document.createElement("div");
 body.classList.add("item"); 
@@ -239,7 +239,7 @@ remain = remain + ltml;
 total = total.toFixed(2); 
 
 let final = `<br><div style="padding: 0 10px 0 10px; font-size: 20px; font-family: fantasy; font-weight: 600; border: 3px solid #0B1919; width: calc(95% - 20px); margin: 0 0 10px 2.5%; position: relative; align-items: center; display: flex;">
-<p>TOTAL</p>
+<p>TOTAL: </p>
 <p style="position: absolute; right: 0; margin-right: 10px;">$${total}</p>
 </div>
 `;
