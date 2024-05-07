@@ -62,7 +62,9 @@ background: #0B1919;
 color: white; 
 }
 
-
+.slideline {
+padding-left: 10px; 
+}
 
 .slideline button {
 background: white; 
@@ -70,6 +72,8 @@ border: 1px solid black;
 font-family: 'Poppins', fantasy; 
 font-size: 16px; 
 width: auto; 
+min-width: 80px;
+margin-right: 10px; 
 height: 50px; 
 padding-left: 12px; 
 padding-right: 12px; 
@@ -80,11 +84,15 @@ border-radius: 25px;
 width: 95%; 
 margin-left: 2.5%; 
 }
+
+.popu .popi {
+width: calc(33% - 12px); 
+margin: 0 6px 0 6px;
+}
 .popu button {
 border-radius: 50%;
-width: calc(33% - 12px); 
-max-width: 200px; 
-margin: 0 6px 0 6px; 
+width: 100%;
+max-width: 200px;  
 background: #EFEFEF; 
 border: none; 
 aspect-ratio: 1/1;
@@ -142,7 +150,7 @@ font-weight: 600;
 </query>
 </div>
 <br>
-<div class="slideline" flex style="overflow-x: scroll;">
+<div margin="5px top" class="slideline" flex style="overflow-x: scroll;">
 <button link="history.html">History</button>
 <button link="purchases.html">Purchases</button>
 <button link="cart.html">Cart</button>
@@ -150,7 +158,7 @@ font-weight: 600;
 </div>
 
 
- <p margin="7px,0,5px,0" bold font="Poppins" size="21px">&nbsp; Trending on RyeHub</p>
+ <p margin="12px,0,5px,0" bold font="Poppins" size="21px">&nbsp; Trending on RyeHub</p>
 
  
  
@@ -177,21 +185,21 @@ font-weight: 600;
 </query>
 </div>
 
-<p margin="8px,0,5px,0" bold font="Poppins" size="30px">&nbsp; Popular Items</p>
+<p margin="15px,0,5px,0" bold font="Poppins" size="21px">&nbsp; Popular Items</p>
 <div flex class="popu">
-<div center>
+<div class="popi" center>
 <button link="row.html?tag=luxury, fashion">
 <img src="asset/luxury.png">
 </button>
 <p>Luxury</p>
  </div>
- <div center>
+ <div class="popi" center>
 <button link="row.html?tag=makeup, beauty">
-<img src="asset/makeup.jpeg">
+<img src="asset/makeup.png">
 </button>
 <p>Luxury</p>
  </div>
- <div center>
+ <div class="popi" center>
 <button link="row.html?tag=merch">
 <img src="asset/merch.png">
 </button>
