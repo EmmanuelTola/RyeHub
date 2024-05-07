@@ -218,8 +218,19 @@ alert(error);
 
 function doViews() {
 let curr = $GET('id'); 
-$UPDATE($db, `UPDATE products SET views = 'views ++ 1' WHERE id = '${curr}'`, 'console.log("updated view")'); 
+$UPDATE($db, `UPDATE products SET views = 'views ++ 1' WHERE id = '${curr}'`, 'doHistory()'); 
 }
+
+function doHistory() {
+let curr = $GET('id'); 
+let day = $date(); 
+let mine = localStorage.getItem('rye'); 
+if(mine == null) { mine = "Visitor"; }
+$INSERT($db, `INSERT products FIELDS(userid, item, day) VALUES(${mine}, ${curr}, ${day})`, 'console.log("Updated visit")'); 
+}
+  
+ 
+ 
 
   
 function specTo(elem){
