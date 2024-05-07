@@ -210,11 +210,16 @@ rootHex();
 document.getElementById('similar').innerHTML = `<p font="Outfit" opacity="0.7" size="15px">No Similar Product Found</p>`; 
 rootHex(); 
 }
-}} catch(error) {
+}
+doViews(); 
+} catch(error) {
 alert(error);
 }}
 
-
+function doViews() {
+let curr = $GET('id'); 
+$UPDATE($db, `UPDATE products SET views = 'views ++ 1' WHERE id = '${curr}'`, 'console.log("updated view")'); 
+}
 
   
 function specTo(elem){
@@ -359,6 +364,7 @@ rootHex();
 doArray(); 
 
 doSimilar(); 
+
 
  
 let elem = document.querySelectorAll('img');
