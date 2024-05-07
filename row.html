@@ -61,8 +61,7 @@ function setProd(prod) {
 try {
   
 let tags = $GET('tag'); 
- alert(tags); 
-tags = tags.split("+"); 
+tags = tags.split("-"); 
 if(tags && tags[0]) {
 let one = tags[0].toLowerCase(); 
 let two; let three; 
