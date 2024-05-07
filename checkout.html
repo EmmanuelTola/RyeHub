@@ -68,9 +68,12 @@ margin-bottom: 10px;
 <br> 
 <input type="address" name="address" id="epay" onkeyup="checkPay()" placeholder="Delivery Address" class="inp" id="address">
 <br>
-<button id="nopay" blend="normal" page-middle-h back="lightgrey" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
+<button id="nopay" blend="normal" page-middle-h back="lightgrey" theme="smart" size="20px" border="none">Continue To Pay</button>
+<div id="payp">
+<button onclick="initPayPalButton(); hide('#epay'); hide('#email'); " id="nopay" blend="normal" page-middle-h back="white" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
+</div>
 </center>
-<div width="94%" margin="3% left" display="none" id="payp">
+<div width="94%" margin="3% left" display="none">
   <div id="smart-button-container">
       <div style="text-align: center;">
         <div id="paypal-button-container"></div>
@@ -261,7 +264,7 @@ email = mail.value;
 if(checkData(elem.value) && checkData(email)){
 show('#payp'); 
 hide('#nopay'); 
-initPayPalButton();
+
 } else {
 hide('#payp'); 
 show('#nopay'); 
