@@ -245,7 +245,7 @@ remain = remain + final;
 lody.innerHTML = remain; 
 targ.appendChild(lody);
 rootHex();
-initPayPalButton();
+
 
 } catch(error) {
 alert(error); 
@@ -261,6 +261,7 @@ email = mail.value;
 if(checkData(elem.value) && checkData(email)){
 show('#payp'); 
 hide('#nopay'); 
+initPayPalButton();
 } else {
 hide('#payp'); 
 show('#nopay'); 
