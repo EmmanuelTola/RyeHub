@@ -60,7 +60,7 @@ $QUERY($con, $db, 'SELECT products').pull(setProd);
 function setProd(data) {
 $prod = data; 
 let curr = localStorage.getItem('rye');
-$QUERY($con, $db, `SELECT history WHERE userid = '${curr}'`).pull(setHistory);   
+$QUERY($con, $db, `SELECT history WHERE userid = '${curr}' ORDER DESC`).pull(setHistory);   
 }
 
 function setHistory(data) {
