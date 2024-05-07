@@ -72,7 +72,7 @@ data.forEach(function(fidd) {
 let row = prod.filter(item => item['id'] == fidd['item']); 
 if(row && row[0]) {
 row = row[0];
-$prod = $prod.filter(item => item !== row); 
+prod = prod.filter(item => item !== row); 
 let id = row.id; 
 let pic = xqlfile + row.pic; 
 let name = row.name; 
