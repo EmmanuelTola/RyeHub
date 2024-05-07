@@ -69,6 +69,7 @@ if(data && data[0]) {
 let allhtml = ""; 
 data.forEach(function(fidd) {
 let row = prod.filter(item => item['id'] == fidd['item']); 
+alert(row); 
 if(row & row[0]) {
 row = row[0]; 
 let id = row.id; 
