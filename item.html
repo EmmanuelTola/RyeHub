@@ -226,7 +226,7 @@ let curr = $GET('id');
 let day = $date(); 
 let mine = localStorage.getItem('rye'); 
 if(mine == null) { mine = "Visitor"; }
-$INSERT($db, `INSERT products FIELDS(userid, item, day) VALUES(${mine}, ${curr}, ${day})`, 'console.log("Updated visit")'); 
+$INSERT($db, `INSERT history FIELDS(userid, item, day) VALUES(${mine}, ${curr}, ${day})`, 'console.log("Updated visit")'); 
 }
   
  
