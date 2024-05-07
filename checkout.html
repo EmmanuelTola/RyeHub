@@ -69,9 +69,9 @@ margin-bottom: 10px;
 <input type="address" name="address" id="epay" onkeyup="checkPay()" placeholder="Delivery Address" class="inp" id="address">
 <br>
 <button id="nopay" blend="normal" page-middle-h back="lightgrey" theme="smart" size="20px" border="none">Continue To Pay</button>
-<div id="payp">
-<button display="none" onclick="initPayPalButton(); hide('#epay'); hide('#email'); " id="nopay" blend="normal" page-middle-h back="white" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
-</div>
+
+<button display="none" id="payp" onclick="initPayPalButton(); hide('#epay'); hide('#email'); "  blend="normal" page-middle-h back="white" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
+
 </center>
 <div width="94%" margin="3% left">
   <div id="smart-button-container">
