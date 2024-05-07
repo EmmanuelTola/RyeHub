@@ -84,6 +84,10 @@ prod = prod[0];
 item = rid; 
 let price = prod.price;
 if(checkData(prod.discount)){ price = prod.discount; }
+if(prod.currency == "$"){} else {
+price = Number(price) / 1372; 
+price = price.toFixed(2); 
+}
 let seller = prod.userid; 
 let status = "pending";
 let size = localStorage.getItem("spec-"+item); 
@@ -94,8 +98,8 @@ let location = localStorage.getItem("ryeadd");
 location = location.replace(/,/g, " "); 
 localStorage.removeItem(key); 
 localStorage.removeItem("spec-"+rid); 
-  
-$INSERT($db, `INSERT purchases FIELDS(buyer, item, qty, price, seller, status, size, location, time) VALUES(${buyer}, ${item}, ${qty}, ${price}, ${seller}, ${status}, ${size}, ${location}, ${time})`, 'doPaid()'); 
+let call = `$UPDATE('${db}', "UPDATE seller SET earn = 'earn ++ ${price}' WHERE id = '${seller}'", "doPaid()")`; 
+$INSERT($db, `INSERT purchases FIELDS(buyer, item, qty, price, seller, status, size, location, time) VALUES(${buyer}, ${item}, ${qty}, ${price}, ${seller}, ${status}, ${size}, ${location}, ${time})`, call); 
 break; 
 }
 }}
