@@ -66,6 +66,7 @@ function setHistory(data) {
 try {
 let prod = $prod; 
 if(data && data[0]) {
+let allhtml = ""; 
 data.forEach(function(fidd) {
 let row = prod.filter(item => item['id'] == fidd['item']); 
 if(row & row[0]) {
