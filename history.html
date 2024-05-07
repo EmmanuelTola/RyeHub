@@ -63,6 +63,7 @@ $QUERY($con, $db, `SELECT history WHERE userid = '${curr}'`).pull(setHistory);
 }
 
 function setHistory(data) {
+try {
 let prod = $prod; 
 if(data && data[0]) {
 data.forEach(function(fidd) {
@@ -96,7 +97,9 @@ rootHex();
 document.getElementById('similar').innerHTML = `<p font="Outfit" opacity="0.7" size="15px">No Similar Product Found</p>`; 
 rootHex(); 
 }
-}
+} catch(error) {
+alert(error); 
+}}
 
 
 
