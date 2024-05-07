@@ -100,7 +100,10 @@ border: 2px solid green;
 <p font="Outfit" size="14px">{ bio }</p>
 </div>
 </drop>
-
+!!if[[delivery == Physical]][[ 
+<div margin="10px left" size="16px" font="Outfit"><p>Shipping To: </p><in bold color="green">{ location }</in></div>
+<br>
+]]!!
 <center> 
 <input id="specval" hidden>
 <div style="white-space: nowrap; overflow: scroll;">
