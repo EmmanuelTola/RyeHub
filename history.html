@@ -40,6 +40,7 @@ margin: 0;
 <div id="nav"></div>
 <div height="65px"></div>
 
+<p margin="15px,0,5px,0" bold font="Poppins" size="20px">&nbsp; Recently Viewed</p>
  
  
 <div id="similar" flex-wrap width="95%" margin="2.5% left">
@@ -70,7 +71,8 @@ let allhtml = "";
 data.forEach(function(fidd) {
 let row = prod.filter(item => item['id'] == fidd['item']); 
 if(row && row[0]) {
-row = row[0]; 
+row = row[0];
+$prod = $prod.filter(item => item !== row); 
 let id = row.id; 
 let pic = xqlfile + row.pic; 
 let name = row.name; 
