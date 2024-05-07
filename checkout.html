@@ -46,7 +46,7 @@ margin-left: 2.5%;
 <div id="nav"></div>
 <div height="65px"></div>
 
-<div style="width: calc(100% - 24px); margin-left: 12px max-width: 400px" back="#F7EFDA"  id="cart">
+<div style="width: calc(100% - 24px); margin-left: 12px; max-width: 400px" back="#F7EFDA"  id="cart">
 
 <center>
 <i margin="10px top" id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>  
@@ -122,10 +122,10 @@ qty = `${big} × ${value}`;
 } 
 let body = document.createElement("div");
 body.classList.add("item"); 
-let html = `<div style="font-size: 15px; font-family: monaco; margin-bottom: 10px; position: relative; align-items: center; display: flex;">
-<p style="width: 70%">${name}</p>
-<p style="text-align: center; position: absolute; right: 0; width: 15%; margin-right: calc(15% + 10px);">${qty}</p> 
-<p style="text-align: center; position: absolute; right: 0; width: 15%; margin-right: 10px;">$${price}</p> 
+let html = `<div style="font-size: 14px; font-family: monaco; margin-bottom: 10px; position: relative; align-items: center; display: flex;">
+<p style="width: 65%">${name}</p>
+<p style="text-align: center; position: absolute; right: 0; width: 17%; margin-right: calc(15% + 10px);">${qty}</p> 
+<p style="text-align: center; position: absolute; right: 0; width: 17%; margin-right: 10px;">$${price}</p> 
 </div>`; 
 body.innerHTML = html; 
 targ.appendChild(body); rootHex(); 
@@ -142,7 +142,7 @@ let line = document.createElement("hr");
 targ.appendChild(line); 
 let remain = ""; 
 
-let subt = `<div style="text-align: right; font-size: 16px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let subt = `<div style="text-align: right; font-size: 15px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 10%">Subtotal</in>
 <in>$${total}</in>
 </div>`;
@@ -161,11 +161,11 @@ num = Number(num) / 1372;
 num = num.toFixed(2); 
 }
 let rody = document.createElement("div"); 
-let tml = `<div style="text-align: right; font-size: 16px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let tml = `<div style="text-align: right; font-size: 15px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 10%">Delivery Fee (STORE ID: ${sid})</in>
 <in>$${num}</in>
 </div>`;  
-remain = remain + hml;   
+remain = remain + tml;   
 total = Number(total) + Number(num);  
 }}); 
 
@@ -177,7 +177,7 @@ sfee = 4;
 sfee = sfee.toFixed(2); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
-let ltml = `<div style="text-align: right; font-size: 16px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let ltml = `<div style="text-align: right; font-size: 15px; font-family: fantasy; margin-bottom: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 10%">Service Fee</in>
 <in>$${sfee}</in>
 </div>`;  
@@ -185,7 +185,7 @@ remain = remain + ltml;
 
 total = total.toFixed(2); 
 totf.value = total; 
-let final = `<div style="padding: 10px; font-size: 22px; font-family: fantasy; font-weight: 600; border: 3px solid #0B1919; width: calc(95% - 20px); margin-bottom: 0 0 10px 2.5%; position: relative; align-items: center; display: flex;">
+let final = `<div style="padding: 10px; font-size: 20px; font-family: fantasy; font-weight: 600; border: 3px solid #0B1919; width: calc(95% - 20px); margin-bottom: 0 0 10px 2.5%; position: relative; align-items: center; display: flex;">
 <p>TOTAL</p>
 <p style="position: absolute; right: 0;>$${total}</p>
 </div>
