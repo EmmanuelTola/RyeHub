@@ -62,14 +62,14 @@ margin-bottom: 10px;
         
 </div>
 <br><br>
-
+<center>
 <input id="email" onkeyup="checkPay()" placeholder="Email Address" class="inp" id="address">
 <br> 
 <input id="epay" onkeyup="checkPay()" placeholder="Delivery Address" class="inp" id="address">
 <br>
 <button id="nopay" blend="normal" page-middle-h back="lightgrey" theme="smart" size="20px" border="1px green solid">Continue To Pay</button>
-
-<div display="none" id="payp">
+</center>
+<div width="94%" margin="3% left" display="none" id="payp">
   <div id="smart-button-container">
       <div style="text-align: center;">
         <div id="paypal-button-container"></div>
@@ -190,7 +190,7 @@ let line = document.createElement("hr");
 targ.appendChild(line); 
 let remain = ""; 
 
-let subt = `<div style="text-align: right; font-size: 95%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let subt = `<div style="text-align: right; font-size: 90%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Subtotal</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${total}</in>
 </div>`;
@@ -209,7 +209,7 @@ num = Number(num) / 1372;
 num = num.toFixed(2); 
 }
 let rody = document.createElement("div"); 
-let tml = `<div style="text-align: right; font-size: 95%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let tml = `<div style="text-align: right; font-size: 90%; font-family: serif; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%">Delivery Fee (${sid})</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${num}</in>
 
@@ -226,7 +226,7 @@ sfee = 4;
 sfee = sfee.toFixed(2); 
 total = Number(total) + Number(sfee); 
 let lody = document.createElement("div"); 
-let ltml = `<div style="text-align: right; font-size: 95%; font-family: fantasy; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
+let ltml = `<div style="text-align: right; font-size: 90%; font-family: fantasy; margin: 0 0 10px 2.5%; width: 95%; position: relative; align-items: center;">
 <in style="margin-right: 30%;">Service Fee</in>
 <in style="position: absolute; right: 0; width: 20%; margin-right: 10px;">$${sfee}</in>
 </div>`;  
