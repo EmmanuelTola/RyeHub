@@ -58,6 +58,7 @@ $START('XQL:'+$con);
 let $prod = []; 
 let $users = []; 
 let $list = [];
+let $newid = makeid(8); 
 $QUERY($con, $db, 'SELECT users').pull(getUsers); 
 function getUsers(data) {
 $users = data; 
@@ -83,7 +84,7 @@ let value = localStorage.getItem(key);
 let rid = key.split("rye-").pop(); 
 let time = $date(); 
 let buyer = localStorage.getItem('rye'); 
-if(!checkData(buyer)){ buyer = "Visitor"; }
+if(!checkData(buyer)){ buyer = $newid; }
 let qty = localStorage.getItem(key);  
 let prod = $prod.filter(item => item['id'] == rid); 
 if(prod && prod[0]) {
@@ -147,7 +148,7 @@ if(checkData(logged)){
 sendMail();
 } else {
 let email = localStorage.getItem("ryemail"); 
-let id = makeid(8); 
+let id = $newid; 
 let joined = $date(); 
 $INSERT($db, `INSERT users FIELDS(id, name, email, pic, country, address, phone, joined) VALUES(${id}, "Visitor", ${email}, null, null, null, null, ${joined})`, 'sendMail()');  
 } 
