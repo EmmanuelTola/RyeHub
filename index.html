@@ -110,7 +110,38 @@ font-weight: 600;
  }
 
 
- 
+ .block {
+	border-radius: 4px;
+	background: #f6f7f8;
+	background-image: linear-gradient(
+		to right,
+		#f6f7f8 0%,
+		#edeef1 20%,
+		#f6f7f8 40%,
+		#f6f7f8 100%
+	);
+	background-repeat: no-repeat;
+	background-size: 800px 104px;
+	-webkit-animation-duration: 1.2s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: shimmer;
+	-webkit-animation-timing-function: linear;
+
+	height: 200px;
+	width: calc(47% - 20px);
+	max-width: 200px; 
+}
+
+@-webkit-keyframes shimmer {
+	0% {
+		background-position: -100vw 0;
+	}
+
+	100% {
+		background-position: 100vw 0;
+	}
+ } 
 </style>
 <div id="nav"></div>
 <div height="65px"></div>
@@ -126,9 +157,11 @@ font-weight: 600;
 
 <p margin="20px,0,8px,0" bold font="Poppins" size="19px">&nbsp; Latest Products</p>
 
+<div width="95%" margin="2.5% left" id="ploader" flex>
+  <div margin="10px right" class="block"></div>
+  <div class="block"></div>
+</div>
 
- <center>
-<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
  
 <div flex style="overflow: scroll;" width="95%" margin="2.5% left">
 <query error="history.go(0)" call="document.getElementById('ploader').hide();" data="ryehub">
@@ -163,10 +196,12 @@ font-weight: 600;
 
  
  
-
-<center>
-<i margin="10px top" id="tloader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+<div width="95%" margin="2.5% left" id="tloader" flex>
+  <div margin="10px right" class="block"></div>
+  <div class="block"></div>
+</div>
  
+
 <div flex style="overflow: scroll;" width="95%" margin="2.5% left">
 <query call="document.getElementById('tloader').hide();" data="ryehub">
 <data id="purco">ALL products ORDER DESC-views LIMIT 5</data>
