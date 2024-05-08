@@ -109,7 +109,38 @@ font-size: 16px;
 font-weight: 600; 
  }
 
+.block {
+	border-radius: 4px;
+	background: #f6f7f8;
+	background-image: linear-gradient(
+		to right,
+		#f6f7f8 0%,
+		#edeef1 20%,
+		#f6f7f8 40%,
+		#f6f7f8 100%
+	);
+	background-repeat: no-repeat;
+	background-size: 800px 104px;
+	-webkit-animation-duration: 1.2s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-name: shimmer;
+	-webkit-animation-timing-function: linear;
 
+	height: 200px;
+	width: calc(47% - 20px);
+	max-width: 200px; 
+}
+
+@-webkit-keyframes shimmer {
+	0% {
+		background-position: -100vw 0;
+	}
+
+	100% {
+		background-position: 100vw 0;
+	}
+ } 
  
 </style>
 <div id="nav"></div>
