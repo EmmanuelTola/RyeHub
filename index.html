@@ -207,10 +207,17 @@ font-weight: 600;
  </div>
 </div>
 
-
+<button radius="50%" height="70px" width="70px" onclick="show('#popmess'); document.getElementById('mframe').src = 'messages.html'; " noborder fixed push="right bottom" margin="0,20px,60px,0" size="30px" back="#0B1919" color="white"><i class="fa fa-comment-alt"></i><in color="green" id="unread"></in></button>
 
  
 
+<div display="none" id="popmess" index="99999" fixed push="top left" width="100vw" height="100vh" back="white">
+<div flex style="align-items: center" fixed width="100%" theme="shadow" height="40px" back="white">
+<i size="25px" onclick="hide('#popmess');" class="fa fa-times"></i>
+</div>
+<iframe id="mframe" noborder width="100%" style="height: calc(100vh - 41px);" margin="41px top">
+</iframe>
+</div>
 
 <script parse="getMen();">
 
@@ -220,8 +227,37 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 $START('XQL:'+$con);
 
+$QUERY($con, $db, `SELECT chat ORDER DESC`).pull(allChat);   
 
 
+function allChat(poll) {
+try{
+let mine = localStorage.getItem("rye"); 
+let data = poll.filter(item => item['in'] == mine || item['out'] == mine); 
+if(data) {
+data = data.filter(item => item['status'] == "no"); 
+if(data) {
+let allhtml = ""; 
+let parsed = ""; 
+let total = 0; 
+data.forEach(function(row){
+let ins = row.in; 
+let out = row.out; 
+let other = ""; 
+if(ins == mine) {
+other = out; 
+} else {
+other = ins; 
+}
+if(parsed.includes(other)){} else {
+parsed = parsed + other + "-"; 
+total++; 
+}
+}
+document.getElementById('unread').innerText = total;          
+ }}} catch(error) {
+ alert(error); 
+}}
 
 
 
