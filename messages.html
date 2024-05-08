@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="https://ryehub.vercel.app/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="https://ryehub.vercel.app/logo.jpg">
+<meta data-react-helmet="true" name="description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="RyeHub">
+<meta property="twitter:description" content="Get the best products with easy shopping online. Connect with sellers and customers and enjoy great deal on RyeHub">
+<meta property="twitter:image" content="https://ryehub.vercel.app/logo.jpg">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+
+
+<title>Store | RyeHub</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/query.js"></script>
+
+
+<body>
+
+<style>
+ 
+html, body {
+margin: 0;
+}   
+.custom-spin {
+  animation-duration: 0.6s; /* Change the duration to adjust the speed */
+} 
+
+</style>
+
+<div id="allpur" width="95vw" margin="2.5% left">
+<center>
+<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+ 
+</div>
+
+<script>
+$IMPORT('@UI'); 
+const $con = "q2goAPe9YRLIWeWI75Iw"; 
+const $db = "ryehub"; 
+let $prod = []; 
+let $users = []; 
+let curr = localStorage.getItem('rye'); 
+if(checkData(curr)){
+$QUERY($con, $db, `SELECT users`).pull(allUsers);    
+}
+function allUsers(user) {
+$users = user; 
+$QUERY($con, $db, `SELECT chat ORDER DESC`).pull(allChat);   
+}
+
+function allChat(poll) {
+try{
+let mine = localStorage.getItem("rye"); 
+let data = poll.filter(item => item['in'] == mine || item['out'] == mine); 
+if(data) {
+let allhtml = ""; 
+let parsed = ""; 
+data.forEach(function(row){
+let ins = row.in; 
+let out = row.out; 
+let other = ""; 
+if(ins == mine) {
+other = out; 
+} else {
+other = ins; 
+}
+if(parsed.includes(other)){} else {
+parsed = parsed + other + "-"; 
+let user = $users.filter(item => item['id'] == other); 
+if(user && user[0]){
+user = user[0]; 
+let img = "default.jpeg"; 
+if(checkData(user.pic)){ img = user.pic }
+let name = user.name; 
+let mess = row.msg;
+let stat = row.status; 
+let num = ""; 
+if(stat == "read"){ } else {
+let con = poll.filter(item => item['in'] == other && item['out'] == mine && item['status'] !== "read"); 
+con = con.length;
+num = `<button width="30px" height="30px" absolute push="right" margin="10px right" border="none" radius="50%" size="12px">${con}</button>`; 
+}
+
+let html = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="max-width: 400px; align-items: center">
+<img margin="10px right" round width="37px" height="37px" src="${img}">
+<div style="width: calc(100% - 70px">
+<in bold font="Poppins" size="16.5px">${name}</in>
+<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%" font="Outfit" margin="5px top" size="14px">${msg}</p>
+</div>
+${num}
+<div>
+`; 
+allhtml = allhtml + html; 
+}}});
+document.getElementById('allpur').innerHTML = allhtml; 
+rootHex(); 
+}
+} catch(error) {
+  alert(error); 
+}}
+
+  
+</script>
