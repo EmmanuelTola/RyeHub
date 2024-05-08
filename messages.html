@@ -37,7 +37,7 @@ margin: 0;
 
 </style>
 
-<div id="allpur" width="95vw" margin="2.5% left">
+<div id="allpur" width="95vw" margin="10px,0,0,2.5%">
 <center>
 <i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
  
@@ -47,6 +47,7 @@ margin: 0;
 $IMPORT('@UI'); 
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
+$START('XQL:'+$con); 
 let $prod = []; 
 let $users = []; 
 let curr = localStorage.getItem('rye'); 
@@ -88,7 +89,7 @@ let num = "";
 if(ins == other && stat == "no") {
 let con = poll.filter(item => item['in'] == other && item['out'] == mine && item['status'] == "no"); 
 con = con.length;
-num = `<button width="30px" height="30px" absolute push="right" margin="10px right" border="none" radius="50%" size="12px">${con}</button>`; 
+num = `<button back="#8AA190" color="white" width="30px" height="30px" absolute push="right" margin="10px right" border="none" radius="50%" size="12px">${con}</button>`; 
 }
 
 let html = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="max-width: 400px; align-items: center">
