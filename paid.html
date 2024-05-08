@@ -57,7 +57,7 @@ const $db = "ryehub";
 $START('XQL:'+$con);
 let $prod = []; 
 let $users = []; 
-let $list[];
+let $list = [];
 $QUERY($con, $db, 'SELECT users').pull(getUsers); 
 function getUsers(data) {
 $users = data; 
@@ -140,7 +140,8 @@ proMail();
 alert(error); 
 }}
 
-function proMail(){
+function proMail(){ 
+ try{
 let logged = localStorage.getItem('rye'); 
 if(checkData(logged)){
 sendMail();
@@ -150,7 +151,9 @@ let id = makeid(8);
 let joined = $date(); 
 $INSERT($db, `INSERT users FIELDS(id, name, email, pic, country, address, phone, joined) VALUES(${id}, "Visitor", ${email}, null, null, null, null, ${joined})`, 'sendMail()');  
 } 
-}
+} catch(error) {
+ alert(error);
+ }}
 
 
  
