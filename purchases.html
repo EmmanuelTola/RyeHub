@@ -123,7 +123,7 @@ button = button + `<button id="conf${bidd}" onclick="location.href='dispute.html
 
 let test = document.createElement("button"); 
 test.style.width = "auto";
-test.innerHTML = `<p width="auto" size="20px" bold>${currency}${price}<in size="15px">${hdel}</in></p>`; 
+test.innerHTML = `<p width="auto" size="20px" bold>${good.currency}${price}<in size="15px">${hdel}</in></p>`; 
 document.body.appendChild(test); 
 rootHex();
 let wid = test.offsetWidth;  
@@ -134,7 +134,7 @@ wid = wid + 'px';
 let html = `<div relative margin="2.5% left" flex width="95%" style="align-items: center">
 <img frame margin="6px right" src="${img}" width="40px" height="40px" border="1px solid #0B1919" radius="3px">
 <p size="15px" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - ${wid})">${name}</p>
-<p absolute push="right" margin="6px right" size="20px" bold>${currency}${price}<in size="15px">${hdel}</in></p>
+<p absolute push="right" margin="6px right" size="20px" bold>${good.currency}${price}<in size="15px">${hdel}</in></p>
 </div>
 <div>
 ${button}  
