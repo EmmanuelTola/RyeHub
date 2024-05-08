@@ -54,6 +54,7 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 let $prod = []; 
 let $users = []; 
+$START('XQL:'+$con); 
 let curr = localStorage.getItem('rye'); 
 
 $QUERY($con, $db, `SELECT products`).pull(allProd);    
@@ -128,7 +129,7 @@ document.body.appendChild(test);
 rootHex();
 let wid = test.offsetWidth;  
 test.remove();
-wid = wid + 58; 
+wid = wid + 55; 
 wid = wid + 'px'; 
 
 let html = `<div relative margin="2.5% left" flex width="95%" style="align-items: center">
