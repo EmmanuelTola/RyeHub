@@ -62,7 +62,7 @@ $QUERY($con, $db, `SELECT products`).pull(allProd);
 
 function allProd(prod){
 $prod = prod; 
-$QUERY($con, $db, 'SELECT purchases').pull(getSales)
+$QUERY($con, $db, 'SELECT purchases ORDER DESC').pull(getSales)
  
 }
 
