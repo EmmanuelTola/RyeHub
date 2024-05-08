@@ -149,6 +149,7 @@ sendMail();
 } else {
 let email = localStorage.getItem("ryemail"); 
 let id = $newid; 
+localStorage.setItem('rye', id); 
 let joined = $date(); 
 $INSERT($db, `INSERT users FIELDS(id, name, email, pic, country, address, phone, joined) VALUES(${id}, "Visitor", ${email}, null, null, null, null, ${joined})`, 'sendMail()');  
 } 
