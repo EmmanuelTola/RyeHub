@@ -46,7 +46,7 @@ font-family: 'Ubuntu';
 <nav type="header" name="<in size='25px' font='Charm' link='index.html'>RyeHub</in><div size='25px' style='width: 100%'>
 <in id='navcart'><i onclick='location.href=`cart.html`;' class='fas fa-shopping-cart'></i> <b color='red' size='11px' id='cartnum'></b></in> 
 <i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div>" logo="logo.jpg">
-<div class="navlist" left>
+<div margin="15px top" class="navlist" left>
 <p link="purchases.html">Purchases</p>
 <p link="history.html">Recently Viewed</p>
 <p link="store.html">Sell</p>
