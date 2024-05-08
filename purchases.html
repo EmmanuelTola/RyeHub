@@ -34,21 +34,29 @@ margin: 0;
 .custom-spin {
   animation-duration: 1s; /* Change the duration to adjust the speed */
 } 
+</style>
+
+ <div id="nav"></div>
+<div height="65px"></div>
+ 
+<div display="none" id="allpur" width="95vw" margin="2.5% left">
+<center>
+<i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
+ 
 </div>
+ 
 
-
-
-<script>
-   
+<script>   
 $IMPORT('@UI'); 
+document.getElementById('nav').Xporter('nav.hex');
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
 let $prod = []; 
 let $users = []; 
 let curr = localStorage.getItem('rye'); 
-function getProd(){
+
 $QUERY($con, $db, `SELECT products`).pull(allProd);    
-}
+
 
 function allProd(prod){
 $prod = prod; 
@@ -57,6 +65,7 @@ $QUERY($con, $db, 'SELECT purchases').pull(getSales)
 }
 
 function getSales(sale){
+try{
 let mine = localStorage.getItem('rye'); 
 let data = sale.filter(item => item['buyer'] == mine);
 let allhtml = ""; 
@@ -129,7 +138,9 @@ document.getElementById('allpur').innerHTML = allhtml;
 
 rootHex()
    
-   }
+   } catch(error) {
+alert(error); 
+}}
   
   
 </script>
