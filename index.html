@@ -207,13 +207,13 @@ font-weight: 600;
  </div>
 </div>
 
-<button radius="50%" height="70px" width="70px" onclick="show('#popmess'); document.getElementById('mframe').src = 'messages.html'; " noborder fixed push="right bottom" margin="0,20px,60px,0" size="30px" back="#0B1919" color="white"><i class="fa fa-comment-alt"></i><in color="green" id="unread"></in></button>
+<button radius="50%" height="70px" width="70px" onclick="show('#popmess'); document.getElementById('mframe').src = 'messages.html'; " noborder fixed push="right bottom" margin="0,20px,60px,0" size="30px" back="#0B1919" color="white"><i class="fa fa-comment-alt"></i><in size="14px" color="green" id="unread"></in></button>
 
  
 
 <div display="none" id="popmess" index="99999" fixed push="top left" width="100vw" height="100vh" back="white">
 <div flex style="align-items: center" fixed width="100%" theme="shadow" height="40px" back="white">
-<i size="25px" onclick="hide('#popmess');" class="fa fa-times"></i>
+<i margin="15px left" size="25px" onclick="hide('#popmess');" class="fa fa-times"></i>
 </div>
 <iframe id="mframe" noborder width="100%" style="height: calc(100vh - 41px);" margin="41px top">
 </iframe>
@@ -254,7 +254,7 @@ parsed = parsed + other + "-";
 total++; 
 }
 });;
-document.getElementById('unread').innerText = total;          
+document.getElementById('unread').innerHTML = "&nbsp;" + total;          
  }}} catch(error) {
  alert(error); 
 }}
