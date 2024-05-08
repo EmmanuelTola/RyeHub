@@ -8,11 +8,11 @@ padding-top: 10px !important;
 }
 
 .opennav {
-margin-top: 19px !important;
+margin-top: 17px !important;
 }
 
 .closenav {
-margin-top: 12px !important;
+margin-top: 8px !important;
 }
 
 #header-nav {
