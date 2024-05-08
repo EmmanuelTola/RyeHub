@@ -116,7 +116,7 @@ button = `<button id="conf${bidd}" onclick="location.href='confirm.html?id=${ide
 button = `<button theme="smart" blend="normal" back="green" border="none" color="white" size="16px" style="margin-left: auto;">Confirmed</button>`;  
 } 
 if(row.buyer == "Visitor") {} else {
-button = button + `<button onclick="location.href='chat.html?id=${row.buyer}'" margin="6px left" theme="smart" blend="normal" back="#0F2410" border="none" color="white" size="18px"><i class="fa fa-comment-alt"></i></button>`;
+button = button + `<button onclick="location.href='chat.html?id=${row.seller}'" margin="6px left" theme="smart" blend="normal" back="#0F2410" border="none" color="white" size="18px"><i class="fa fa-comment-alt"></i></button>`;
 }
 
 button = button + `<button id="conf${bidd}" onclick="location.href='dispute.html?id=${iden}';" margin="6px left" theme="smart" blend="normal" back="white" border="1px solid red" color="black" size="16px">Dispute</button>`; 
