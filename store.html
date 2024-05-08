@@ -140,7 +140,7 @@ border: 3px solid #0B1919;
  <center>
 <i margin="10px top" id="ploader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
 
-<div display="none" id="allpur" width="95vw" margin="2.5% left">
+<div padding="30px bottom" display="none" id="allpur" width="95vw" margin="2.5% left">
 
 </div>
 
@@ -466,7 +466,7 @@ document.getElementById('allprod').innerHTML = allhtml;
 rootHex();
 document.getElementById('ploader').hide(); wrapProd('allprod'); setPop();
 
-$QUERY($con, $db, 'SELECT purchases').pull(getSales)
+$QUERY($con, $db, 'SELECT purchases ORDER DESC').pull(getSales)
  
 }
 
