@@ -80,25 +80,25 @@ let user = $users.filter(item => item['id'] == other);
 if(user && user[0]){
 user = user[0]; 
 let img = "default.jpeg"; 
-if(checkData(user.pic)){ img = user.pic }
+if(checkData(user.pic)){ img = xqlfile + user.pic }
 let name = user.name; 
 let mess = row.msg;
 let stat = row.status; 
 let num = ""; 
-if(stat == "read"){ } else {
-let con = poll.filter(item => item['in'] == other && item['out'] == mine && item['status'] !== "read"); 
+if(ins == other && stat == "no") {
+let con = poll.filter(item => item['in'] == other && item['out'] == mine && item['status'] == "no"); 
 con = con.length;
 num = `<button width="30px" height="30px" absolute push="right" margin="10px right" border="none" radius="50%" size="12px">${con}</button>`; 
 }
 
 let html = `<div width="95%" margin="0,0,10px,2.5%" relative flex style="max-width: 400px; align-items: center">
-<img margin="10px right" round width="37px" height="37px" src="${img}">
+<img margin="10px right" round width="42px" height="42px" src="${img}">
 <div style="width: calc(100% - 70px">
-<in bold font="Poppins" size="16.5px">${name}</in>
+<in bold font="Poppins" size="15.5px">${name}</in>
 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%" font="Outfit" margin="5px top" size="14px">${mess}</p>
 </div>
 ${num}
-<div>
+</div>
 `; 
 allhtml = allhtml + html; 
 }}});
