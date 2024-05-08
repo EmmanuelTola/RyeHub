@@ -67,7 +67,8 @@ if(data) {
 let allhtml = ""; 
 let parsed = ""; 
 let ryeh = `{"out":"${mine}","in":"ryehub","msg":"Contact Us For Help","status":"read"}`; 
-data.push(ryeh); 
+data.push(ryeh);
+alert(data.length);
 data.forEach(function(row){
 let ins = row.in; 
 let out = row.out; 
