@@ -404,7 +404,7 @@ location.href = "login.html";
 
 
 function getProd(){
-$QUERY($con, $db, `SELECT products`).pull(allProd);    
+$QUERY($con, $db, `SELECT products ORDER DESC`).pull(allProd);    
 }
 
 function allProd(prod){
