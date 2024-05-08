@@ -56,11 +56,18 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 $START('XQL:'+$con);
 let $prod = []; 
-$QUERY($con, $db, 'SELECT products').pull(getUsers); 
-function getUsers(data) { 
+let $users = []; 
+let $list[];
+$QUERY($con, $db, 'SELECT users').pull(getUsers); 
+function getUsers(data) {
+$users = data; 
+$QUERY($con, $db, 'SELECT products').pull(getProd); 
+}
+function getProd(data) { 
 $prod = data;  
 doPaid();
 }
+
 
 function doPaid(){
 try{
@@ -88,7 +95,12 @@ if(prod.currency == "$"){} else {
 price = Number(price) / 1372; 
 
 }
-let seller = prod.userid; 
+let seller = prod.userid;
+let smail = $users.filter(item => item['id'] == seller); 
+if(smail && smail[0]) {
+smail = smail[0].email; 
+$list.push(smail); 
+}
 let num = 0; 
 let whole = localStorage.getItem("fee-"+seller); 
 
@@ -122,11 +134,26 @@ break;
 }
 }}
 } else {
-sendMail(); 
+proMail(); 
 }
 } catch(error) {
 alert(error); 
 }}
+
+function proMail(){
+let logged = localStorage.getItem('rye'); 
+if(checkData(logged)){
+sendMail();
+} else {
+let email = localStorage.getItem("ryemail"); 
+let id = makeid(8); 
+let joined = $date(); 
+$INSERT($db, `INSERT users FIELDS(id, name, email, pic, country, address, phone, joined) VALUES(${id}, "Visitor", ${email}, null, null, null, null, ${joined})`, 'sendMail()');  
+} 
+}
+
+
+ 
 
 function sendMail() {
 
@@ -135,7 +162,7 @@ try {
 let to = localStorage.getItem("ryemail");
 let body = localStorage.getItem("ryerec"); 
 let head = "RYEHUB PURCHASE RECEIPT"; 
-let call = `location.href = "user.html"`; 
+let call = `sendBuyer();`; 
 Mailer(to, from, head, body, call, 'alert("error")'); 
 } catch(err) {
 alert(err); 
@@ -144,6 +171,43 @@ alert(err);
 
 
 }
+
+ function pushMail(mail) {
+try{
+$list = $list.slice(1); 
+let from = "RyeHub-Transactions@ryehub.com"; 
+let to = mail;
+let body = `<div style="width: calc(100% - 44px); padding: 10px;  margin-left: 12px; max-width: 400px; background: #F7EFDA;" id="saleconf"><img src="https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png" width="40%"><br>
+ <p style="font-family: fantasy; font-size: 15px">
+A product from your store has been purchased</p>
+<p style="font-size: 14px; font-family: courier">Payment will remain pending until confirmed by buyer or after 24 hrs. Visit your store to request confirmation
+</p>
+<br>
+<button style="border: none; background: #0F2410; border: 1px solid #0B1919; font-size: 20px; width: auto; height: 40px; padding: 0 10px 0 10px; border-radius: 7px;"><a style="color: white; text-decoration: none" href="https://ryehub.vercel.app/store.html">VISIT STORE</a></button>
+</div>`; 
+let head = "PRODUCT SALE RYEHUB"; 
+let call = `sendBuyer();`; 
+Mailer(to, from, head, body, call, 'alert("error")'); 
+ 
+
+ 
+ } catch(error) {
+alert(error); 
+}}
+
+
+function sendBuyer() {
+try{
+let tot = $list.length; 
+if(tot > 0) {
+let mail = $list[0]; 
+pushMail(mail); 
+} else {
+location.href = "user.html"; 
+}
+} catch(error){
+ alert(error);
+}}
 
 
 
