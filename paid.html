@@ -115,8 +115,9 @@ location = location.replace(/,/g, " ");
 localStorage.removeItem(key); 
 localStorage.removeItem("spec-"+rid); 
 let db = $db; 
+let iden = makeid(8);
 let call = `$UPDATE('${db}', "UPDATE seller SET earn = 'earn ++ ${price}' WHERE id = '${seller}'", "doPaid()")`; 
-$INSERT($db, `INSERT purchases FIELDS(buyer, item, qty, price, seller, status, size, location, time) VALUES(${buyer}, ${item}, ${qty}, ${price}, ${seller}, ${status}, ${size}, ${location}, ${time})`, call); 
+$INSERT($db, `INSERT purchases FIELDS(id, buyer, item, qty, price, seller, status, size, location, time) VALUES(${iden}, ${buyer}, ${item}, ${qty}, ${price}, ${seller}, ${status}, ${size}, ${location}, ${time})`, call); 
 break; 
 }
 }}
