@@ -79,6 +79,7 @@ good = good[0];
 
 
 let name = good.name;
+let img = xqlfile + good.pic; 
 let myprice = good.price; 
 if(checkData(good.discount)){
 myprice = good.discount; 
@@ -109,24 +110,34 @@ let bidd = makeid(7);
 let iden = row.id;
 if(status.includes("pending")){
 pending = pending + Number(row.price);  
-button = `<button id="conf${bidd}" onclick="location.href='confirm.html?id=${iden}';" theme="smart" blend="normal" back="white" border="1px solid red" color="black" size="16px" style="margin-left: auto;">Confirm</button>`; 
+button = `<button id="conf${bidd}" onclick="location.href='confirm.html?id=${iden}';" theme="smart" blend="normal" back="white" border="1px solid green" color="black" size="16px">Confirm</button>`; 
 } else {
 button = `<button theme="smart" blend="normal" back="green" border="none" color="white" size="16px" style="margin-left: auto;">Confirmed</button>`;  
 } 
 if(row.buyer == "Visitor") {} else {
-button = button + `<button onclick="location.href='chat.html?id=${row.buyer}'" margin="6px left" theme="smart" blend="normal" back="#0F2410" border="none" color="white" size="18px" style="margin-left: auto;"><i class="fa fa-comment-alt"></i></button>`;
+button = button + `<button onclick="location.href='chat.html?id=${row.buyer}'" margin="6px left" theme="smart" blend="normal" back="#0F2410" border="none" color="white" size="18px"><i class="fa fa-comment-alt"></i></button>`;
 }
+
+button = button + `<button id="conf${bidd}" onclick="location.href='dispute.html?id=${iden}';" margin="6px left" theme="smart" blend="normal" back="white" border="1px solid red" color="black" size="16px">Dispute</button>`; 
+
+
 let test = document.createElement("button"); 
 test.style.width = "auto";
-test.innerHTML = button; 
+test.innerHTML = `<p width="auto" size="20px" bold>${currency}${price}<in size="15px">${hdel}</in></p>`; 
 document.body.appendChild(test); 
 rootHex();
 let wid = test.offsetWidth;  
 test.remove();
-wid = wid + 20; 
+wid = wid + 58; 
 wid = wid + 'px'; 
-let html = `<div margin="2.5% left" flex width="95%" style="align-items: center">
-<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - ${wid})"><in font="Ubuntu" size="20px" margin="10px right" bold>${good.currency}${myprice} <in size="13px">${hdel}</in></in><in font="Outfit" size="14px">${name}</in></p>   ${button} 
+
+let html = `<div relative margin="2.5% left" flex width="95%" style="align-items: center">
+<img frame margin="6px right" src="${img}" width="40px" height="40px" border="1px solid #0B1919" radius="3px">
+<p size="15px" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - ${wid})">${name}</p>
+<p absolute push="right" margin="6px right" size="20px" bold>${currency}${price}<in size="15px">${hdel}</in></p>
+</div>
+<div>
+${button}  
 </div><hr>`; 
 
 allhtml = allhtml + html;   
