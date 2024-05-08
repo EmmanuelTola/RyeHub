@@ -123,11 +123,22 @@ ${num}
 allhtml = allhtml + html; 
 }}});
 document.getElementById('allpur').innerHTML = allhtml; 
-rootHex(); 
+rootHex(); imgEdit(); 
 }
 } catch(error) {
   alert(error); 
 }}
 
+
+  function imgEdit() {
+let elem = document.querySelectorAll('img');
+ elem.forEach(function(img){
+img.onerror = function() {
+this.src = "default.jpeg"; 
+ }
+ });
+ 
+  }
+ 
   
 </script>
