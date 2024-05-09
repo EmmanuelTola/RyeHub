@@ -505,7 +505,7 @@ $allfile
 </div>
 
 <div pop="showquote CLOSE">
-<p font="Outfit" size="16px">Use Quotes To Send Personalized Pricing Of Products to Buyers.<br>Explicit statement of negotiation terms and product selections important in chat for <in link="buyer-seller-protection.html" color="green">Buyer-Sellers Protection</i></in></p>
+<p font="Outfit" size="16px">Use Quotes To Send Personalized Pricing Of Products to Buyers.<br>Explicit statement of negotiation terms and product selections important in chat for <in link="buyer-seller-protection.html _blank" color="green">Buyer-Sellers Protection</i></in></p>
 <button size="20px" theme="smart" onclick="localStorage.setItem('showq', '3'); hexPop('showquote')">Don't Show This Again</button>
 <br><br>  
 </div>
@@ -1125,13 +1125,20 @@ seeExist();
 cRead(); 
 
 chatbox.style.display = 'block'; 
-if($count == data.length) {
-if($load == "false") {
-chatbox.scrollTop = chatbox.scrollHeight;
- chatbox.scrollTo(0, chatbox.scrollHeight);
+if($count == data.length || $count == data.length -1 || $count > data.length) {
+if(!checkData(syntax) || syntax == undefined){
+let mmem = document.getElementById('scrolldowner');
+if(mmem){} else {
+  let below = document.createElement("span"); 
+below.innerHTML = "."; 
+below.id = "scrolldowner"; 
+document.getElementById('chatbox').appendChild(below); 
+document.getElementById('scrolldowner').scrollIntoView; 
+  }
 }
- $load = "true"; 
- }
+}
+  
+
  
 }
 }
