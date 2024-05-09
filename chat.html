@@ -1143,14 +1143,13 @@ let below = document.createElement("div");
 below.innerHTML = `<in size="15px" color="green" font="Kanit">Powered By Pixel Unlimited</in><br><br>`; 
 below.id = "scrolldowne";
 let height = chatbox.scrollHeight; 
-chatbox.scrollTop = chatbox.scrollHeight;
 below.style.position = "absolute";
 below.style.bottom = "0";
 below.style.width = "100vw"; 
 below.style.textAlign = 'center'; 
 document.getElementById('chatbox').appendChild(below); 
 rootHex(); 
-document.getElementById('scrolldowne').scrollIntoView; 
+below.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
   
 
 }
