@@ -14,7 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+  
 <link rel="stylesheet" href="chat.css">
 
 <title>Chat | RyeHub</title>
@@ -1128,14 +1129,18 @@ chatbox.style.display = 'block';
 if($count == data.length || $count == data.length -1 || $count > data.length) {
 if(!checkData(syntax) || syntax == undefined){
 let mmem = document.getElementById('scrolldowner');
-if(mmem){} else {
-alert("scrolling"); 
-  let below = document.createElement("span"); 
-below.innerHTML = "."; 
-below.id = "scrolldowner"; 
+if(mmem){
+mmem.remove(); 
+} 
+
+let below = document.createElement("span"); 
+below.innerHTML = "<in size="15px" color="green" font="Kanit">Powered By Pixel Unlimited</in><br><br>"; 
+below.id = "scrolldowner";
+below.style.textAlign = 'center'; 
 document.getElementById('chatbox').appendChild(below); 
+rootHex(); 
 document.getElementById('scrolldowner').scrollIntoView; 
-  }
+  
 }
 }
   
