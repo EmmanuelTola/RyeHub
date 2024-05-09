@@ -491,7 +491,7 @@ $allfile
 <input id="qprod" hidden>
 <input id="qprice" placeholder="Price" type="number" margin="10px left" class="inp"> 
 <br>
-<select height="40px min" margin="10px left" width="91%" class="inp" id="qcurr">
+<select height="55px min" margin="10px left" width="91%" class="inp" id="qcurr">
 <option value="$">Currency: Dollar</option>
 <option value="₦">Currency: Naira</option>
 </select>
@@ -502,7 +502,10 @@ $allfile
     
 </div>
 
-
+<div pop="showquote CLOSE">
+<p font="Outfit" size="16px">Use Quotes To Send Personalized Pricing Of Products to Buyers.<br>Explicit statement of negotiation terms and product selections important in chat for <in link="buyer-seller-protection.html" color="green">Buyer-Sellers Protection</i></in></p>
+<button size="20px" theme="smart" onclick="localStorage.setItem('showq', '3');">Don't Show This Again</button>
+</div>
 
 <div id="scroller" hidden>chatter</div>
 <iframe name="votar" style="display: none;"></iframe> 
@@ -511,7 +514,7 @@ $allfile
 
 <i display="none" id="loadm" margin="10px top" id="ploader" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
 <div padding="5px" id="selsend">
-<button onclick="show('#squote')" back="white" border="1px green solid" radius="20px" padding="6px,15px,6px,15px" font="Outfit" size="16px">Send Quote</button>
+<button onclick="showQuote();" back="white" border="1px green solid" radius="20px" padding="6px,15px,6px,15px" font="Outfit" size="16px">Send Quote</button>
 </div>
 
 <form index="9" id="marean" method="POST" enctype="multipart/form-data">
@@ -659,7 +662,29 @@ hide('#qloadm');
 function fCheck() {
 document.getElementById('fetching').innerText = 'fetched';
 }
+function showQuote() {
+let show = document.getElementById('showq'); 
+if(show == null) {
+hexPop('showquote'); 
+localStorage.setItem('showq', '1'); 
+  }
 
+if(show == '1') {
+hexPop('showquote'); 
+localStorage.setItem('showq', '2'); 
+}
+
+if(show == '2') {
+hexPop('showquote'); 
+localStorage.setItem('showq', '3'); 
+}
+
+  show('#squote'); 
+
+
+
+
+  }
 
 function setQuote(elem, iden){
 
