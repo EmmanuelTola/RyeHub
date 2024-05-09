@@ -931,16 +931,24 @@ row['hasreply'] = "false";
 let $cq = row['msg']; 
 if($cq.includes("##quote##")) {
 row['hastext'] = "false";
-let dem = $cq.split("##quote##").pop(); 
+let dem = $cq.split("##quote##").pop();
+if(checkData(dem)) {
 let pid = dem.split("-")[0].trim(); 
-row['qid'] = pid; 
 let price = dem.split("-").pop().trim(); 
+if(checkData(pid) && checkData(price)){
+row['qid'] = pid; 
 row['qprice'] = price; 
 let prod = $prods.filter(item => item['id'] == pid); 
 prod = prod[0]; 
 row['qname'] = prod.name; 
 row['qpic'] = xqlfile + prod.pic; 
-   
+} else {
+row['hasquote'] = "false"; 
+  }
+} else {
+row['hasquote'] = "false"; 
+
+  }
 } else {
 row['hasquote'] = "false"; 
 }
