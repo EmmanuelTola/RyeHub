@@ -505,6 +505,7 @@ $allfile
 <div pop="showquote CLOSE">
 <p font="Outfit" size="16px">Use Quotes To Send Personalized Pricing Of Products to Buyers.<br>Explicit statement of negotiation terms and product selections important in chat for <in link="buyer-seller-protection.html" color="green">Buyer-Sellers Protection</i></in></p>
 <button size="20px" theme="smart" onclick="localStorage.setItem('showq', '3');">Don't Show This Again</button>
+<br><br>  
 </div>
 
 <div id="scroller" hidden>chatter</div>
@@ -663,7 +664,7 @@ function fCheck() {
 document.getElementById('fetching').innerText = 'fetched';
 }
 function showQuote() {
-let show = document.getElementById('showq'); 
+let show = localStorage.getItem('showq'); 
 if(show == null) {
 hexPop('showquote'); 
 localStorage.setItem('showq', '1'); 
@@ -679,7 +680,7 @@ hexPop('showquote');
 localStorage.setItem('showq', '3'); 
 }
 
-  show('#squote'); 
+show('#squote'); 
 
 
 
