@@ -1134,6 +1134,7 @@ cRead();
 chatbox.style.display = 'block'; 
 if($count == data.length || $count == data.length -1 || $count > data.length) {
 if(!checkData(syntax) || syntax == undefined){
+chatbox.scrollTop = chatbox.scrollHeight;
 let mmem = document.getElementById('scrolldowner');
 if(mmem){
 mmem.remove(); 
