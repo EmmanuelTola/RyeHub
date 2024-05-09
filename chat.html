@@ -1132,7 +1132,7 @@ seeExist();
 
 
 chatbox.style.display = 'block'; 
-
+if($count == data.length){
 if(!checkData(syntax) || syntax == undefined){
 let mmem = document.getElementById('scrolldowne');
 if(mmem){
@@ -1152,7 +1152,7 @@ rootHex();
 below.scrollIntoView({ block: 'start' }); 
   
 
-}
+}}
 cRead(); 
  
 }
