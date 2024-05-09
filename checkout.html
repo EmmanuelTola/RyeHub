@@ -156,7 +156,7 @@ let price = row.price;
 let fee = row.fee; 
 let seller = row.userid; 
 let ponn = localStorage.getItem("fee-"+seller); 
-if(ponn == null || fee > Number(ponn)){
+if(ponn == null || Number(fee) > Number(ponn.split("-")[0])){
 localStorage.setItem("fee-"+seller, fee+"-"+row.currency); 
 }
 if(checkData(row.discount)) {
