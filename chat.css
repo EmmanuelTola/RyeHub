@@ -45,7 +45,7 @@
    outline: none;
    border-bottom: #faf9f6 1.2px solid;
    width: 65vw; 
-   font-family: 'Montserrat', serif; 
+   font-family: 'Outfit', serif; 
    
     margin-left: 20%;
      margin-bottom: 0px;
@@ -65,7 +65,7 @@
    outline: none;
    border-left: purple 1.2px solid;
    width: 65vw; 
-   font-family: 'Montserrat', serif; 
+   font-family: 'Outfit', serif; 
    
     margin-left: 20%;
      margin-bottom: -17px;
@@ -88,7 +88,7 @@
   border-bottom: #1ca3e0 0.5px solid;
    float: left;
    z-index: 3;
-   font-family: 'Montserrat', serif;
+   font-family: 'Outfit', serif;
    margin-right: 20%;
    margin-bottom: 0px;
    border-radius: 0px 25px;
@@ -116,7 +116,7 @@
    outline: none;
    border-right: purple 1.2px solid;
    width: 65vw; 
-   font-family: 'Montserrat', serif; 
+   font-family: 'Outfit', serif; 
    
     margin-right: 20%;
      margin-bottom: -17px;
@@ -233,7 +233,7 @@ width: calc(100% - 75px);
     font-size: 15px; 
 }
 .url {
-    font-family: 'Outfit' !important;
+    font-family: 'Poppins' !important;
 }
 .outgoing .url {
  color: #DDE4F0 !important;   
