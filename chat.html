@@ -489,7 +489,12 @@ $allfile
 <div height="75px" flow="scroll" width="95%" margin="10px,0,0,2.5%" id="allselprod"></div>
 <br>
 <input id="qprod" hidden>
-<input id="qprice" placeholder="Price with currency (e.g $120)...." margin="10px left" class="inp"> 
+<input id="qprice" placeholder="Price" type="number" margin="10px left" class="inp"> 
+<br>
+<select margin="10px left" width="91%" class="inp" id="qcurr">
+<option value="$">Currency: Dollar</option>
+<option value="₦">Currency: Naira</option>
+</select>
 <br>
 <div page-middle-h center>
 <button theme="smart" back="#0B1919" blend="normal" size="20px" color="white" onclick="sendQuote()">SEND &nbsp;<i class="fa fa-send"></i></button>&nbsp;<i display="none" id="qloadm" margin="10px top" size="30px" class="fas fa-circle-notch fa-spin custom-spin"></i>
@@ -638,7 +643,8 @@ fCheck();
 function sendQuote(){
 let price = document.getElementById('qprice').value; 
 let prod = document.getElementById('qprod').value; 
-let quote = `##quote##${prod} - ${price}`; 
+let qcurr = document.getElementById('qcurr').value; 
+let quote = `##quote##${prod} - ${qcurr}${price}`; 
 document.getElementById('autoresizing').value = quote; 
 document.getElementById('send').click(); 
 document.getElementById('qloadm').show(); 
