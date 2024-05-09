@@ -383,7 +383,7 @@ border-radius: 10px;
 border: 2px solid green; 
 }
 
-#srolldowner {
+#srolldowne {
 width: 100%; 
 position: absolute; 
 bottom: 0;  
@@ -1129,29 +1129,32 @@ targ.appendChild(newd);
 let chatbox = document.getElementById('chatbox');
 seeExist();
 
-cRead(); 
+
 
 chatbox.style.display = 'block'; 
-if($count == data.length || $count == data.length -1 || $count > data.length) {
+
 if(!checkData(syntax) || syntax == undefined){
-chatbox.scrollTop = chatbox.scrollHeight;
-let mmem = document.getElementById('scrolldowner');
+let mmem = document.getElementById('scrolldowne');
 if(mmem){
 mmem.remove(); 
 } 
 
 let below = document.createElement("div"); 
 below.innerHTML = `<in size="15px" color="green" font="Kanit">Powered By Pixel Unlimited</in><br><br>`; 
-below.id = "scrolldowner";
+below.id = "scrolldowne";
+let height = chatbox.scrollHeight; 
+chatbox.scrollTop = chatbox.scrollHeight;
+below.style.position = "absolute";
+below.style.bottom = "0";
+below.style.width = "100vw"; 
 below.style.textAlign = 'center'; 
 document.getElementById('chatbox').appendChild(below); 
 rootHex(); 
-document.getElementById('scrolldowner').scrollIntoView; 
-  
-}
-}
+document.getElementById('scrolldowne').scrollIntoView; 
   
 
+}
+cRead(); 
  
 }
 }
