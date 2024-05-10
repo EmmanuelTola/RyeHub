@@ -428,7 +428,7 @@ style="border-top: solid #c0c0c0 0.5px; margin: 0px; align-items: center; word-w
  <div class="details"> 
 
 <a exist="$hasreply" style="color: inherit; text-decoration: none;" href="#$replyid"><h2>$reply</h2></a>  
-<p cact="$msgid" onswipe="addReply(this)" exist="$hastext" press="addSettings(this)" press-interval="700" class="message realtext" onclick="addReply(this);" 
+<p cact="$msgid" onswipe="addReply(this)" exist="$hastext" press="!!if[[$out == $curr]][[document.getElementById('remove').style.display='block';]]else[[document.getElementById('remove').style.display='none';]]!! addSettings(this)" press-interval="700" class="message realtext" onclick="addReply(this);" 
 ondblclick="!!if[[$out == $curr]][[document.getElementById('remove').style.display='block';]]else[[document.getElementById('remove').style.display='none';]]!! addSettings(this);" id="$msgid">$msg</p>  
                      
        </div>      
