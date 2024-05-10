@@ -434,7 +434,7 @@ ondblclick="!!if[[$out == $curr]][[document.getElementById('remove').style.displ
        </div>      
 
 <div relative exist="$hasquote">
-<div size="10px" height="50px min" exist="$hasreply">&nbsp;</div>    
+<div style="visibility: hidden; pointer-events: none; user-select: none;" size="10px" height="50px min" exist="$hasreply">quotespace</div>    
 </div>
 <div noselect press="addSettings(this)" press-interval="700" exist="$hasquote" id="$msgid" class="inquote" width="70vw" radius="6px" theme="shadow" padding="10px">
 <div margin="5px bottom" relative flex style="align-items: center">
