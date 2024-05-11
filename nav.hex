@@ -201,10 +201,9 @@ thick = thick /2;
 
 
 
-let line = `<div style="display: block; width: ${size}; margin-bottom: ${marg}px; height: ${thick}px; background-color: ${color};"></div>`; 
-let last = `<div style="display: block; width: ${size}; height: ${thick}px; background-color: ${color};"></div>`; 
+let line = `<div style='display: block; width: ${size}; margin-bottom: ${marg}px; height: ${thick}px; background-color: ${color};'></div>`; 
+let last = `<div style='display: block; width: ${size}; height: ${thick}px; background-color: ${color};'></div>`; 
 let html = `<div>
-<div style=""></div>
 ${line}${line}${last}
 </div>`; 
 element.innerHTML = html; 
