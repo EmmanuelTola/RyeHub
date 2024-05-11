@@ -8,7 +8,7 @@ box-shadow: none !important;
 }
 
 .opennav {
-margin-top: 17px !important;
+display: none !important; 
 }
 
 .closenav {
@@ -80,7 +80,7 @@ font-family: 'Ubuntu';
 </style>
 
 <hexxe>
-<nav type="header" name="<div flex style='align-items: center'><img link='index.html' width='40%' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
+<nav type="header" name="<div flex style='align-items: center'>&nbsp;<i onclick='togNav();' class='list-icon' size='25px'>&nbsp;<img link='index.html' width='40%' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
 <in id='navcart'><i onclick='location.href=`cart.html`;' bold class='cart-icon'></i><b font='Urbanist' color='#0F2410' size='10px' id='cartnum'></b></in> 
 <i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div></div>" loo="logo.jpg">
 <div margin="15px top" class="navlist" left>
@@ -174,6 +174,49 @@ pagecon.innerHTML = wrap.innerHTML;
 
 }; 
 cartIcon();
-setInterval(cartIcon, 2000); 
+const listIcon = () => {
+const iconm = document.getElementsByTagName('i'); 
+for(var i = 0; i < iconm.length; i++) {
+const pagecon = iconm[i];
+if(pagecon.classList.contains("list-icon")){
+let element = pagecon; 
+
+const computedStyle = window.getComputedStyle(element);
+const fontWeight = parseFloat(computedStyle.getPropertyValue('font-weight')); 
+let thick = fontWeight/400; 
+const color = window.getComputedStyle(element, null).getPropertyValue('color');
+const size = window.getComputedStyle(element).getPropertyValue('font-size');
+const tempElement = document.createElement('div');
+tempElement.style.fontSize = size;
+tempElement.style.position = 'absolute'; 
+tempElement.style.visibility = 'hidden';
+tempElement.textContent = 'Test';
+document.body.appendChild(tempElement);
+const fontSizeInPixels = tempElement.offsetHeight;
+document.body.removeChild(tempElement);
+let marg = fontSizeInPixels/5; 
+let prol = fontSizeInPixels/20; 
+thick = thick + prol; 
+thick = thick /2; 
+
+
+
+let line = `<div style="display: block; width: ${size}; margin-bottom: ${marg}px; height: ${thick}px; background-color: ${color};"></div>`; 
+let last = `<div style="display: block; width: ${size}; height: ${thick}px; background-color: ${color};"></div>`; 
+let html = `<div>
+<div style=""></div>
+${line}${line}${last}
+</div>`; 
+element.innerHTML = html; 
+
+
+
+
+}}}; 
+listIcon(); 
+const allIcon = () => {
+cartIcon(); listIcon(); 
+}
+setInterval(allIcon, 2000); 
 
 </script>
