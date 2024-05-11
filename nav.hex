@@ -17,6 +17,7 @@ margin-top: 8px !important;
 
 #header-nav {
   padding-top: 15px !important;
+ box-shadow: none !important; 
 }
 
 .navlogo img{
@@ -77,9 +78,9 @@ font-family: 'Ubuntu';
 </style>
 
 <hexxe>
-<nav type="header" name="<in size='25px' font='Charm' link='index.html'>RyeHub</in><div size='25px' style='width: 100%'>
+<nav type="header" name="<in size='25px' font='Charm' link='index.html'><img width="40%" src="https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png"></in><div size='25px' style='width: 100%'>
 <in id='navcart'><i onclick='location.href=`cart.html`;' class='fas fa-shopping-cart'></i> <b color='red' size='11px' id='cartnum'></b></in> 
-<i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div>" logo="logo.jpg">
+<i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div>" loo="logo.jpg">
 <div margin="15px top" class="navlist" left>
 <p link="purchases.html">Purchases</p>
 <p link="history.html">Recently Viewed</p>
