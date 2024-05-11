@@ -26,11 +26,13 @@ border-radius: 50% !important;
 }
 
 #navcart {
+margin-left: auto;
 float: right !important; 
 margin-right: 65px !important;
 }
 
 #navuser {
+margin-left: auto; 
 float: right !important; 
 margin-right: 25px !important;
 }
@@ -78,9 +80,9 @@ font-family: 'Ubuntu';
 </style>
 
 <hexxe>
-<nav type="header" name="<img link='index.html' width='40%' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
+<nav type="header" name="<div flex style='align-items: center'><img link='index.html' width='40%' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
 <in id='navcart'><i onclick='location.href=`cart.html`;' class='fas fa-shopping-cart'></i> <b color='red' size='11px' id='cartnum'></b></in> 
-<i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div>" loo="logo.jpg">
+<i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div></div>" loo="logo.jpg">
 <div margin="15px top" class="navlist" left>
 <p link="purchases.html">Purchases</p>
 <p link="history.html">Recently Viewed</p>
