@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
  <title>RyeHub</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
@@ -66,6 +66,26 @@ border: none;
 height: 1px; 
 background: #0B1919; 
 }
+
+.stars {
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 40px;
+  cursor: pointer;
+  color: #ccc; /* Default star color */
+}
+
+.star.filled {
+  color: #FFD700; /* Filled star color */
+}
+
+#rating {
+  font-size: 20px;
+  font-weight: bold;
+ }
+
   
 </style>
 <div id="nav"></div>
@@ -139,20 +159,34 @@ background: #0B1919;
 <p margin="15px,0,5px,0" bold font="Poppins" size="20px">&nbsp; SIMILAR PRODUCTS</p>
 <div id="similar" flex style="overflow: scroll;" width="95%" margin="2.5% left">
 <div width="95%" margin="2.5% left" flex>
-  <div margin="10px right" class="block"></div>
-  <div class="block"></div>
+<div margin="10px right" class="block"></div>
+<div class="block"></div>
 </div>
  
 </div>
 
- 
+<div center>
+<p size="22px" font="Kanit">Rate this product:</p>
+<div class="stars" id="stars">
+  <span class="star" data-value="1">&#9733;</span>
+  <span class="star" data-value="2">&#9733;</span>
+  <span class="star" data-value="3">&#9733;</span>
+  <span class="star" data-value="4">&#9733;</span>
+  <span class="star" data-value="5">&#9733;</span>
+</div>
+<div size="15px" font="Playfair Display" id="rating">Your rating: <span id="ratingValue">0</span>/5</div>
+</div>
+
+<p hidden id="currstar">{ rate }</p>
+
 </result>
 </query>
 </div>
  
 <button style="top: 50%; left: 50%; transform: translate(-50%, -50%);" width="200px" display="none" blend="normal" color="white" fixed index="999999999999999999" back="rgba(0,0,0,0.7)" id="added" theme="smart" size="18px">Added To Cart</button>
 <button style="top: 50%; left: 50%; transform: translate(-50%, -50%);" width="200px" display="none" blend="normal" color="white" fixed index="999999999999999999" back="rgba(0,0,0,0.7)" id="removed" theme="smart" size="18px">Removed From Cart</button>
-
+<button style="top: 50%; left: 50%; transform: translate(-50%, -50%);" width="200px" display="none" blend="normal" color="white" fixed index="999999999999999999" back="rgba(0,0,0,0.7)" id="rated" theme="smart" size="18px">Product Rated</button>
+ 
  <script parse="getMen();">
 
 $IMPORT('@UI');    
@@ -164,12 +198,50 @@ let $prod = [];
 let query = `SELECT products WHERE id = '${pid}'`; 
 document.getElementById('purco').innerText = query; 
 $START('XQL:'+$con);
-function doSimilar() {
-$QUERY($con, $db, 'SELECT products').pull(setSimilar); 
+function doRate(){
+const stars = document.querySelectorAll('.star');
+const ratingValue = document.getElementById('ratingValue');
 
+stars.forEach(star => {
+  star.addEventListener('click', () => {
+    const value = parseFloat(star.getAttribute('data-value'));
+    ratingValue.textContent = value;
+    highlightStars(value);
+    updateStar(value); 
+  });
+});
 }
-  
 
+function highlightStars(value) {
+  stars.forEach(star => {
+    const starValue = parseFloat(star.getAttribute('data-value'));
+    if (starValue <= value) {
+      star.classList.add('filled');
+    } else {
+      star.classList.remove('filled');
+    }
+  });
+} 
+
+ function updateStar(value) {
+ let curs = document.getElementById('currstar').innerText; 
+ let iden = $GET('id'); 
+ let val = value; 
+ if(curs > 0){
+ val = val + Number(curs) + Number(curs); 
+ val =  val/3; 
+ }
+ $UPDATE($db, `UPDATE products SET rate = '${val}' WHERE id = '${iden}'`, 'PopTell("#rated")'); 
+
+ }
+ 
+  
+  
+  
+function doSimilar() {
+doRate(); 
+$QUERY($con, $db, 'SELECT products').pull(setSimilar); 
+}
 
 function setSimilar(prod) {
 try{
