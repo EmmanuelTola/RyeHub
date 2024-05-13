@@ -209,7 +209,7 @@ font-weight: 600;
  
  <div style="height: 50px"></div>
 <hr>
-<div style="width: 95%; margin: 0 0 10px 2.5%; font-size: 16px;" id="searchtab"></div>
+<div flex-wrap style="width: 95%; margin: 0 0 10px 2.5%; font-size: 16px;" id="searchtab"></div>
 	
 <div style="width: 95%; margin-left: 2.5%; font-size: 16px; font-family: 'Playfair Display';" id="historytab"></div>
 </div>
@@ -387,6 +387,22 @@ box.innerHTML = "";
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
 let $prod = "none"; 
+let histor = localStorage.getItem('gohist'); 
+
+if(histor == null) {
+histor = []; 
+}  else {
+histor = JSON.parse(histor)    
+}
+histor.reverse();
+let findhtml = ""; 
+histor.forEach(function(row){
+let html = `<div style="display: flex; align-items: center"><div style="display: flex; align-items: center; width: calc(100% - 55px)" onclick="document.getElementById('query').value = '${row}'; loadPage();"><p style="font-size: 13px">&#8987;</p>&nbsp;<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 30px)">${row}</p></div><p onclick="document.getElementById('query').value = '${row}'; document.getElementById('query').focus()" style="margin: 0 10px 0 auto; font-weight: 900; font-size: 25px">&#8598</p></div>`; 
+findhtml = findhtml + html;   
+}); 
+document.getElementById('historytab').innerHTML = findhtml; 
+	
+	
 $START('XQL:'+$con);
 
 $QUERY($con, $db, `SELECT chat ORDER DESC`).pull(allChat);   
@@ -451,6 +467,8 @@ document.getElementById('searchtab').innerHTML = `<div width="95%" margin="2.5% 
   <div class="block"></div>
 </div>`;  
 rootHex(); 
+histor.push(quer); 
+localStorage.setItem('gohist', JSON.stringify(histor)); 
 let data = $prod; 
 if($prod == "none") {
 let page = await fetch("https://pixelatejs.000webhostapp.com/data.php?key=q2goAPe9YRLIWeWI75Iw&db=ryehub&table=products");
@@ -458,7 +476,10 @@ data = await page.json();
 }
 
 data = data.filter(item =>
-  queries.some(query => item['name'].includes(query)) || queries.some(query => item['tags'].includes(query))
+  queries.some(query => 
+    item['name'].toLowerCase().includes(query.toLowerCase()) ||
+    item['tags'].toLowerCase().includes(query.toLowerCase())
+  )
 );
 if(data && data[0]){
 let allhtml = ""; 
