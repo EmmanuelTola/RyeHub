@@ -77,6 +77,16 @@ background: #0B1919;
   color: #ccc; /* Default star color */
 }
 
+ .stam {
+  font-size: 15px;
+  cursor: pointer;
+  color: #ccc; /* Default star color */
+ }
+ 
+
+
+
+
 .star.filled {
   color: #FFD700; /* Filled star color */
 }
@@ -114,8 +124,16 @@ background: #0B1919;
 </div>
 <div width="95%" margin="2.5% left">
 <p margin="8px bottom" font="Poppins" size="23px">{ name }!!if[[stock > 0]][[ <in size="12px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p> 
-
-
+<div bold size="15px" font="Playfair Display" id="rates">
+!!if[[rate == 4]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 4/10 
+]]!!
+</div>
 { currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s><in display="none">]]!!<in bold size="30px">{ price }</in>
 </in>
  <br>
@@ -205,15 +223,22 @@ const ratingValue = document.getElementById('ratingValue');
 const item = $GET('id'); 
 let rated =  localStorage.getItem('rate-'+item);  
 if(checkData(rated)){
+rated = Number(rated); 
 ratingValue.textContent = rated;
+ highlightStars(rated); 
 }
 stars.forEach(star => {
   star.addEventListener('click', () => {
-    const value = parseFloat(star.getAttribute('data-value'));
+    let value = parseFloat(star.getAttribute('data-value'));
     ratingValue.textContent = value;
     localStorage.setItem('rate-'+item, value); 
-    highlightStars(value);
+   highlightStars(value);
+  if(checkData(rated)){ 
+  value = Number(rated) + Number(value); 
+   value = value/2; 
+  } 
     updateStar(value); 
+  
   });
 });
 }
