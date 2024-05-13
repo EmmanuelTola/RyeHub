@@ -87,7 +87,7 @@ background: #0B1919;
 
 
 
-.star.filled {
+.star.filled, .stam.filled {
   color: #FFD700; /* Filled star color */
 }
 
@@ -125,13 +125,49 @@ background: #0B1919;
 <div width="95%" margin="2.5% left">
 <p margin="8px bottom" font="Poppins" size="23px">{ name }!!if[[stock > 0]][[ <in size="12px" padding="3px" back="#D1FFBD">in stock</in> ]]else[[ <in size="16px" padding="3px" back="#e05555">out of stock</in> ]]!!</p> 
 <div bold size="15px" font="Playfair Display" id="rates">
+!!if[[rate == 1]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 1/5 
+]]!!
+
+!!if[[rate == 2]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 2/5 
+]]!!
+
+ !!if[[rate == 3]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 3/5 
+]]!!
+ 
 !!if[[rate == 4]][[
 <span class="stam filled" data-value="1">&#9733;</span>
 <span class="stam filled" data-value="2">&#9733;</span>
 <span class="stam filled" data-value="3">&#9733;</span>
 <span class="stam filled" data-value="4">&#9733;</span>
 <span class="stam" data-value="5">&#9733;</span>
-&nbsp; 4/10 
+&nbsp; 4/5 
+]]!!
+
+!!if[[rate == 5]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam filled" data-value="5">&#9733;</span>
+&nbsp; 5/5 
 ]]!!
 </div>
 { currency }!!if[[discount > 0]][[<in bold size="30px">{ discount }</in> <s size="20px" color="red">{ price }</s><in display="none">]]!!<in bold size="30px">{ price }</in>
@@ -264,6 +300,7 @@ function highlightStars(value) {
  val = val + Number(curs) + Number(curs); 
  val =  val/3; 
  }
+ val = Math.round(val); 
  $UPDATE($db, `UPDATE products SET rate = '${val}' WHERE id = '${iden}'`, 'PopTell("#rated")'); 
 
  } catch(error) {
