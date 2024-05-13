@@ -200,15 +200,17 @@ font-weight: 600;
 <div id="typewindow" class="typewindow">
  <div class="major">
  <div class="main">&nbsp;&nbsp;
- <in style="font-size: 20px">&#x1F50D;</in>
+ <i size="20px" class="fa fa-search"></i>
  <form style="display: inline-flex; margin: 0; width: 85%;" id="queryform">
- <input onblu="document.getElementById('typewindow').style.display='none';" id="query" placeholder="www.google.com" >
+ <input onblu="document.getElementById('typewindow').style.display='none';" id="query" placeholder="Find products" >
  </form>
  </div> 
  </div>
  
  <div style="height: 50px"></div>
 <hr>
+<div style="width: 95%; margin: 0 0 10px 2.5%; font-size: 16px;" id="searchtab"></div>
+	
 <div style="width: 95%; margin-left: 2.5%; font-size: 16px; font-family: 'Playfair Display';" id="historytab"></div>
 </div>
 
@@ -384,6 +386,7 @@ document.getElementById('trendr').innerHTML = prodc;
 box.innerHTML = ""; 
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
+let $prod = "none"; 
 $START('XQL:'+$con);
 
 $QUERY($con, $db, `SELECT chat ORDER DESC`).pull(allChat);   
@@ -416,7 +419,11 @@ document.getElementById('unread').innerHTML = "&nbsp;" + total;
  }}} catch(error) {
  alert(error); 
 }}
-
+window.addEventListener('popstate', function(event) {
+if (event.state && event.state.page === 'finder') {
+console.log('User navigated back; close finder div.');
+ }  document.getElementById('typewindow').style.display='none';  
+});
 function goFind(){
 const mediaState = { page: 'finder' };
   history.pushState(mediaState, null, '#finder');    
@@ -434,6 +441,59 @@ searchQL.addEventListener("keypress", function(event) {
     
   }
 });
+	
+async function loadPage(){
+try {
+let quer = document.getElementById('query').value;
+let queries = quer.split(" "); 
+document.getElementById('searchtab').innerHTML = `<div width="95%" margin="2.5% left" flex>
+  <div margin="10px right" class="block"></div>
+  <div class="block"></div>
+</div>`;  
+rootHex(); 
+let data = $prod; 
+if($prod == "none") {
+let page = await fetch("https://pixelatejs.000webhostapp.com/data.php?key=q2goAPe9YRLIWeWI75Iw&db=ryehub&table=products");
+data = await page.json(); 
+}
+
+data = data.filter(item =>
+  queries.some(query => item['name'].includes(query)) || queries.some(query => item['tags'].includes(query))
+);
+if(data && data[0]){
+let allhtml = ""; 
+data.forEach(function(row){
+let id = row.id; 
+let pic = xqlfile + row.pic; 
+let name = row.name; 
+let price = row.price; 
+let ori = price; 
+let currency = row.currency; 
+if(checkData(row.discount)) {
+price = row.discount; 
+}
+html = `<div onclick="location.href = 'item.html?id=${id}'" border="1px solid #0B1919" style="width: calc(47vw - 12px); margin-bottom: 10px; max-width: 200px;" margin="10px right">
+<img style="object-fit: cover" ratio="1/1" src="${pic}" width="100%">
+<div margin="2.5% left" width="95%">
+<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 99%"  margin="5px bottom" font="Kanit" size="17.5">${name}</p>
+${currency}<in bold size="20px">${price}</in> <s size="16px" color="red">${ori}</s>
+</div>
+<br>
+</div>
+`; 
+allhtml = allhtml + html; 
+});
+document.getElementById('searchtab').innerHTML = allhtml; 
+rootHex(); 
+} else {
+document.getElementById('searchtab').innerHTML = `<p font="Playfair Display">No Search Result Found</p>`;  
+rootHex(); 
+}
+} catch(error) {
+alert(error); 
+}
+}
+	
 	
 
 
