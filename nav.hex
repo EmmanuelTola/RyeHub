@@ -158,12 +158,6 @@ signer.setAttribute("onclick", `localStorage.removeItem("rye"); location.href = 
 signer.innerText = "Sign In"; 
 signer.setAttribute("onclick", `location.href = 'login.html';`); 
 }
-let footer = document.createElement("div"); 
-footer.innerHTML = `<div color="white" absolute push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">    
-<p center font="Ubuntu" size="18px">© 2024 PixelUnlimited</p>
-</div> `; 
-// document.body.appendChild(footer); 
-// rootHex();
 
 let scart = `<svg fill-rule="evenodd" viewBox="0 0 300 300">
   <path fill="#393939" d="M145.5 9.5c-3.934 1.882-8.267 3.216-13 4v-3a99.79 99.79 0 0 0 9.5-2c1.385.014 2.551.348 3.5 1Z" opacity=".262"/>
