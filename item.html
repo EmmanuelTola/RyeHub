@@ -151,10 +151,12 @@ background: #0B1919;
  <br>
 <button margin="8px,0,10px,0" onclick="location.href = 'seller.html?id={ userid }';" theme="smart" blend="normal" back="white" border="1px solid #1ec778"  color="black" size="16px">CONTACT SELLER</button>
 <br>
+<div margin="5px top" font="Playfair Display">
 <drop name="Product Description">
 <p font="Outfit" size="14px">{ bio }</p>
-</div>
 </drop>
+</div>
+</div>
 !!if[[delivery == Physical]][[ 
 <div flex margin="10px left" size="16px" font="Outfit"><p>Shipping To: <in bold font="Ubuntu" color="green">{ location }</in></p></div>
 <hr>
