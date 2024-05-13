@@ -176,7 +176,55 @@ font-weight: 600;
 <img style="object-fit: cover" ratio="1/1" src="$xqlfile${ pic }" width="100%">
 <div margin="2.5% left" width="95%">
 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 99%" margin="5px bottom" font="Kanit" size="17.5">{ name }</p>
+<div flex>
 { currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[<in bold size="20px">{ price }</in> ]]!!
+<div bold size="15px" font="Playfair Display" id="rates">
+!!if[[rate == 1]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 1/5 
+]]!!
+
+!!if[[rate == 2]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 2/5 
+]]!!
+
+ !!if[[rate == 3]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 3/5 
+]]!!
+ 
+!!if[[rate == 4]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 4/5 
+]]!!
+
+!!if[[rate == 5]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam filled" data-value="5">&#9733;</span>
+&nbsp; 5/5 
+]]!!
+</div>
+</div>
 </div>
 <br>
 </div>
@@ -215,7 +263,55 @@ font-weight: 600;
 <img style="object-fit: cover" ratio="1/1" src="$xqlfile${ pic }" width="100%">
 <div margin="2.5% left" width="95%">
 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 99%" margin="5px bottom" font="Kanit" size="17.5">{ name }</p>
+<div flex>
 { currency }!!if[[discount > 0]][[<in bold size="20px">{ discount }</in> <s size="16px" color="red">{ price }</s> ]]else[[<in bold size="20px">{ price }</in> ]]!!
+<div bold size="15px" font="Playfair Display" id="rates">
+!!if[[rate == 1]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 1/5 
+]]!!
+
+!!if[[rate == 2]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 2/5 
+]]!!
+
+ !!if[[rate == 3]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 3/5 
+]]!!
+ 
+!!if[[rate == 4]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam" data-value="5">&#9733;</span>
+&nbsp; 4/5 
+]]!!
+
+!!if[[rate == 5]][[
+<span class="stam filled" data-value="1">&#9733;</span>
+<span class="stam filled" data-value="2">&#9733;</span>
+<span class="stam filled" data-value="3">&#9733;</span>
+<span class="stam filled" data-value="4">&#9733;</span>
+<span class="stam filled" data-value="5">&#9733;</span>
+&nbsp; 5/5 
+]]!!
+</div>
+</div>
 </div>
 <br>
 </div>
