@@ -211,7 +211,7 @@ font-weight: 600;
 <hr>
 <div style="height: calc(100% - 60px);" flow="scroll">
 <div flex-wrap style="width: 95%; margin: 0 0 10px 2.5%; font-size: 16px;" id="searchtab"></div>
-<p onclick="localStorage.removeItem('gohist'); document.getElementById('historytab').innerHTML = '';" style="text-align: right"><u opacity="0.6" font="Kanit" size="13px">Clear History</u>&nbsp;&nbsp;</p>	
+<p id="clearhist" onclick="localStorage.removeItem('gohist'); document.getElementById('historytab').innerHTML = '';" style="text-align: right"><u opacity="0.6" font="Kanit" size="13px">Clear History</u>&nbsp;&nbsp;</p>	
 <div style="width: 95%; margin-left: 2.5%; font-size: 16px; font-family: 'Playfair Display';" id="historytab"></div>
 </div>
 </div>
@@ -400,6 +400,9 @@ histor = JSON.parse(histor)
 
 
 histor.reverse();
+if(histor.length < 1){
+document.getElementById('clearhist').style.display = "none"; 
+}
 let findhtml = ""; 
 histor.forEach(function(row){
 let html = `<div style="display: flex; align-items: center"><div style="display: flex; align-items: center; width: calc(100% - 55px)" onclick="document.getElementById('query').value = '${row}'; loadPage();"><p style="font-size: 13px">&#8987;</p>&nbsp;<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 30px)">${row}</p></div><p onclick="document.getElementById('query').value = '${row}'; document.getElementById('query').focus()" style="margin: 0 10px 0 auto; font-weight: 900; font-size: 25px">&#8598</p></div>`; 
