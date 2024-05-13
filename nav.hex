@@ -120,7 +120,7 @@ font-family: 'Ubuntu';
 <in id='navcart'><i onclick='location.href=`cart.html`;' bold class='cart-icon'></i><b font='Urbanist' color='#0F2410' size='10px' id='cartnum'></b></in> 
 <i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div></div>" loo="logo.jpg">
 <div margin="15px top" class="navlist" left>
-<p link="purchases.html">Purchases</p>
+<p width="auto" link="purchases.html">Purchases</p>
 <p link="history.html">Recently Viewed</p>
 <p link="store.html">Sell</p>
 <p link="policy.html">Policy</p>
@@ -132,13 +132,7 @@ font-family: 'Ubuntu';
 
 
 
-<div color="white" absolute display="none" push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">
-    
-    
-    
-    
-<p center font="Ubuntu" size="18px">© 2024 PixelUnlimited</p>
-</div>  
+
 
 
 </hexxe>
@@ -164,7 +158,12 @@ signer.setAttribute("onclick", `localStorage.removeItem("rye"); location.href = 
 signer.innerText = "Sign In"; 
 signer.setAttribute("onclick", `location.href = 'login.html';`); 
 }
-
+let footer = document.createElement("div"); 
+footer.innerHTML = `<div color="white" absolute push="bottom" width="100%" back="#0B1919" padding="30px 10px 30px 10px">    
+<p center font="Ubuntu" size="18px">© 2024 PixelUnlimited</p>
+</div> `; 
+document.body.appendChild(footer); 
+rootHex();
 
 let scart = `<svg fill-rule="evenodd" viewBox="0 0 300 300">
   <path fill="#393939" d="M145.5 9.5c-3.934 1.882-8.267 3.216-13 4v-3a99.79 99.79 0 0 0 9.5-2c1.385.014 2.551.348 3.5 1Z" opacity=".262"/>
