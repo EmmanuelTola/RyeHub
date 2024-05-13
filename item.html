@@ -84,6 +84,7 @@ background: #0B1919;
 #rating {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
  }
 
   
@@ -177,7 +178,7 @@ background: #0B1919;
 <div size="15px" font="Playfair Display" id="rating">Your rating: <span id="ratingValue">0</span>/5</div>
 </div>
 
-<p hidden id="currstar">{ rate }</p>
+<input hidden id="currstar" value="{ rate }">
 
 </result>
 </query>
@@ -201,11 +202,16 @@ $START('XQL:'+$con);
 function doRate(){
 const stars = document.querySelectorAll('.star');
 const ratingValue = document.getElementById('ratingValue');
-
+const item = $GET('id'); 
+let rated =  localStorage.getItem('rate-'+item);  
+if(checkData(rated)){
+ratingValue.textContent = rated;
+}
 stars.forEach(star => {
   star.addEventListener('click', () => {
     const value = parseFloat(star.getAttribute('data-value'));
     ratingValue.textContent = value;
+    localStorage.setItem('rate-'+item, value); 
     highlightStars(value);
     updateStar(value); 
   });
@@ -213,7 +219,8 @@ stars.forEach(star => {
 }
 
 function highlightStars(value) {
-  stars.forEach(star => {
+ const stars = document.querySelectorAll('.star');
+ stars.forEach(star => {
     const starValue = parseFloat(star.getAttribute('data-value'));
     if (starValue <= value) {
       star.classList.add('filled');
@@ -224,7 +231,8 @@ function highlightStars(value) {
 } 
 
  function updateStar(value) {
- let curs = document.getElementById('currstar').innerText; 
+ try{
+ let curs = document.getElementById('currstar').value; 
  let iden = $GET('id'); 
  let val = value; 
  if(curs > 0){
@@ -233,6 +241,9 @@ function highlightStars(value) {
  }
  $UPDATE($db, `UPDATE products SET rate = '${val}' WHERE id = '${iden}'`, 'PopTell("#rated")'); 
 
+ } catch(error) {
+  alert(error); 
+ }
  }
  
   
