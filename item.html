@@ -86,9 +86,11 @@ background: #0B1919;
 <empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
 
 <result>
+<div flex noscroll style="overflow: scroll;">
 <array elem="p">
-<p margin="10px right" onclick="goRow(this)" font="Kanit" size="15px"><u>{ tags }</u></p>
+<p style="text-decoration: underline" margin="10px right" onclick="goRow(this)" font="Kanit" size="15px">{ tags }</p>
 </array>
+</div>
 <div id="produp" flex style="overflow: scroll; flex-shrink: 0;" margin="2% left" left> 
 <img style="object-fit: cover" frame id="ppm" ratio="1/1" src="$xqlfile${ pic }" width="200px">
 &nbsp;
