@@ -211,7 +211,7 @@ font-weight: 600;
 <hr>
 <div style="height: calc(100% - 60px);" flow="scroll">
 <div flex-wrap style="width: 95%; margin: 0 0 10px 2.5%; font-size: 16px;" id="searchtab"></div>
-	
+<p onclick="localStorage.removeItem('gohist'); document.getElementById('historytab').innerHTML = '';" style="text-align: right"><u opacity="0.6" font="Kanit" size="13px">Clear History</u>&nbsp;</p>	
 <div style="width: 95%; margin-left: 2.5%; font-size: 16px; font-family: 'Playfair Display';" id="historytab"></div>
 </div>
 </div>
@@ -389,6 +389,7 @@ box.innerHTML = "";
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
 let $prod = "none"; 
+
 let histor = localStorage.getItem('gohist'); 
 
 if(histor == null) {
@@ -396,6 +397,8 @@ histor = [];
 }  else {
 histor = JSON.parse(histor)    
 }
+
+
 histor.reverse();
 let findhtml = ""; 
 histor.forEach(function(row){
@@ -403,7 +406,8 @@ let html = `<div style="display: flex; align-items: center"><div style="display:
 findhtml = findhtml + html;   
 }); 
 document.getElementById('historytab').innerHTML = findhtml; 
-	
+
+
 	
 $START('XQL:'+$con);
 
