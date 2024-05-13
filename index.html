@@ -149,15 +149,75 @@ font-weight: 600;
 .stam {
   font-size: 11px !important;
 }
+
+.typewindow {
+   height: 100vh; 
+   width: 100vw; 
+   z-index: 100; 
+   position: fixed; 
+   top: 0; 
+   left: 0; 
+   display: none;
+   background: white; 
+}
+
+.typewindow .major {
+       position: fixed; 
+    top: 0; 
+    background: white; 
+    width: 100%;
+   }
+   
+   .typewindow .main {
+     display: flex; 
+     width: 90%;
+    height: 40px;    
+    margin: 10px 0 0 10px;
+    background: #F1F1F1;
+    border-radius: 25px; 
+     justify-content: center;
+     align-items: center; 
+     }
+   
+   
+     .typewindow .main #query {
+      width: 100%; 
+      height: 40px; 
+      font-size: 16px;
+      border: none;
+      background: none;
+      outline: none;
+      padding: 0 10px 0 10px; 
+      border-radius: 25px; 
+      font-family: 'Kanit';
+      z-index: 11; 
+   }  
 </style>
 <div id="nav"></div>
 <div height="65px"></div>
 
 
+<div id="typewindow" class="typewindow">
+ <div class="major">
+ <div class="main">&nbsp;&nbsp;
+ <in style="font-size: 20px">&#x1F50D;</in>
+ <form style="display: inline-flex; margin: 0; width: 85%;" id="queryform">
+ <input onblu="document.getElementById('typewindow').style.display='none';" id="query" placeholder="www.google.com" >
+ </form>
+ </div> 
+ </div>
+ 
+ <div style="height: 50px"></div>
+<hr>
+<div style="width: 95%; margin-left: 2.5%; font-size: 16px; font-family: 'Playfair Display';" id="historytab"></div>
+</div>
+
+
+	
    
  <div width="400px max">
 <div flex style="align-items: center" page-middle-h width="90%" radius="25px" border="1px none grey">
-<input back="#F1F1F1" type="search" radius="25px 0 0 25px" placeholder="Search" style="width: calc(100% - 50px); outline: none;" font="Ubuntu" size="14px" noborder height="40px" padding="9.2px,5px,5px,15px"><button noborder back="#0F2410" size="20px" width="50px" radius="0 25px 25px 0" height="39px" color="white"><i onclick="" class="fa fa-search"></i></button>
+<input onclick="document.getElementById('typewindow').style.display = 'block'; document.getElementById('query').focus(); goFind()" back="#F1F1F1" type="search" radius="25px 0 0 25px" placeholder="Search" style="width: calc(100% - 50px); outline: none;" font="Ubuntu" size="14px" noborder height="40px" padding="9.2px,5px,5px,15px"><button noborder back="#0F2410" size="20px" width="50px" radius="0 25px 25px 0" height="39px" color="white"><i onclick="" class="fa fa-search"></i></button>
 </div>
 </div>   
     
@@ -328,7 +388,6 @@ $START('XQL:'+$con);
 
 $QUERY($con, $db, `SELECT chat ORDER DESC`).pull(allChat);   
 
-
 function allChat(poll) {
 try{
 let mine = localStorage.getItem("rye"); 
@@ -358,7 +417,24 @@ document.getElementById('unread').innerHTML = "&nbsp;" + total;
  alert(error); 
 }}
 
+function goFind(){
+const mediaState = { page: 'finder' };
+  history.pushState(mediaState, null, '#finder');    
+}
 
+
+
+ 
+let searchQL = document.getElementById('query'); 
+searchQL.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    
+    loadPage(); 
+    
+  }
+});
+	
 
 
 
