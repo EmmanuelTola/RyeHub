@@ -24,6 +24,7 @@ margin-right: 20px !important;
 .navlogo img{
 margin-left: 5px !important;
 border-radius: 50% !important;
+display: none !important; 
 }
 
 #navcart {
