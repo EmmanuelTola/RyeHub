@@ -463,6 +463,7 @@ searchQL.addEventListener("keypress", function(event) {
 async function loadPage(){
 try {
 let quer = document.getElementById('query').value;
+if(checkData(quer)){
 let queries = quer.split(" "); 
 document.getElementById('searchtab').innerHTML = `<div width="95%" margin="2.5% left" flex>
   <div margin="10px right" class="block"></div>
@@ -511,6 +512,9 @@ rootHex();
 } else {
 document.getElementById('searchtab').innerHTML = `<p font="Playfair Display">No Search Result Found</p>`;  
 rootHex(); 
+}
+} else {
+document.getElementById('searchtab').innerHTML = ""; 
 }
 } catch(error) {
 alert(error); 
