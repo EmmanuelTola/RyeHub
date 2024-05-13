@@ -81,6 +81,38 @@ font-family: 'Ubuntu';
 	}
  } 
 
+
+.stars {
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 40px;
+  cursor: pointer;
+  color: #ccc; /* Default star color */
+}
+
+ .stam {
+  font-size: 15px;
+  cursor: pointer;
+  color: #ccc; /* Default star color */
+ }
+ 
+
+
+
+
+.star.filled, .stam.filled {
+  color: #FFD700; /* Filled star color */
+}
+
+#rating {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+ }
+
+
 </style>
 
 <hexxe>
