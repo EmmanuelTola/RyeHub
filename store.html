@@ -19,7 +19,7 @@
 
 <title>Store | RyeHub</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
-<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@v1.24/hex.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/query.js"></script>
 </head>
@@ -53,10 +53,18 @@ transform: none;
 left: 0; 
 height: 100vh; 
 }
+
+ 
 .poptext {
 height: calc(100vh - 60px); 
 padding-bottom: 20px;
 max-height: 100vh;
+}
+
+.err .poptext{
+height: calc(50vh) !important; 
+padding-bottom: 20px;
+max-height: 60vh !important;
 }
 #popcan {
 left: 0; 
@@ -282,7 +290,7 @@ border: 3px solid #0B1919;
 
 <button margin="10px,0,0,20px" back="#fafafa" blend="normal" onclick="addImg();" size="20px" rati="1/1" theme="smart"><i class="fa fa-plus"></i>&nbsp; Image</button>
     
-<insert table="products" call="history.go(0)" data="ryehub">
+<insert error="hexPop('uperror'); hide('#prospin');"  table="products" call="history.go(0)" data="ryehub">
 <form>
     
 <br>
@@ -351,9 +359,14 @@ border: 3px solid #0B1919;
 
 
 
-<div pop="cinfo UPDATE_INFO user.html?sett=true">
+<div pop-class="err" pop="cinfo UPDATE_INFO user.html?sett=true">
 <i class="fa fa-warning" size="50px" color="red"></i>
 <p size="30px" font="Outfit">You have missing contact info. Update them to create a store and become a verified seller</p>
+</div>
+
+<div pop-class="err" pop="uperror CLOSE">
+<i class="fa fa-warning" size="50px" color="red"></i>
+<p size="30px" font="Outfit">Error Occurred While Creating Product. Check Network Connection And Retry</p>
 </div>
 
 
