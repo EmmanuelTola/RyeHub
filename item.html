@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@main/hex.css">
 <script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@latest/hex.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB/que.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@v1.22/query.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HexxeJS/HexxeDB@v1.23/query.js"></script>
 </head>
 
 <body>
@@ -228,7 +228,7 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 const pid = $GET('id'); 
 let $prod = []; 
-let query = `ALL products WHERE id = '${pid}'`; 
+let query = `SELECT products WHERE id = '${pid}'`; 
 document.getElementById('purco').innerText = query; 
 $START('XQL:'+$con);
 function doRate(){
