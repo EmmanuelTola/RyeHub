@@ -240,7 +240,7 @@ font-weight: 600;
 <query error="history.go(0)" call="document.getElementById('ploader').hide();" data="ryehub">
 <data id="purco">ALL products ORDER DESC LIMIT 5</data>
 
-<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">Error fetching products (404: None Found)</in></empty>
 
 <result id="recentr">
 
@@ -270,7 +270,7 @@ font-weight: 600;
 <query call="document.getElementById('tloader').hide();" data="ryehub">
 <data id="purco">ALL products ORDER DESC-views LIMIT 5</data>
 
-<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">Error fetching products (404: None Found)</in></empty>
 
 <result id="trendr">
 
@@ -299,18 +299,18 @@ font-weight: 600;
 <p>Merches</p>
  </div>
 </div>
-
+<p margin="15px,0,11px,0" bold font="Poppins" size="19px">&nbsp; For <span id="forwho"></span></p>
+	
 <div width="95%" margin="2.5% left" id="floader" flex>
   <div margin="10px right" class="block"></div>
   <div class="block"></div>
 </div>
-<p margin="15px,0,11px,0" bold font="Poppins" size="19px">&nbsp; For <span id="forwho"></span></p>
 	
 <div flex style="overflow: scroll;" width="95%" margin="2.5% left">
 <query error="history.go(0)" call="document.getElementById('floader').hide();" data="ryehub">
 <data id="forco"></data>
 
-<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">You have not created any product</in></empty>
+<empty><in opacity="0.5" font="Rubik" margin="10px left" size="16px">Error fetching products (404: None Found)</in></empty>
 
 <result id="forwhor">
 
@@ -407,7 +407,7 @@ $IMPORT('@UI');
 document.getElementById('nav').Xporter('nav.hex');
 let box = document.getElementById('productbox'); 
 let prodc = box.innerHTML;
-let forl = ['ladies', 'women', 'men', 'guys'];
+let forl = ['ladies', 'men', 'women', 'guys'];
 for (let i = forl.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [forl[i], forl[j]] = [forl[j], forl[i]];
