@@ -57,7 +57,7 @@ height: 100%;
   animation-duration: 1s; /* Change the duration to adjust the speed */
 }
 </style>
-<section id="topnav"></section>
+<div id="nav"></div>
 <div height="70px"></div>
 
  <center><i id="loader" size="50px" class="fas fa-circle-notch fa-spin custom-spin"></i></center>
@@ -130,6 +130,7 @@ height: 100%;
 
 <script>
 $IMPORT('@UI'); 
+document.getElementById('nav').Xporter('nav.hex'); 
 let logg = localStorage.getItem('rye'); 
 if(logg == null) {
 location.href = 'login.html'; 
@@ -182,7 +183,7 @@ this.src = "default.jpeg";
  }
  });
  populateCountriesDropdown();
- document.getElementById('topnav').Xporter('nav.hex')
+ 
 
 }
 
