@@ -228,7 +228,7 @@ const $con = "q2goAPe9YRLIWeWI75Iw";
 const $db = "ryehub"; 
 const pid = $GET('id'); 
 let $prod = []; 
-let query = `SELECT products WHERE id = '${pid}'`; 
+let query = `ALL products WHERE id = '${pid}'`; 
 document.getElementById('purco').innerText = query; 
 $START('XQL:'+$con);
 function doRate(){
