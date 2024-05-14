@@ -70,7 +70,7 @@ let ryeh = {};
 ryeh.out = mine;
 ryeh.in = "ryehub";
 
-let ory = poll.filter(item => item['in'] == "ryehub" || item['out'] == "ryehub");
+let ory = data.filter(item => item['in'] == "ryehub" || item['out'] == "ryehub");
 if(ory && ory[0]) {
 ory = ory[0]; 
 ryeh.msg = ory.msg; 
