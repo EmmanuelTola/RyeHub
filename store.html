@@ -187,7 +187,7 @@ border: 3px solid #0B1919;
 <center>
     
     
-<insert call="history.go(0)" table="seller" data="ryehub">
+<insert error="hexPop('uperror'); hide('#newspin');" call="history.go(0)" table="seller" data="ryehub">
 <form id="newform">
   
 <img onclick="newFile(); document.getElementById('biles').click();" id="upbans" src="logo.jpg" width="100%" ratio="1/0.5">  
@@ -235,7 +235,7 @@ border: 3px solid #0B1919;
 <center>
     
     
-<update table="seller" query="id = $js-localStorage.getItem('rye')" call="history.go(0)" data="ryehub">
+<update error="hexPop('uperror'); hide('#upspin');" table="seller" query="id = $js-localStorage.getItem('rye')" call="history.go(0)" data="ryehub">
 <form>
     
 <query call="imgEdit();" data="ryehub"> 
