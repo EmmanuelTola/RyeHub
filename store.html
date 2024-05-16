@@ -379,7 +379,15 @@ let currn = localStorage.getItem('rye');
 document.getElementById('purc').innerText = `ALL seller WHERE id = '${currn}'`;
 document.getElementById('purco').innerText = `ALL products WHERE userid = '${currn}' ORDER DESC`; 
 document.getElementById('editusen').innerText = `ALL seller WHERE id = '${currn}'`;
-  
+let ryeone = "rye-"+makeid(5);
+let ryetwo = "rye-"+makeid(5);
+let ryethree = "rye-"+makeid(5);
+ 
+document.getElementById('filep').setAttribute("dir", ryeone);
+document.getElementById('bilep').setAttribute("dir", ryetwo); 
+document.getElementById('tilep').setAttribute("dir", ryethree);
+
+
 const $con = "q2goAPe9YRLIWeWI75Iw"; 
 const $db = "ryehub"; 
 let $prod = []; 
