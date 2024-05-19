@@ -116,7 +116,7 @@ font-family: 'Ubuntu';
 </style>
 
 <hexxe>
-<nav type="header" name="<div flex style='align-items: center'>&nbsp;<i onclick='togNav();' class='list-icon' size='25px'></i>&nbsp;<img link='index.html' width='40%' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
+<nav type="header" name="<div flex style='align-items: center'>&nbsp;<i onclick='togNav();' class='list-icon' size='25px'></i>&nbsp;<img link='index.html' width='90px' src='https://cdn.jsdelivr.net/gh/EmmanuelTola/RyeHub/asset/blogo.png'><div size='25px' style='width: 100%'>
 <in id='navcart'><i onclick='location.href=`cart.html`;' bold class='cart-icon'></i><b font='Urbanist' color='#0F2410' size='10px' id='cartnum'></b></in> 
 <i onclick='location.href=`user.html`;' id='navuser' class='fa-regular fa-user'></i> </div></div>" loo="logo.jpg">
 <div margin="15px top" class="navlist" left>
